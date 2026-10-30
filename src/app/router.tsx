@@ -65,6 +65,10 @@ export const routes = [
         element: withSuspense(DestinationDetailPage),
       },
       {
+        path: 'destination/:id',
+        element: withSuspense(DestinationDetailPage),
+      },
+      {
         path: 'social',
         element: withSuspense(SocialPage),
       },
