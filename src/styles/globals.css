@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+@theme {
+  --color-travi-midnight: #080D18;
+  --color-travi-deep: #050811;
+  --color-travi-surface: #0E1626;
+  --color-travi-surface-elevated: #151F33;
+  --color-travi-card: #121C30;
+  --color-travi-card-hover: #18253E;
+  --color-travi-border: #243049;
+  --color-travi-border-subtle: #192338;
+  --color-travi-border-accent: #3DDC97;
+  --color-travi-muted: #9BA9C3;
+  --color-travi-muted-light: #C4D0E5;
+  --color-travi-ink: #111111;
+  --color-travi-paper: #FFFFFF;
+  --color-travi-green: #3DDC97;
+  --color-travi-green-dark: #2BB67B;
+  --color-travi-cyan: #48E3EF;
+  --color-travi-violet: #9875FF;
+  --color-travi-sand: #EAE6DF;
+  --color-travi-gold: #F5A623;
+  --color-travi-light-bg: #F4F7FF;
+
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  /* Easing curves matching Travi Logo Transition reference */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-travi-border);
+  }
+
+  body {
+    background-color: var(--color-travi-midnight);
+    color: var(--color-travi-light-bg);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
+    letter-spacing: -0.015em;
+  }
+
+  /* Keyboard focus-visible consistency across all interactive elements */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #3DDC97;
+    outline-offset: 2px;
+  }
+}
+
+/* ========================================================================= */
+/* ATMOSPHERIC MOTION & TRANSITION SYSTEM (Inspired by travi-logo-transition) */
+/* ========================================================================= */
+
+@keyframes traviFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes traviDrawerIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes traviModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes traviIrisReveal {
+  from {
+    clip-path: circle(0% at center);
+  }
+  to {
+    clip-path: circle(150% at center);
+  }
+}
+
+@keyframes traviShimmerSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes traviGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(61, 220, 151, 0.15);
+    border-color: rgba(61, 220, 151, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(72, 227, 239, 0.25);
+    border-color: rgba(72, 227, 239, 0.55);
+  }
+}
+
+@keyframes traviStardustDrift {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
+}
+
+/* Reusable Animation Utility Classes */
+.animate-fade-in {
+  animation: traviFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-drawer-in {
+  animation: traviDrawerIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-modal-in {
+  animation: traviModalIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-iris-in {
+  animation: traviIrisReveal 0.65s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.animate-glow-pulse {
+  animation: traviGlowPulse 3s ease-in-out infinite;
+}
+
+.animate-stardust {
+  animation: traviStardustDrift 8s ease-in-out infinite;
+}
+
+/* Staggered Reveal Utilities for Lists and Discovery Rails */
+.stagger-1 { animation-delay: 40ms; }
+.stagger-2 { animation-delay: 80ms; }
+.stagger-3 { animation-delay: 120ms; }
+.stagger-4 { animation-delay: 160ms; }
+.stagger-5 { animation-delay: 200ms; }
+
+/* Refined Glassmorphism Panels */
+.travi-glass-panel {
+  background: rgba(14, 22, 38, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.travi-glass-elevated {
+  background: rgba(18, 28, 48, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(36, 48, 73, 0.8);
+}
+
+/* Skeleton Shimmer Loading State */
+.travi-skeleton {
+  background: linear-gradient(
+    90deg,
+    #121C30 0%,
+    #18253E 50%,
+    #121C30 100%
+  );
+  background-size: 200% 100%;
+  animation: traviShimmerSweep 1.8s infinite ease-in-out;
+  border-radius: 0.75rem;
+}
+
+/* Mobile Safe Area Utility */
+.pb-safe {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0.75rem));
+}
+
+/* Reduced Motion Safety */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-glow-pulse,
+  .animate-stardust,
+  .travi-skeleton {
+    animation: none !important;
+  }
+}
+
+html.reduce-motion *,
+html.reduce-motion ::before,
+html.reduce-motion ::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+html.reduce-motion .animate-glow-pulse,
+html.reduce-motion .animate-stardust,
+html.reduce-motion .travi-skeleton {
+  animation: none !important;
+}
+
+/* Editorial Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080D18;
+}
+::-webkit-scrollbar-thumb {
+  background: #243049;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(61, 220, 151, 0.4);
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Travi Mini Logo">
+  <rect x="8" y="8" width="192" height="192" rx="46" fill="#111111"/>
+  <rect x="3" y="3" width="188" height="188" rx="44" fill="#FFFFFF" stroke="#111111" stroke-width="8"/>
+  <circle cx="96" cy="97" r="66" fill="#3DDC97"/>
+  <g transform="translate(112,84) rotate(45) scale(1.05)">
+    <path d="M0,-50 C4,-50 6,-40 6,-30 L6,-12 L46,14 L46,24 L6,12 L6,30 L16,40 L16,46 L0,41 L-16,46 L-16,40 L-6,30 L-6,12 L-46,24 L-46,14 L-6,-12 L-6,-30 C-6,-40 -4,-50 0,-50 Z" fill="#FFFFFF" stroke="#111111" stroke-width="8" stroke-linejoin="round"/>
+  </g>
+</svg>

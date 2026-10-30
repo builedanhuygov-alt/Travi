@@ -1,0 +1,36 @@
+rules_version = '2';
+
+/**
+ * Travi Cloud Storage Security Rules — Foundation v0.1
+ * Target Firebase Project ID: travi-app-23th10
+ *
+ * Security Model:
+ * 1. User Uploads (avatars, memory photos): Restricted to /users/{userId}/**.
+ *    Only authenticated owners can upload/modify their photos.
+ * 2. Public Platform Media: Read-only for all clients.
+ */
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // User Media Folder: /users/{userId}/...
+    match /users/{userId}/{allPaths=**} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+                   && request.auth.uid == userId
+                   && request.resource.size < 10 * 1024 * 1024 // 10MB upload limit
+                   && request.resource.contentType.matches('image/.*');
+    }
+
+    // Curated Platform Brand and Media
+    match /curated/{allPaths=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Default deny
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Travi Logo">
+  <defs>
+    <clipPath id="trv-cc"><circle cx="96" cy="100" r="62"/></clipPath>
+  </defs>
+  <rect x="8" y="8" width="192" height="192" rx="46" fill="#111111"/>
+  <rect x="3" y="3" width="188" height="188" rx="44" fill="#FFFFFF" stroke="#111111" stroke-width="6"/>
+  <g transform="translate(0,-3)">
+    <circle cx="96" cy="100" r="62" fill="#3DDC97"/>
+    <g clip-path="url(#trv-cc)" fill="none" stroke="#111111" stroke-linecap="round">
+      <path d="M40,112 C62,134 92,128 98,110" stroke-width="8"/>
+      <path d="M46,128 C68,146 100,140 110,122" stroke-width="6"/>
+      <path d="M56,142 C76,154 104,150 116,136" stroke-width="4"/>
+    </g>
+    <g transform="translate(-6,-2)">
+      <path d="M30,78 C28,42 54,24 82,28 C84,58 62,84 30,78 Z" fill="#48E3EF" stroke="#111111" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M34,76 C48,60 62,46 76,34" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(118,76) rotate(45) scale(0.9)">
+      <path d="M0,-50 C4,-50 6,-40 6,-30 L6,-12 L46,14 L46,24 L6,12 L6,30 L16,40 L16,46 L0,41 L-16,46 L-16,40 L-6,30 L-6,12 L-46,24 L-46,14 L-6,-12 L-6,-30 C-6,-40 -4,-50 0,-50 Z" fill="#FFFFFF" stroke="#111111" stroke-width="5.5" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>

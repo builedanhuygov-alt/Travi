@@ -1,0 +1,113 @@
+rules_version = '2';
+
+/**
+ * Travi Firestore Security Rules — Foundation v0.1
+ * Target Firebase Project ID: travi-app-23th10
+ *
+ * Security Model:
+ * 1. User Isolation: Private data (profiles, custom trips, private memories, bookmarks)
+ *    is strictly scoped under /users/{userId} and accessible only by the authenticated owner.
+ * 2. Public Platform Curations: Destinations, verified artisan experiences, and platform
+ *    metadata are publicly readable, with writes restricted to platform admins.
+ * 3. Community Dispatches & Circles: Public reads, authenticated creations with authorId verification,
+ *    and owner-only update/delete permissions.
+ */
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isDocAuthor() {
+      return isAuthenticated() && resource.data.authorId == request.auth.uid;
+    }
+
+    function isCreatingOwnDoc() {
+      return isAuthenticated() && request.resource.data.authorId == request.auth.uid;
+    }
+
+    // =========================================================================
+    // 1. User Root Document & Isolated Private Collections
+    // =========================================================================
+    match /users/{userId} {
+      // User profile doc: readable by authenticated users (or public handle lookup), writable only by owner
+      allow read: if isAuthenticated();
+      allow create, update, delete: if isOwner(userId);
+
+      // Private User Trips Subcollection
+      match /trips/{tripId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Private User Memories Subcollection
+      match /memories/{memoryId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // User Saved Destinations (Bookmarks)
+      match /savedDestinations/{destId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // User Experience Bookings & Inquiries
+      match /bookings/{bookingId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Private User Preferences & Travel DNA
+      match /preferences/{prefId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // =========================================================================
+    // 2. Curated Editorial Content (Public Read-Only)
+    // =========================================================================
+    // Curated Sanctuaries & Cultural Destinations
+    match /destinations/{destinationId} {
+      allow read: if true;
+      allow write: if false; // Curated exclusively via Firebase Admin SDK / Admin Console
+    }
+
+    // Curated Artisan Workshops & Living Heritage Experiences
+    match /experiences/{experienceId} {
+      allow read: if true;
+      allow write: if false; // Curated exclusively via Firebase Admin SDK / Admin Console
+    }
+
+    // =========================================================================
+    // 3. Social Dispatches & Travel Circles (Community Spaces)
+    // =========================================================================
+    // Explorer Field Dispatches
+    match /dispatches/{dispatchId} {
+      allow read: if true;
+      allow create: if isCreatingOwnDoc();
+      allow update, delete: if isDocAuthor();
+    }
+
+    // Travel Circles (e.g., Kyoto Tea Atelier, Alpine Trailfinders)
+    match /circles/{circleId} {
+      allow read: if true;
+      allow write: if false; // Platform-managed circles
+
+      // Circle Discussions
+      match /discussions/{discussionId} {
+        allow read: if true;
+        allow create: if isCreatingOwnDoc();
+        allow update, delete: if isDocAuthor();
+      }
+    }
+
+    // Default deny all other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
