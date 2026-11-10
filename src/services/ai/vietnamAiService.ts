@@ -20,6 +20,31 @@
 import { vietnamDestinations } from '../../data/vietnamData.ts';
 import { culturalDataService } from '../cultural/culturalDataService.ts';
 import { tourismDataService } from '../tourism/tourismDataService.ts';
+import type {
+  CustomerType,
+  TravelMarket,
+  TravelScope,
+  TravelPersona,
+  TravelLanguage,
+  LocationHierarchy,
+} from '../../types/adaptiveTravel.ts';
+
+export interface TravelAssistantProfile {
+  market?: TravelMarket;
+  travel_scope?: TravelScope;
+  persona?: TravelPersona;
+  language?: TravelLanguage;
+  origin_location?: LocationHierarchy;
+  destination_location?: LocationHierarchy;
+  customer_type?: CustomerType;
+  origin_country?: string;
+  origin_province?: string;
+  destination?: string;
+  preferred_language?: string;
+  budget?: string;
+  travel_duration?: number;
+  interests?: string[];
+}
 
 export interface TravelAssistantContext {
   destination?: string;
@@ -27,17 +52,8 @@ export interface TravelAssistantContext {
   travelPace?: string;
   budgetRange?: string;
   travelStyle?: string;
-  customerType?: 'INTERNATIONAL' | 'DOMESTIC' | 'LOCAL' | 'INTERPROVINCIAL';
-  profile?: {
-    customer_type?: 'INTERNATIONAL' | 'DOMESTIC' | 'LOCAL' | 'INTERPROVINCIAL';
-    origin_country?: string;
-    origin_province?: string;
-    destination?: string;
-    preferred_language?: string;
-    budget?: string;
-    travel_duration?: number;
-    interests?: string[];
-  };
+  customerType?: CustomerType;
+  profile?: TravelAssistantProfile;
 }
 
 export interface AiAssistantResponse {
@@ -268,7 +284,22 @@ export class VietnamTravelAiService {
     // Never read client-side VITE_* AI secrets.
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+      const resolvedProfile = context?.profile || {
+        market: context?.customerType === 'INTERNATIONAL' ? 'INTERNATIONAL' : 'DOMESTIC',
+        travel_scope: context?.customerType === 'LOCAL' ? 'LOCAL' : context?.customerType === 'INTERPROVINCIAL' ? 'INTERPROVINCIAL' : 'INTERNATIONAL_TRAVEL',
+        persona: 'EXPLORER',
+        language: 'VI',
+        destination_location: {
+          country: 'Vietnam',
+          province: context?.destination,
+        },
+        customer_type: context?.customerType || 'DOMESTIC',
+        destination: context?.destination,
+        budget: context?.budgetRange || 'moderate',
+        travel_duration: context?.durationDays || 3,
+      };
 
       const serverRes = await fetch('/api/ai/chat', {
         method: 'POST',
@@ -277,11 +308,9 @@ export class VietnamTravelAiService {
         },
         body: JSON.stringify({
           prompt: trimmedRaw,
-          context,
-          profile: context?.profile || {
-            customer_type: context?.customerType || 'DOMESTIC',
-            destination: context?.destination,
-          },
+          profile: resolvedProfile,
+          history: [],
+          stream: false,
         }),
         signal: controller.signal,
       });

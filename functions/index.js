@@ -63,7 +63,7 @@ export const vietnamAiChat = onRequest(
   {
     region: 'us-central1',
     cors: true,
-    timeoutSeconds: 15,
+    timeoutSeconds: 60,
     maxInstances: 10,
   },
   async (req, res) => {
@@ -86,18 +86,18 @@ export const vietnamAiChat = onRequest(
       return;
     }
 
-    // 3. Payload size check
+    // 3. Payload size check (16KB max)
     const contentLength = parseInt(req.headers['content-length'] || '0', 10);
-    if (contentLength > 10240) {
+    if (contentLength > 16384) {
       res.status(413).json({
-        error: 'Payload Too Large. Request body must be under 10KB.',
+        error: 'Payload Too Large. Request body must be under 16KB.',
         code: 'PAYLOAD_TOO_LARGE',
       });
       return;
     }
 
     // 4. Input validation
-    const { prompt, context } = req.body || {};
+    const { prompt, profile, context, history } = req.body || {};
     if (!prompt || typeof prompt !== 'string' || !prompt.trim()) {
       res.status(400).json({
         error: 'Validation Error: "prompt" must be a non-empty string.',
@@ -148,12 +148,23 @@ export const vietnamAiChat = onRequest(
       return;
     }
 
-    // 6. Upstream LLM Dispatch with 10-second timeout
+    // 6. Upstream LLM Dispatch with 45-second gateway timeout
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const timeoutId = setTimeout(() => controller.abort(), 45000);
 
     try {
-      const upstreamRes = await fetch(serverEndpoint, {
+      const targetUrl = serverEndpoint.endsWith('/api/chat')
+        ? serverEndpoint
+        : `${serverEndpoint.replace(/\/+$/, '')}/api/chat`;
+
+      const sanitizedHistory = Array.isArray(history)
+        ? history.slice(-10).map((h) => ({
+            role: typeof h.role === 'string' ? h.role : 'user',
+            content: typeof h.content === 'string' ? h.content.slice(0, 1000) : '',
+          }))
+        : [];
+
+      const upstreamRes = await fetch(targetUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -161,13 +172,23 @@ export const vietnamAiChat = onRequest(
         },
         body: JSON.stringify({
           prompt: trimmedPrompt,
+          profile: profile || { customer_type: req.body?.customer_type || 'DOMESTIC' },
           context: context || {},
-          system: 'You are Travi AI, an expert cultural travel companion specializing exclusively in Vietnam tourism.',
+          history: sanitizedHistory,
+          stream: false,
         }),
         signal: controller.signal,
       });
 
       clearTimeout(timeoutId);
+
+      if (upstreamRes.status === 401) {
+        res.status(502).json({
+          error: 'Upstream authentication failed with AI inference provider.',
+          code: 'UPSTREAM_AUTH_ERROR',
+        });
+        return;
+      }
 
       if (!upstreamRes.ok) {
         res.status(502).json({
@@ -180,9 +201,10 @@ export const vietnamAiChat = onRequest(
       const upstreamData = await upstreamRes.json();
       res.json({
         status: 'success',
-        content: upstreamData.reply || upstreamData.content || '',
+        content: upstreamData.content || upstreamData.reply || '',
         sources: upstreamData.sources || [],
-        suggestions: upstreamData.suggestions || ['Tell me more', 'Suggest an itinerary stop'],
+        personalized_for: upstreamData.personalized_for || profile?.customer_type || 'DOMESTIC',
+        suggestions: upstreamData.suggestions || ['Tìm hiểu ẩm thực bản địa', 'Lên lịch trình chi tiết'],
         provenance: {
           providerName: upstreamData.provenance?.providerName || 'Travi Vietnam Live AI Provider (Server-Side)',
           isLiveAi: true,
@@ -193,7 +215,7 @@ export const vietnamAiChat = onRequest(
       clearTimeout(timeoutId);
       if (err.name === 'AbortError') {
         res.status(504).json({
-          error: 'Upstream AI request timed out after 10 seconds.',
+          error: 'Upstream AI request timed out after 45 seconds.',
           code: 'REQUEST_TIMEOUT',
         });
         return;
@@ -383,24 +405,47 @@ export const colabAiStatus = onRequest(
     }
 
     try {
-      const healthUrl = serverEndpoint.replace(/\/+$/, '') + '/health';
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 4000);
-      const upstreamRes = await fetch(healthUrl, { signal: controller.signal });
-      clearTimeout(timeoutId);
+      const baseClean = serverEndpoint.replace(/\/+$/, '');
+      const healthUrl = `${baseClean}/health`;
+      const modelInfoUrl = `${baseClean}/api/model-info`;
 
-      if (upstreamRes.ok) {
-        const data = await upstreamRes.json();
-        const isHealthy = data.status === 'healthy';
-        res.json({
-          state: isHealthy ? 'AI_ONLINE' : 'AI_OFFLINE',
-          status: data.status || (isHealthy ? 'healthy' : 'degraded'),
-          isAvailable: isHealthy,
-          provider: 'Qwen2-7B-Instruct (Google Colab GPU)',
-          model: data.model || 'qwen2:7b',
-          gpu: data.gpu,
+      // 1. Health check
+      const healthCtrl = new AbortController();
+      const healthTimeout = setTimeout(() => healthCtrl.abort(), 4000);
+      const healthRes = await fetch(healthUrl, { signal: healthCtrl.signal });
+      clearTimeout(healthTimeout);
+
+      if (healthRes.ok) {
+        const healthData = await healthRes.json();
+
+        // 2. Authenticated model-info check
+        const modelCtrl = new AbortController();
+        const modelTimeout = setTimeout(() => modelCtrl.abort(), 4000);
+        const modelRes = await fetch(modelInfoUrl, {
+          headers: { Authorization: `Bearer ${serverApiKey}` },
+          signal: modelCtrl.signal,
         });
-        return;
+        clearTimeout(modelTimeout);
+
+        if (modelRes.ok) {
+          const modelData = await modelRes.json();
+          const isHealthy = healthData.status === 'healthy';
+          const isModelReady = modelData.active_model_ready !== false;
+
+          res.json({
+            state: (isHealthy && isModelReady) ? 'AI_ONLINE' : 'AI_OFFLINE',
+            status: isHealthy ? 'healthy' : 'degraded',
+            isAvailable: isHealthy && isModelReady,
+            provider: `Qwen2-7B-Instruct (Google Colab GPU ${modelData.gpu?.name || 'T4'})`,
+            model: modelData.model || 'qwen2:7b',
+            gpu: modelData.gpu,
+            rag_facts_count: modelData.rag_facts_count,
+            message: (isHealthy && isModelReady)
+              ? 'Colab GPU runtime online and ready.'
+              : 'Colab GPU reachable but model warming up.',
+          });
+          return;
+        }
       }
     } catch {}
 

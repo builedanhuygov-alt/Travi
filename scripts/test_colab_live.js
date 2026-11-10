@@ -80,8 +80,8 @@ async function runLiveTest() {
     const healthData = await healthRes.json();
     console.log(`✅ Step 1 (GET /health) PASSED in ${healthTime}ms:`);
     console.log(`   Status: ${healthData.status}`);
-    console.log(`   GPU: ${healthData.gpu?.name || 'N/A'} (${healthData.gpu?.total_memory_mb || 0} MB VRAM)`);
-    console.log(`   Ollama Model: ${healthData.ollama?.active_model || 'N/A'}`);
+    console.log(`   Service: ${healthData.service}`);
+    console.log(`   Timestamp: ${healthData.timestamp}`);
   } catch (err) {
     console.log(`❌ Step 1 (GET /health) FAILED: ${err.message}`);
     console.log('   Ensure the Google Colab notebook kernel is still active and connected to Internet.');
@@ -109,6 +109,7 @@ async function runLiveTest() {
     console.log(`✅ Step 2 (GET /api/model-info) AUTHENTICATED PASSED in ${modelTime}ms:`);
     console.log(`   Model: ${modelData.model}`);
     console.log(`   Quantization: ${modelData.quantization}`);
+    console.log(`   GPU: ${modelData.gpu?.name || 'N/A'} (${modelData.gpu?.total_memory_mb || 0} MB VRAM)`);
     console.log(`   RAG Grounding Facts Count: ${modelData.rag_facts_count}`);
   } catch (err) {
     console.log(`❌ Step 2 (GET /api/model-info) FAILED: ${err.message}`);
@@ -165,3 +166,4 @@ async function runLiveTest() {
 }
 
 runLiveTest();
+

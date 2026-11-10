@@ -48,7 +48,7 @@ import type { CopilotMessage } from '../types/index.ts';
 import { classifyCustomerType } from '../services/adaptive/customerClassifier.ts';
 import { assessDestinationWeather } from '../services/weather/weatherService.ts';
 import { AiStatusIndicator } from '../components/ai/AiStatusIndicator.tsx';
-import type { CustomerType, PreferredLanguage, TravelCompanions } from '../types/adaptiveTravel.ts';
+import type { CustomerType, PreferredLanguage, TravelCompanions, TravelPersona } from '../types/adaptiveTravel.ts';
 
 
 let msgCounter = 0;
@@ -76,6 +76,7 @@ export const CopilotPage: React.FC = () => {
   const [originProvince, setOriginProvince] = useState<string>('Hà Nội');
   const [preferredLanguage, setPreferredLanguage] = useState<PreferredLanguage>('vi');
   const [travelCompanions, setTravelCompanions] = useState<TravelCompanions>('Couple');
+  const [selectedPersona, setSelectedPersona] = useState<TravelPersona>('EXPLORER');
 
   // Selected cultural interests & foods
   const [selectedInterests] = useState<string[]>([
@@ -296,6 +297,9 @@ export const CopilotPage: React.FC = () => {
           budget: budgetRange,
           travel_duration: durationDays,
           interests: selectedInterests,
+          persona: selectedPersona,
+          market: customerType === 'INTERNATIONAL' ? 'INTERNATIONAL' : 'DOMESTIC',
+          travel_scope: customerType === 'LOCAL' ? 'LOCAL' : customerType === 'INTERPROVINCIAL' ? 'INTERPROVINCIAL' : 'INTERNATIONAL_TRAVEL',
         },
       });
 
@@ -525,6 +529,42 @@ export const CopilotPage: React.FC = () => {
                           }`}
                         >
                           {comp}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Travel Persona */}
+                  <div>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <label className="text-xs font-semibold text-white">
+                        Phong cách du khách (Persona)
+                      </label>
+                      <span className="text-[10px] font-mono text-[#3DDC97] bg-[#3DDC97]/10 px-2 py-0.5 rounded-full border border-[#3DDC97]/20">
+                        {selectedPersona}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-4 gap-1.5">
+                      {([
+                        { id: 'FAMILY' as TravelPersona, label: 'Gia đình' },
+                        { id: 'BACKPACKER' as TravelPersona, label: 'Phượt thủ' },
+                        { id: 'SOLO' as TravelPersona, label: 'Độc hành' },
+                        { id: 'EXPLORER' as TravelPersona, label: 'Khám phá' },
+                      ]).map((p) => (
+                        <button
+                          key={p.id}
+                          type="button"
+                          onClick={() => {
+                            setSelectedPersona(p.id);
+                            triggerToast(`Phong cách du khách: ${p.label}`, 'info');
+                          }}
+                          className={`py-1.5 rounded-lg text-[11px] font-medium transition-all ${
+                            selectedPersona === p.id
+                              ? 'bg-[#3DDC97] text-[#080D18] font-semibold shadow-sm'
+                              : 'bg-[#080D18] text-[#9BA9C3] border border-[#243049] hover:text-white'
+                          }`}
+                        >
+                          {p.label}
                         </button>
                       ))}
                     </div>
