@@ -11,18 +11,17 @@ describe('ExplorePage — Discover Vietnam Verification', () => {
     const fs = await import('node:fs/promises');
     const exploreCode = await fs.readFile('d:/Travi/src/pages/ExplorePage.tsx', 'utf-8');
 
-    // Asserts Discover Vietnam branding & positioning
-    expect(exploreCode).toContain('Discover Vietnam');
-    expect(exploreCode).toContain('Explore 34 provincial destinations');
+    // Asserts Discover Vietnam branding & positioning in Vietnamese
+    expect(exploreCode).toContain('Khám phá Việt Nam');
+    expect(exploreCode).toContain('Điểm đến khắp Việt Nam');
 
     // Asserts View Switcher
-    expect(exploreCode).toContain('Curated Rails');
-    expect(exploreCode).toContain('Interactive Map');
+    expect(exploreCode).toContain('Tuyển chọn');
+    expect(exploreCode).toContain('Bản đồ');
 
     // Asserts Vietnam Region and Category Filtering
-    expect(exploreCode).toContain('North Vietnam');
-    expect(exploreCode).toContain('Central Vietnam');
-    expect(exploreCode).toContain('South Vietnam');
+    expect(exploreCode).toContain('translateRegion');
+    expect(exploreCode).toContain('translateCategory');
 
     // Asserts ZERO Qloo leakage
     expect(exploreCode.toLowerCase()).not.toContain('qloo');

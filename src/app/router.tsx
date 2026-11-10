@@ -12,9 +12,14 @@ const TripsPage = React.lazy(() => import('../pages/TripsPage.tsx'));
 const CopilotPage = React.lazy(() => import('../pages/CopilotPage.tsx'));
 const MemoriesPage = React.lazy(() => import('../pages/MemoriesPage.tsx'));
 const ExperiencesPage = React.lazy(() => import('../pages/ExperiencesPage.tsx'));
+const StoriesPage = React.lazy(() => import('../pages/StoriesPage.tsx'));
+const StoryDetailPage = React.lazy(() => import('../pages/StoryDetailPage.tsx'));
+const MyDiscoveriesPage = React.lazy(() => import('../pages/MyDiscoveriesPage.tsx'));
 const SocialPage = React.lazy(() => import('../pages/SocialPage.tsx'));
 const ProfilePage = React.lazy(() => import('../pages/ProfilePage.tsx'));
 const DevDiagnosticsPage = React.lazy(() => import('../pages/DevDiagnosticsPage.tsx'));
+const NorthMapPage = React.lazy(() => import('../pages/NorthMapPage.tsx'));
+const VietnamTourismDataPage = React.lazy(() => import('../pages/VietnamTourismDataPage.tsx'));
 
 const withSuspense = (Component: React.ComponentType) => (
   <Suspense fallback={<RouteLoadingFallback />}>
@@ -37,6 +42,14 @@ export const routes = [
         element: withSuspense(ExplorePage),
       },
       {
+        path: 'map/north',
+        element: withSuspense(NorthMapPage),
+      },
+      {
+        path: 'map',
+        element: withSuspense(NorthMapPage),
+      },
+      {
         path: 'trips',
         element: withSuspense(TripsPage),
       },
@@ -47,6 +60,22 @@ export const routes = [
       {
         path: 'experiences',
         element: withSuspense(ExperiencesPage),
+      },
+      {
+        path: 'stories',
+        element: withSuspense(StoriesPage),
+      },
+      {
+        path: 'stories/:id',
+        element: withSuspense(StoryDetailPage),
+      },
+      {
+        path: 'discoveries',
+        element: withSuspense(MyDiscoveriesPage),
+      },
+      {
+        path: 'saved',
+        element: withSuspense(MyDiscoveriesPage),
       },
       {
         path: 'copilot',
@@ -79,6 +108,18 @@ export const routes = [
       {
         path: 'dev/diagnostics',
         element: withSuspense(DevDiagnosticsPage),
+      },
+      {
+        path: 'tourism-data',
+        element: withSuspense(VietnamTourismDataPage),
+      },
+      {
+        path: 'data-quality',
+        element: withSuspense(VietnamTourismDataPage),
+      },
+      {
+        path: 'cultural-data',
+        element: withSuspense(VietnamTourismDataPage),
       },
       {
         path: '*',

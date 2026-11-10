@@ -136,13 +136,13 @@ export const CulturalPulseModal: React.FC<CulturalPulseModalProps> = ({
             </div>
             <div>
               <h2 id="pulse-modal-title" className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
-                Vietnam Travel Pulse & Seasonal Cycles
+                Nhịp điệu du lịch & Mùa lễ hội Việt Nam
                 <Badge variant="outline" className="text-[10px] text-[#3DDC97] border-[#3DDC97]/30">
-                  Live Seasonal Calendar
+                  Lịch mùa thực tế
                 </Badge>
               </h2>
               <p className="text-xs text-[#9BA9C3]">
-                Discover optimal travel seasons, harvesting windows, and regional microclimates across Vietnam.
+                Khám phá các mùa du lịch lý tưởng, mùa thu hoạch và khí hậu đặc trưng từng vùng miền Việt Nam.
               </p>
             </div>
           </div>
@@ -171,7 +171,7 @@ export const CulturalPulseModal: React.FC<CulturalPulseModalProps> = ({
                 }`}
               >
                 <Calendar className="h-3.5 w-3.5" />
-                <span>{item.seasonName}</span>
+                <span>{item.vietnameseTitle || item.seasonName}</span>
               </button>
             );
           })}
@@ -211,7 +211,7 @@ export const CulturalPulseModal: React.FC<CulturalPulseModalProps> = ({
                 <div className="rounded-xl border border-[#243049] bg-[#0E1626] p-3.5 mb-4">
                   <div className="flex items-center gap-2 text-xs font-semibold text-white mb-1">
                     <Sun className="h-4 w-4 text-[#F59E0B]" />
-                    <span>Microclimate & Conditions</span>
+                    <span>Khí hậu & Điều kiện thời tiết</span>
                   </div>
                   <p className="text-xs text-[#9BA9C3] leading-relaxed">
                     {currentItem.weatherSummary}
@@ -220,7 +220,7 @@ export const CulturalPulseModal: React.FC<CulturalPulseModalProps> = ({
 
                 <div>
                   <h4 className="text-xs font-semibold uppercase tracking-wider text-[#9BA9C3] mb-2">
-                    Signature Seasonal Phenomena
+                    Hiện tượng & Trải nghiệm mùa đặc trưng
                   </h4>
                   <ul className="space-y-2">
                     {currentItem.highlights.map((h, i) => (
@@ -245,7 +245,7 @@ export const CulturalPulseModal: React.FC<CulturalPulseModalProps> = ({
                   className="bg-[#3DDC97] text-[#080D18] hover:bg-[#32B87D] font-semibold text-xs"
                 >
                   <Compass className="h-4 w-4 mr-1.5" />
-                  Explore {currentItem.destinationName}
+                  Khám phá {currentItem.destinationName}
                 </Button>
               </div>
             </div>

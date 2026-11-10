@@ -47,6 +47,8 @@ describe('Travi v1.2 — Trust, Security & Data Provenance Gateways', () => {
         const content = fs.readFileSync(file, 'utf8');
         expect(content).not.toContain('VITE_VIETNAM_AI_API_KEY');
         expect(content).not.toContain('VITE_VIETNAM_AI_ENDPOINT');
+        expect(content).not.toContain('VITE_COLAB_AI_API_TOKEN');
+        expect(content).not.toContain('VITE_COLAB_AI_BASE_URL');
       }
     });
 
@@ -67,7 +69,15 @@ describe('Travi v1.2 — Trust, Security & Data Provenance Gateways', () => {
       const files = scan(distDir);
       expect(files.length).toBeGreaterThan(0);
 
-      const forbidden = ['VITE_VIETNAM_AI_API_KEY', 'VIETNAM_AI_API_KEY', 'sk-ant-', 'sk-proj-'];
+      const forbidden = [
+        'VITE_VIETNAM_AI_API_KEY',
+        'VIETNAM_AI_API_KEY',
+        'VITE_COLAB_AI_API_TOKEN',
+        'COLAB_AI_API_TOKEN',
+        'travi-colab-qwen2-secret-2026',
+        'sk-ant-',
+        'sk-proj-',
+      ];
       for (const file of files) {
         const content = fs.readFileSync(file, 'utf8');
         for (const token of forbidden) {

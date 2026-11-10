@@ -11,17 +11,17 @@ export const NotFoundPage: React.FC = () => {
           <Compass className="h-8 w-8" />
         </div>
         <span className="text-xs uppercase font-mono text-[#9BA9C3] tracking-widest mb-1">
-          Uncharted Territory
+          Ngoài bản đồ
         </span>
         <h1 className="font-serif text-3xl font-medium text-white mb-2">
-          Page Beyond the Map
+          Không tìm thấy trang
         </h1>
         <p className="text-xs text-[#9BA9C3] max-w-xs mb-6 font-light">
-          The path you took does not exist in the Travi sanctuary ledger.
+          Địa chỉ bạn truy cập không nằm trong chỉ mục khám phá của TRAVI.
         </p>
         <a href="/">
           <Button variant="primary" size="md" leftIcon={<ArrowLeft className="h-4 w-4" />}>
-            Return to Exploration
+            Trở về trang Khám phá
           </Button>
         </a>
       </Card>

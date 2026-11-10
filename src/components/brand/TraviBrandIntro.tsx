@@ -338,14 +338,14 @@ export const TraviBrandIntro: React.FC<TraviBrandIntroProps> = ({
 
         {/* Wordmark & Tagline */}
         <h2 className="font-serif text-4xl sm:text-5xl font-medium tracking-tight text-white">
-          Travi
+          TRAVI
         </h2>
         <p className="mt-2 text-sm sm:text-base font-light text-[#48E3EF] tracking-wide">
-          Travel Beyond the Ordinary.
+          Mỗi miền đất, một câu chuyện.
         </p>
 
         <p className="mt-4 max-w-sm text-xs sm:text-sm text-[#9BA9C3] leading-relaxed font-light">
-          Cinematic cultural intelligence, grounded artisan dossiers, and cross-domain taste harmonization for the deliberate explorer.
+          Nền tảng khám phá điểm đến, văn hóa và trải nghiệm bản địa Việt Nam dành cho những tâm hồn lữ hành khao khát tính chân thực.
         </p>
 
         {/* Enter App CTA Button */}
@@ -357,7 +357,7 @@ export const TraviBrandIntro: React.FC<TraviBrandIntroProps> = ({
             className="flex items-center gap-2 rounded-xl bg-[#3DDC97] px-7 py-3.5 font-semibold text-[#111111] shadow-lg shadow-[#3DDC97]/25 transition-all hover:bg-[#48E3EF] hover:shadow-cyan-500/25 active:scale-[0.98] cursor-pointer"
           >
             <Compass className="h-4 w-4" />
-            <span>Enter Cultural Intelligence</span>
+            <span>Bắt đầu khám phá</span>
           </button>
         </div>
       </div>

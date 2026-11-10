@@ -15,6 +15,7 @@ import type { DestinationRecommendation } from '../../services/recommendations/t
 import { Card } from '../ui/Card.tsx';
 import { Badge } from '../ui/Badge.tsx';
 import { ImageWithFallback } from '../ui/ImageWithFallback.tsx';
+import { translateRegion } from '../../lib/i18n/index.ts';
 
 interface CinematicDestinationCardProps {
   recommendation: DestinationRecommendation;
@@ -93,7 +94,7 @@ export const CinematicDestinationCard: React.FC<CinematicDestinationCardProps> =
           >
             <MapPin className="h-3 w-3 text-[#3DDC97] mr-1 shrink-0" />
             <span className="truncate max-w-[140px] sm:max-w-none">
-              {destination.country} • {destination.region}
+              {destination.vietnameseName || destination.name} • {translateRegion(destination.region)}
             </span>
           </Badge>
 
@@ -107,8 +108,8 @@ export const CinematicDestinationCard: React.FC<CinematicDestinationCardProps> =
                   ? 'bg-[#48E3EF] text-[#080D18] shadow-md shadow-[#48E3EF]/30 scale-105'
                   : 'bg-[#080D18]/80 text-white/80 hover:bg-white hover:text-[#080D18] hover:scale-105'
               }`}
-              aria-label={isShortlisted ? `Remove ${destination.name} from comparison shortlist` : `Add ${destination.name} to comparison shortlist`}
-              title={isShortlisted ? 'In comparison shortlist' : 'Add to comparison'}
+              aria-label={isShortlisted ? `Bỏ ${destination.name} khỏi danh sách so sánh` : `Thêm ${destination.name} vào danh sách so sánh`}
+              title={isShortlisted ? 'Đã thêm vào danh sách so sánh' : 'Thêm vào so sánh'}
             >
               {isShortlisted ? <Check className="h-4 w-4 stroke-[2.5]" /> : <Layers className="h-4 w-4" />}
             </button>
@@ -121,8 +122,8 @@ export const CinematicDestinationCard: React.FC<CinematicDestinationCardProps> =
                   ? 'bg-rose-500 text-white shadow-md shadow-rose-500/30 scale-105'
                   : 'bg-[#080D18]/80 text-white/80 hover:bg-white hover:text-rose-500 hover:scale-105'
               }`}
-              aria-label={isSaved ? `Remove ${destination.name} from saved sanctuaries` : `Save ${destination.name} to my trips`}
-              title={isSaved ? 'Saved to my trips' : 'Save destination'}
+              aria-label={isSaved ? `Bỏ lưu ${destination.name}` : `Lưu ${destination.name} vào sổ tay`}
+              title={isSaved ? 'Đã lưu vào sổ tay' : 'Lưu điểm đến'}
             >
               <Heart className={`h-4 w-4 ${isSaved ? 'fill-current' : ''}`} />
             </button>
@@ -144,10 +145,10 @@ export const CinematicDestinationCard: React.FC<CinematicDestinationCardProps> =
                   ? 'bg-[#080D18]/90 text-[#48E3EF] border-[#48E3EF]/50'
                   : 'bg-[#080D18]/90 text-[#9BA9C3] border-[#243049]'
               }`}
-              title={`Deterministic Trait Match Index: ${score}/100 (${matchLevel}) • Transparent metric of cultural preference intersection, not simulated probability.`}
+              title={`Chỉ số phù hợp: ${score}/100 (${matchLevel}) • Tiêu chí minh bạch dựa trên đặc trưng văn hóa`}
             >
               <Sparkles className="h-3 w-3 text-[#3DDC97]" />
-              <span>{score} Trait Index</span>
+              <span>{recommendation.explanationTag || (score > 0 ? `${score} Điểm phù hợp` : 'Điểm đến đề xuất')}</span>
             </span>
           )}
 
@@ -194,7 +195,7 @@ export const CinematicDestinationCard: React.FC<CinematicDestinationCardProps> =
         <div className="mt-4 rounded-xl border border-[#243049]/70 bg-[#0E1626]/90 p-3 text-xs">
           <div className="flex items-center gap-1.5 font-medium text-[#3DDC97] mb-1">
             <Sparkles className="h-3 w-3 shrink-0" />
-            <span className="uppercase text-[10px] tracking-wider font-semibold">Artisan Signature</span>
+            <span className="uppercase text-[10px] tracking-wider font-semibold">Trải nghiệm đặc trưng</span>
           </div>
           <p className="text-[#C4D0E5] text-[11px] font-light line-clamp-2">
             {destination.curatedExperience}
@@ -205,7 +206,7 @@ export const CinematicDestinationCard: React.FC<CinematicDestinationCardProps> =
         <div className="mt-auto pt-4 border-t border-[#243049]/60 flex items-center justify-between text-xs text-[#9BA9C3]">
           <div className="flex items-center gap-1.5 font-light">
             <Calendar className="h-3.5 w-3.5 text-[#3DDC97]" />
-            <span>{destination.idealDays} Days</span>
+            <span>{destination.idealDays} ngày</span>
           </div>
 
           <div className="flex items-center gap-2.5">
@@ -217,10 +218,10 @@ export const CinematicDestinationCard: React.FC<CinematicDestinationCardProps> =
                   onExploreRabbitHole(destination.name);
                 }}
                 className="inline-flex items-center gap-1 text-[11px] font-mono text-[#9875FF] hover:text-white transition-colors cursor-pointer"
-                title={`Explore cultural rabbit hole starting from ${destination.name}`}
+                title={`Khám phá mạch văn hóa sâu từ ${destination.name}`}
               >
                 <GitBranch className="h-3 w-3" />
-                <span>Rabbit Hole</span>
+                <span>Khám phá sâu</span>
               </button>
             )}
             <button
@@ -228,7 +229,7 @@ export const CinematicDestinationCard: React.FC<CinematicDestinationCardProps> =
               onClick={handleJourneyClick}
               className="group/btn inline-flex items-center gap-1 text-xs font-medium text-[#48E3EF] hover:text-white transition-colors active:translate-x-0.5 cursor-pointer"
             >
-              <span>Build Journey</span>
+              <span>Lên lịch trình</span>
               <ArrowRight className="h-3 w-3 transition-transform group-hover/btn:translate-x-1" />
             </button>
           </div>

@@ -5,26 +5,28 @@ import {
   ZoomOut,
   RotateCcw,
   ArrowRight,
-  X,
-  Calendar
+  X
 } from 'lucide-react';
 import { vietnamDestinations, VIETNAM_REGIONS } from '../../data/vietnamData.ts';
+import { vietnamExperiences } from '../../data/vietnamExperiences.ts';
 import type { VietnamDestination, VietnamRegion } from '../../types/vietnam.ts';
+import type { StandaloneExperience } from '../../types/discovery.ts';
 import { Badge } from '../ui/Badge.tsx';
 import { Button } from '../ui/Button.tsx';
+import { translateRegion } from '../../lib/i18n/index.ts';
 
 interface VietnamInteractiveMapProps {
   onSelectDestination?: (dest: VietnamDestination) => void;
   selectedDestinationId?: string | null;
   highlightedIds?: string[];
-  routeConnectors?: string[]; // IDs of destinations to connect with route line
+  routeConnectors?: string[];
   className?: string;
 }
 
 // Vietnam Geographic Bounding Box for Mercator Projection
 const GEO_BOUNDS = {
   minLat: 8.2, // Southernmost coastal islands
-  maxLat: 23.6, // Northernmost point at Lung Cu
+  maxLat: 23.6, // Northernmost point at Lũng Cú
   minLng: 102.0, // Western border
   maxLng: 110.2, // Eastern coast and islands
 };
@@ -36,6 +38,11 @@ const REGION_COLORS: Record<VietnamRegion, { pin: string; fill: string; border: 
   'Southern Vietnam': { pin: '#06B6D4', fill: '#06B6D4', border: '#0891B2' },
 };
 
+type SelectedMapItem =
+  | { type: 'destination'; item: VietnamDestination }
+  | { type: 'experience'; item: StandaloneExperience }
+  | { type: 'food'; item: { name: string; vietnameseName: string; description: string; price: string; destName: string; destId: string; coordinates: { lat: number; lng: number } } };
+
 export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
   onSelectDestination,
   selectedDestinationId = null,
@@ -44,11 +51,19 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
   className = '',
 }) => {
   const [activeRegion, setActiveRegion] = useState<string>('All');
-  const [selectedDest, setSelectedDest] = useState<VietnamDestination | null>(() => {
-    return selectedDestinationId
-      ? vietnamDestinations.find((d) => d.id === selectedDestinationId) || null
-      : null;
+  const [selectedItem, setSelectedItem] = useState<SelectedMapItem | null>(() => {
+    if (selectedDestinationId) {
+      const match = vietnamDestinations.find((d) => d.id === selectedDestinationId);
+      if (match) return { type: 'destination', item: match };
+    }
+    return null;
   });
+
+  // Layer Toggles (Prompt requirement D: Destination pins, Attraction pins, Food and experience layers)
+  const [showDestinations, setShowDestinations] = useState(true);
+  const [showExperiences, setShowExperiences] = useState(true);
+  const [showFood, setShowFood] = useState(true);
+  const [showAttractions, setShowAttractions] = useState(false);
 
   // Pan & Zoom state
   const [zoom, setZoom] = useState(1);
@@ -62,17 +77,16 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
     if (selectedDestinationId) {
       queueMicrotask(() => {
         const match = vietnamDestinations.find((d) => d.id === selectedDestinationId);
-        if (match) setSelectedDest(match);
+        if (match) setSelectedItem({ type: 'destination', item: match });
       });
     }
   }, [selectedDestinationId]);
 
-  // Convert real geographic lat/lng to SVG percentage coordinates (0 - 1000 x 0 - 1400)
+  // Convert real geographic lat/lng to SVG percentage coordinates (0 - 700 x 0 - 1100)
   const projectCoordinates = useCallback((lat: number, lng: number) => {
     const svgWidth = 700;
     const svgHeight = 1100;
 
-    // Normalization with padding
     const xFraction = (lng - GEO_BOUNDS.minLng) / (GEO_BOUNDS.maxLng - GEO_BOUNDS.minLng);
     const yFraction = 1 - (lat - GEO_BOUNDS.minLat) / (GEO_BOUNDS.maxLat - GEO_BOUNDS.minLat);
 
@@ -89,6 +103,55 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
     });
   }, [activeRegion]);
 
+  // Filtered standalone experiences with coordinates
+  const filteredExperiences = useMemo(() => {
+    return vietnamExperiences.filter((exp) => {
+      if (activeRegion !== 'All' && exp.region !== activeRegion) return false;
+      return Boolean(exp.coordinates);
+    });
+  }, [activeRegion]);
+
+  // Gastronomy pins (from destinations with slight geographic offset for visual clarity)
+  const gastronomyPins = useMemo(() => {
+    const pins: { name: string; vietnameseName: string; description: string; price: string; destName: string; destId: string; coordinates: { lat: number; lng: number } }[] = [];
+    filteredDestinations.forEach((d) => {
+      if (d.mustTryFood.length > 0) {
+        const food = d.mustTryFood[0];
+        // Slight cosmetic offset (+0.08 lat, +0.06 lng) so food pin sits next to city pin
+        pins.push({
+          name: food.name,
+          vietnameseName: food.vietnameseName,
+          description: food.description,
+          price: food.estimatedPriceVND,
+          destName: d.name,
+          destId: d.id,
+          coordinates: {
+            lat: d.coordinates.lat + 0.08,
+            lng: d.coordinates.lng + 0.08,
+          },
+        });
+      }
+    });
+    return pins;
+  }, [filteredDestinations]);
+
+  // Attraction pins
+  const attractionPins = useMemo(() => {
+    const pins: { id: string; name: string; category: string; destId: string; coordinates: { lat: number; lng: number } }[] = [];
+    filteredDestinations.forEach((d) => {
+      d.attractions.forEach((a) => {
+        pins.push({
+          id: a.id,
+          name: a.name,
+          category: a.category,
+          destId: d.id,
+          coordinates: a.coordinates || d.coordinates,
+        });
+      });
+    });
+    return pins;
+  }, [filteredDestinations]);
+
   // Calculate route connecting line points
   const routePoints = useMemo(() => {
     if (!routeConnectors || routeConnectors.length < 2) return '';
@@ -101,6 +164,22 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
       });
     return points.join(' ');
   }, [routeConnectors, projectCoordinates]);
+
+  // Nearby discovery items for currently selected place
+  const nearbyItems = useMemo(() => {
+    if (!selectedItem) return [];
+    let baseDestId = '';
+    if (selectedItem.type === 'destination') baseDestId = selectedItem.item.id;
+    else if (selectedItem.type === 'experience') baseDestId = selectedItem.item.destinationId;
+    else if (selectedItem.type === 'food') baseDestId = selectedItem.item.destId;
+
+    const baseDest = vietnamDestinations.find((d) => d.id === baseDestId);
+    if (!baseDest) return [];
+
+    return vietnamDestinations
+      .filter((d) => d.id !== baseDest.id && d.region === baseDest.region)
+      .slice(0, 3);
+  }, [selectedItem]);
 
   // Zoom controls
   const handleZoomIn = () => setZoom((z) => Math.min(2.5, z + 0.3));
@@ -153,7 +232,7 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
       ref={mapContainerRef}
       className={`relative flex flex-col rounded-3xl border border-[#243049] bg-gradient-to-b from-[#0B1324] via-[#080D18] to-[#050811] overflow-hidden shadow-2xl ${className}`}
     >
-      {/* Top Filter Bar */}
+      {/* Top Filter and Layer Bar */}
       <div className="relative z-20 flex flex-wrap items-center justify-between gap-3 border-b border-[#243049]/70 bg-[#0E1626]/90 p-4 backdrop-blur-xl">
         <div className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#3DDC97]/15 border border-[#3DDC97]/30 text-[#3DDC97]">
@@ -161,17 +240,59 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
           </div>
           <div>
             <h3 className="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5">
-              Interactive Vietnam Map
+              Bản đồ khám phá Việt Nam
               <span className="text-[10px] font-normal text-[#9BA9C3]">
-                ({filteredDestinations.length} destinations plotted)
+                ({filteredDestinations.length} điểm đến đã định vị)
               </span>
             </h3>
             <p className="text-[11px] text-[#9BA9C3]">
-              Geographic Overview (Equirectangular SVG Projection) • Conceptual linkages, not road navigation
+              Hệ tọa độ Mercator SVG [8.2°N — 23.6°N, 102.0°E — 110.2°E] • Định vị văn hóa trực quan, không phải bản đồ dẫn đường chi tiết
             </p>
           </div>
         </div>
 
+        {/* Layer Toggles */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
+          <button
+            onClick={() => setShowDestinations((v) => !v)}
+            className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium transition-all ${
+              showDestinations ? 'bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/40' : 'text-[#9BA9C3] bg-white/5 border border-transparent'
+            }`}
+          >
+            <span className="h-2 w-2 rounded-full bg-[#10B981]" />
+            <span>Điểm đến</span>
+          </button>
+
+          <button
+            onClick={() => setShowExperiences((v) => !v)}
+            className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium transition-all ${
+              showExperiences ? 'bg-[#48E3EF]/20 text-[#48E3EF] border border-[#48E3EF]/40' : 'text-[#9BA9C3] bg-white/5 border border-transparent'
+            }`}
+          >
+            <span className="h-2 w-2 rounded-full bg-[#48E3EF]" />
+            <span>Trải nghiệm</span>
+          </button>
+
+          <button
+            onClick={() => setShowFood((v) => !v)}
+            className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium transition-all ${
+              showFood ? 'bg-[#F59E0B]/20 text-[#F59E0B] border border-[#F59E0B]/40' : 'text-[#9BA9C3] bg-white/5 border border-transparent'
+            }`}
+          >
+            <span className="h-2 w-2 rounded-full bg-[#F59E0B]" />
+            <span>Ẩm thực</span>
+          </button>
+
+          <button
+            onClick={() => setShowAttractions((v) => !v)}
+            className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium transition-all ${
+              showAttractions ? 'bg-[#9875FF]/20 text-[#9875FF] border border-[#9875FF]/40' : 'text-[#9BA9C3] bg-white/5 border border-transparent'
+            }`}
+          >
+            <span className="h-2 w-2 rounded-full bg-[#9875FF]" />
+            <span>Điểm tham quan</span>
+          </button>
+        </div>
 
         {/* Region Filter Buttons */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
@@ -183,7 +304,7 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
                 : 'text-[#9BA9C3] hover:text-white hover:bg-white/5'
             }`}
           >
-            All Regions
+            Tất cả
           </button>
           {VIETNAM_REGIONS.map((region) => (
             <button
@@ -195,7 +316,7 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
                   : 'text-[#9BA9C3] hover:text-white hover:bg-white/5'
               }`}
             >
-              {region.replace(' Vietnam', '')}
+              {translateRegion(region)}
             </button>
           ))}
         </div>
@@ -203,7 +324,7 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
 
       {/* Main Map Canvas Area */}
       <div
-        className="relative flex-1 min-h-[500px] sm:min-h-[620px] w-full overflow-hidden cursor-grab active:cursor-grabbing select-none"
+        className="relative flex-1 min-h-[500px] sm:min-h-[640px] w-full overflow-hidden cursor-grab active:cursor-grabbing select-none"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -292,8 +413,7 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
               Gulf of Thailand (Vịnh Thái Lan)
             </text>
 
-            {/* Offshore Archipelago Indicator Rings */}
-            {/* Hoàng Sa & Trường Sa Sovereign Archipelagos */}
+            {/* Sovereign Archipelagos */}
             <g opacity="0.6">
               <circle cx="580" cy="500" r="14" fill="none" stroke="#2E4369" strokeDasharray="3,3" />
               <text x="580" y="525" fill="#4B628A" fontSize="10" textAnchor="middle">
@@ -317,65 +437,124 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
               />
             )}
 
-            {/* Destination Pins on SVG */}
-            {filteredDestinations.map((dest) => {
-              const { x, y } = projectCoordinates(dest.coordinates.lat, dest.coordinates.lng);
-              const isSelected = selectedDest?.id === dest.id;
-              const isHighlighted = highlightedIds.includes(dest.id);
-              const colors = REGION_COLORS[dest.region] || REGION_COLORS['Northern Vietnam'];
-
-              return (
-                <g
-                  key={dest.id}
-                  transform={`translate(${x}, ${y})`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedDest(dest);
-                    onSelectDestination?.(dest);
-                  }}
-                  className="cursor-pointer group"
-                >
-                  {/* Outer selection beacon ring */}
-                  {(isSelected || isHighlighted) && (
-                    <circle
-                      r="18"
-                      fill={colors.pin}
-                      opacity="0.25"
-                      className="animate-ping"
-                    />
-                  )}
-
-                  {/* Marker Glow Background */}
-                  <circle
-                    r={isSelected ? 10 : 7}
-                    fill={colors.pin}
-                    stroke="#080D18"
-                    strokeWidth="2.5"
-                    filter="url(#glow)"
-                    className="transition-all duration-200 group-hover:scale-125"
-                  />
-
-                  {/* Center Dot */}
-                  <circle
-                    r={isSelected ? 4 : 2.5}
-                    fill="#FFFFFF"
-                    className="pointer-events-none"
-                  />
-
-                  {/* Destination Label Pill */}
-                  <text
-                    x="12"
-                    y="4"
-                    fill={isSelected ? '#3DDC97' : '#FFFFFF'}
-                    fontSize="11"
-                    fontWeight={isSelected ? 'bold' : 'normal'}
-                    className="transition-all pointer-events-none drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)] select-none"
+            {/* Attractions Layer Pins */}
+            {showAttractions &&
+              attractionPins.map((att) => {
+                const { x, y } = projectCoordinates(att.coordinates.lat, att.coordinates.lng);
+                return (
+                  <g
+                    key={att.id}
+                    transform={`translate(${x}, ${y})`}
+                    className="cursor-pointer group"
                   >
-                    {dest.name}
-                  </text>
-                </g>
-              );
-            })}
+                    <circle r="4" fill="#9875FF" stroke="#080D18" strokeWidth="1.5" />
+                  </g>
+                );
+              })}
+
+            {/* Food Specialties Layer Pins */}
+            {showFood &&
+              gastronomyPins.map((food, i) => {
+                const { x, y } = projectCoordinates(food.coordinates.lat, food.coordinates.lng);
+                return (
+                  <g
+                    key={`food-${i}`}
+                    transform={`translate(${x}, ${y})`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedItem({ type: 'food', item: food });
+                    }}
+                    className="cursor-pointer group"
+                  >
+                    <circle r="5" fill="#F59E0B" stroke="#080D18" strokeWidth="1.5" filter="url(#glow)" />
+                    <circle r="2" fill="#FFFFFF" />
+                  </g>
+                );
+              })}
+
+            {/* Standalone Experiences Layer Pins */}
+            {showExperiences &&
+              filteredExperiences.map((exp) => {
+                if (!exp.coordinates) return null;
+                const { x, y } = projectCoordinates(exp.coordinates.lat, exp.coordinates.lng);
+                return (
+                  <g
+                    key={exp.id}
+                    transform={`translate(${x}, ${y})`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedItem({ type: 'experience', item: exp });
+                    }}
+                    className="cursor-pointer group"
+                  >
+                    <polygon
+                      points="0,-6 6,0 0,6 -6,0"
+                      fill="#48E3EF"
+                      stroke="#080D18"
+                      strokeWidth="1.5"
+                      filter="url(#glow)"
+                      className="group-hover:scale-125 transition-transform"
+                    />
+                  </g>
+                );
+              })}
+
+            {/* Destinations Layer Pins */}
+            {showDestinations &&
+              filteredDestinations.map((dest) => {
+                const { x, y } = projectCoordinates(dest.coordinates.lat, dest.coordinates.lng);
+                const isSelected = selectedItem?.type === 'destination' && selectedItem.item.id === dest.id;
+                const isHighlighted = highlightedIds.includes(dest.id);
+                const colors = REGION_COLORS[dest.region] || REGION_COLORS['Northern Vietnam'];
+
+                return (
+                  <g
+                    key={dest.id}
+                    transform={`translate(${x}, ${y})`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedItem({ type: 'destination', item: dest });
+                      onSelectDestination?.(dest);
+                    }}
+                    className="cursor-pointer group"
+                  >
+                    {(isSelected || isHighlighted) && (
+                      <circle
+                        r="18"
+                        fill={colors.pin}
+                        opacity="0.25"
+                        className="animate-ping"
+                      />
+                    )}
+
+                    <circle
+                      r={isSelected ? 10 : 7}
+                      fill={colors.pin}
+                      stroke="#080D18"
+                      strokeWidth="2.5"
+                      filter="url(#glow)"
+                      className="transition-all duration-200 group-hover:scale-125"
+                    />
+
+                    <circle
+                      r={isSelected ? 4 : 2.5}
+                      fill="#FFFFFF"
+                      className="pointer-events-none"
+                    />
+
+                    <text
+                      x="12"
+                      y="4"
+                      fill={isSelected ? '#3DDC97' : '#FFFFFF'}
+                      fontSize="11"
+                      fontWeight={isSelected ? 'bold' : 'normal'}
+                      className="transition-all pointer-events-none drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)] select-none"
+                    >
+                      {dest.name}
+                    </text>
+                  </g>
+                );
+              })}
           </svg>
         </div>
 
@@ -383,56 +562,84 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
         <div className="absolute bottom-5 right-5 z-20 flex flex-col gap-1.5 rounded-xl border border-[#243049] bg-[#0E1626]/90 p-1.5 backdrop-blur-md shadow-lg">
           <button
             onClick={handleZoomIn}
-            aria-label="Zoom in map"
+            aria-label="Phóng to bản đồ"
             className="rounded-lg p-2 text-[#9BA9C3] hover:text-white hover:bg-white/10 transition-colors"
           >
             <ZoomIn className="h-4 w-4" />
           </button>
           <button
             onClick={handleZoomOut}
-            aria-label="Zoom out map"
+            aria-label="Thu nhỏ bản đồ"
             className="rounded-lg p-2 text-[#9BA9C3] hover:text-white hover:bg-white/10 transition-colors"
           >
             <ZoomOut className="h-4 w-4" />
           </button>
           <button
             onClick={handleResetView}
-            aria-label="Reset map view"
+            aria-label="Đặt lại góc nhìn"
             className="rounded-lg p-2 text-[#9BA9C3] hover:text-white hover:bg-white/10 transition-colors"
           >
             <RotateCcw className="h-4 w-4" />
           </button>
         </div>
 
-        {/* Selected Destination Preview Overlay Card */}
-        {selectedDest && (
+        {/* Selected Map Item Preview Overlay Card */}
+        {selectedItem && (
           <div className="absolute bottom-5 left-5 right-5 sm:right-auto sm:max-w-md z-30 animate-modal-in">
             <div className="rounded-2xl border border-[#3DDC97]/40 bg-[#0E1626]/95 p-4 shadow-2xl backdrop-blur-xl">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex gap-3">
                   <div className="relative h-16 w-16 shrink-0 rounded-xl overflow-hidden border border-white/10">
                     <img
-                      src={selectedDest.heroImage}
-                      alt={selectedDest.name}
+                      src={
+                        selectedItem.type === 'destination'
+                          ? selectedItem.item.heroImage
+                          : selectedItem.type === 'experience'
+                          ? selectedItem.item.image
+                          : 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=400&auto=format&fit=crop'
+                      }
+                      alt="Selected preview"
                       className="h-full w-full object-cover"
                     />
                   </div>
+
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <Badge variant="outline" className="text-[10px] text-[#3DDC97] border-[#3DDC97]/30">
-                        {selectedDest.region}
+                      <Badge
+                        variant={selectedItem.type === 'destination' ? 'outline' : selectedItem.type === 'experience' ? 'cyan' : 'green'}
+                        className="text-[10px]"
+                      >
+                        {selectedItem.type === 'destination' ? 'ĐIỂM ĐẾN' : selectedItem.type === 'experience' ? 'TRẢI NGHIỆM' : 'ẨM THỰC'}
                       </Badge>
                       <span className="text-[10px] text-[#9BA9C3]">
-                        {selectedDest.coordinates.lat.toFixed(2)}°N, {selectedDest.coordinates.lng.toFixed(2)}°E
+                        {selectedItem.type === 'destination'
+                          ? `${selectedItem.item.coordinates.lat.toFixed(2)}°N, ${selectedItem.item.coordinates.lng.toFixed(2)}°E`
+                          : selectedItem.type === 'experience'
+                          ? translateRegion(selectedItem.item.region)
+                          : selectedItem.item.destName}
                       </span>
                     </div>
-                    <h4 className="text-sm font-bold text-white mt-0.5">{selectedDest.name}</h4>
-                    <p className="text-[11px] text-[#3DDC97] italic">{selectedDest.vietnameseName}</p>
+
+                    <h4 className="text-sm font-bold text-white mt-0.5">
+                      {selectedItem.type === 'destination'
+                        ? selectedItem.item.name
+                        : selectedItem.type === 'experience'
+                        ? selectedItem.item.title
+                        : selectedItem.item.name}
+                    </h4>
+
+                    <p className="text-[11px] text-[#3DDC97] italic">
+                      {selectedItem.type === 'destination'
+                        ? selectedItem.item.vietnameseName
+                        : selectedItem.type === 'experience'
+                        ? selectedItem.item.vietnameseTitle
+                        : selectedItem.item.vietnameseName}
+                    </p>
                   </div>
                 </div>
 
                 <button
-                  onClick={() => setSelectedDest(null)}
+                  onClick={() => setSelectedItem(null)}
                   className="rounded-lg p-1 text-[#9BA9C3] hover:text-white hover:bg-white/10 transition-colors"
                 >
                   <X className="h-4 w-4" />
@@ -440,23 +647,56 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
               </div>
 
               <p className="text-xs text-[#C4D0E5] mt-3 line-clamp-2 leading-relaxed">
-                {selectedDest.tagline}
+                {selectedItem.type === 'destination'
+                  ? selectedItem.item.tagline
+                  : selectedItem.type === 'experience'
+                  ? selectedItem.item.description
+                  : selectedItem.item.description}
               </p>
 
-              <div className="mt-3 flex items-center justify-between border-t border-[#243049]/60 pt-3">
-                <div className="flex items-center gap-2 text-xs text-[#9BA9C3]">
-                  <Calendar className="h-3.5 w-3.5 text-[#3DDC97]" />
-                  <span>Best: {selectedDest.bestSeason}</span>
+              {/* Nearby Discovery in this Region */}
+              {nearbyItems.length > 0 && (
+                <div className="mt-3 pt-2.5 border-t border-[#243049]/60">
+                  <span className="text-[10px] font-mono text-[#9BA9C3] uppercase block mb-1.5">
+                    Địa danh lân cận cùng khu vực:
+                  </span>
+                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
+                    {nearbyItems.map((n) => (
+                      <button
+                        key={n.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedItem({ type: 'destination', item: n });
+                          onSelectDestination?.(n);
+                        }}
+                        className="rounded-lg bg-white/5 border border-white/5 px-2 py-0.5 text-[10px] text-[#C4D0E5] hover:border-[#3DDC97] hover:text-white whitespace-nowrap"
+                      >
+                        {n.name}
+                      </button>
+                    ))}
+                  </div>
                 </div>
+              )}
 
-                <Button
-                  size="sm"
-                  onClick={() => onSelectDestination?.(selectedDest)}
-                  className="bg-[#3DDC97] text-[#080D18] hover:bg-[#32B87D] text-xs font-semibold px-3 py-1.5"
-                >
-                  <span>View Dossier</span>
-                  <ArrowRight className="h-3.5 w-3.5 ml-1" />
-                </Button>
+              <div className="mt-3 flex items-center justify-between border-t border-[#243049]/60 pt-3">
+                <span className="text-[10px] text-[#9BA9C3] font-mono">
+                  {selectedItem.type === 'destination'
+                    ? `${selectedItem.item.estimatedVisitDays} ngày lưu trú`
+                    : selectedItem.type === 'experience'
+                    ? selectedItem.item.duration
+                    : selectedItem.item.price}
+                </span>
+
+                {selectedItem.type === 'destination' && (
+                  <Button
+                    size="sm"
+                    onClick={() => onSelectDestination?.(selectedItem.item)}
+                    className="bg-[#3DDC97] text-[#080D18] hover:bg-[#32B87D] text-xs font-semibold px-3 py-1.5"
+                  >
+                    <span>Xem hồ sơ chi tiết</span>
+                    <ArrowRight className="h-3.5 w-3.5 ml-1" />
+                  </Button>
+                )}
               </div>
             </div>
           </div>
@@ -466,23 +706,22 @@ export const VietnamInteractiveMap: React.FC<VietnamInteractiveMapProps> = ({
       {/* Map Legend Footer */}
       <div className="border-t border-[#243049]/60 bg-[#080D18] px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs text-[#9BA9C3]">
         <div className="flex items-center gap-4">
-          <span className="font-semibold text-white">Regions:</span>
+          <span className="font-semibold text-white">Vùng miền:</span>
           {VIETNAM_REGIONS.map((r) => (
             <div key={r} className="flex items-center gap-1.5 text-[11px]">
               <span
                 className="h-2.5 w-2.5 rounded-full"
                 style={{ backgroundColor: REGION_COLORS[r].pin }}
               />
-              <span>{r.replace(' Vietnam', '')}</span>
+              <span>{translateRegion(r)}</span>
             </div>
           ))}
         </div>
 
         <span className="text-[10px] font-mono text-[#9BA9C3]/80">
-          Equirectangular SVG (WGS84) • Conceptual geographic linkages, not road turn-by-turn navigation
+          Bản đồ SVG trực quan (WGS84) • Mối liên kết không gian văn hóa, không thay thế bản đồ dẫn đường giao thông
         </span>
       </div>
     </div>
   );
 };
-

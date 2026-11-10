@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-11-10T13:49:31.549Z",
+  "dryRun": false,
+  "datasets": {
+    "administrative": {
+      "status": "success",
+      "file": "C:\\Users\\danhu\\Downloads\\vn.json",
+      "provinces": 34,
+      "wards": 3321
+    },
+    "sonLaTourism": {
+      "status": "success",
+      "file": "C:\\Users\\danhu\\.gemini\\antigravity\\brain\\74de1c27-94a1-4f1e-a550-38b22fd77976\\.user_uploaded\\media_1794318064724_03bf6231.csv",
+      "recordsCount": 85,
+      "piiFieldsRedacted": 62
+    },
+    "tourismStarter": {
+      "status": "not_found",
+      "file": null,
+      "recordsCount": 0,
+      "note": "File vietnam_tourism_starter.csv was not provided in workspace or attachments. Reported as missing per Data Integrity policy."
+    },
+    "tourismQaDataset": {
+      "status": "not_found",
+      "file": null,
+      "recordsCount": 0,
+      "note": "Files train_vietnam_tourism.json and valid_vietnam_tourism.json not provided in workspace or attachments. Reported as missing per Data Integrity policy."
+    }
+  },
+  "totalPoisProduced": 85,
+  "errors": []
+}

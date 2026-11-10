@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Activity,
   Database,
   Check,
+  ExternalLink,
 } from 'lucide-react';
 import { PageHeader } from '../components/ui/PageHeader.tsx';
 import { Button } from '../components/ui/Button.tsx';
@@ -21,7 +23,10 @@ import {
 } from '../services/storage/persistenceBoundary.ts';
 import { triggerToast } from '../lib/toast.ts';
 
+import { EditorialReviewWorkbench } from '../components/editorial/EditorialReviewWorkbench.tsx';
+
 export const DevDiagnosticsPage: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'editorial' | 'infra'>('editorial');
   const diagnostics = getFirebaseDiagnostics();
   const { user: authUser, session: authSession } = useAuth();
   const persistenceStatus = getPersistenceBoundaryStatus(authUser?.uid);
@@ -69,25 +74,60 @@ export const DevDiagnosticsPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-      <PageHeader
-        badge="Developer Tools"
-        badgeVariant="cyan"
-        title="Firebase Infrastructure Diagnostics"
-        description="Internal development-only diagnostics for inspection of connection states, security boundaries, and live service reachability."
-      />
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <PageHeader
+          badge="Developer Tools"
+          badgeVariant="cyan"
+          title="Internal Editorial & System Diagnostics"
+          description="Công cụ quản trị dữ liệu thực địa miền Bắc, kiểm chứng nguồn tham chiếu và chẩn đoán hạ tầng."
+        />
 
-      {/* 1. SDK & Environment Diagnostic Panel */}
-      <Card variant="default" className="p-6 border border-[#243049] space-y-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Activity className="h-5 w-5 text-[#48E3EF]" />
-            <h3 className="font-serif text-lg font-medium text-white">Firebase SDK Diagnostic Panel</h3>
-          </div>
-          <Badge variant={diagnostics.isConfigured ? 'green' : 'neutral'} size="sm">
-            {diagnostics.isConfigured ? 'Live SDK Initialized' : 'Offline Sandbox'}
-          </Badge>
+        <div className="flex items-center gap-2 bg-[#0E1626] p-1.5 rounded-xl border border-[#243049]">
+          <button
+            onClick={() => setActiveTab('editorial')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              activeTab === 'editorial'
+                ? 'bg-[#3DDC97] text-[#080D18] shadow-sm'
+                : 'text-[#9BA9C3] hover:text-white'
+            }`}
+          >
+            Quản trị Biên tập Dữ liệu
+          </button>
+          <button
+            onClick={() => setActiveTab('infra')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              activeTab === 'infra'
+                ? 'bg-[#48E3EF] text-[#080D18] shadow-sm'
+                : 'text-[#9BA9C3] hover:text-white'
+            }`}
+          >
+            Hạ tầng & Cloud Ledger
+          </button>
+          <Link
+            to="/tourism-data"
+            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-emerald-400 hover:text-white bg-emerald-950/40 border border-emerald-900/50 transition-all hover:bg-emerald-900/60"
+          >
+            <Database className="w-3.5 h-3.5" /> Dữ liệu Du lịch & Di sản <ExternalLink className="w-3 h-3 ml-0.5" />
+          </Link>
         </div>
+      </div>
+
+      {activeTab === 'editorial' ? (
+        <EditorialReviewWorkbench />
+      ) : (
+        <div className="max-w-4xl space-y-6">
+          {/* 1. SDK & Environment Diagnostic Panel */}
+          <Card variant="default" className="p-6 border border-[#243049] space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Activity className="h-5 w-5 text-[#48E3EF]" />
+                <h3 className="font-serif text-lg font-medium text-white">Firebase SDK Diagnostic Panel</h3>
+              </div>
+              <Badge variant={diagnostics.isConfigured ? 'green' : 'neutral'} size="sm">
+                {diagnostics.isConfigured ? 'Live SDK Initialized' : 'Offline Sandbox'}
+              </Badge>
+            </div>
 
         <div className="grid grid-cols-2 gap-3 text-xs font-mono bg-[#080D18] p-4 rounded-xl border border-[#243049]">
           <div className="flex justify-between border-b border-[#243049]/60 pb-1.5">
@@ -257,6 +297,8 @@ export const DevDiagnosticsPage: React.FC = () => {
           Normalized data layer containing verified UNESCO sites, historical administrative designations (Thăng Long, Cố Đô Huế, Gia Định, Faifo), authentic regional dishes, and artisanal guilds.
         </p>
       </Card>
+        </div>
+      )}
     </div>
   );
 };

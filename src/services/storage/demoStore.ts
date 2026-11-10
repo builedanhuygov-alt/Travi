@@ -12,12 +12,18 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import type { Trip, Memory, Destination, TasteProfile } from '../../types/index.ts';
+import type { DiscoveryCollection } from '../../types/discovery.ts';
 import { sampleTrips, sampleMemories, sampleDestinations, getAllDestinations } from '../../data/sampleData.ts';
+import { curatedEditorialCollections } from '../../data/vietnamCollections.ts';
 import { EMPTY_TASTE_PROFILE, CURATED_DEMO_TASTE_PROFILE } from '../taste/tasteData.ts';
 
 const STORAGE_KEYS = {
   TRIPS: 'travi_trips_v02',
   SAVED_DESTS: 'travi_saved_destinations_v02',
+  SAVED_EXPERIENCES: 'travi_saved_experiences_v2',
+  SAVED_STORIES: 'travi_saved_stories_v2',
+  EXPLORED_PLACES: 'travi_explored_places_v2',
+  COLLECTIONS: 'travi_collections_v2',
   MEMORIES: 'travi_memories_v02',
   DISPATCHES: 'travi_dispatches_v02',
   INQUIRIES: 'travi_inquiries_v02',
@@ -194,6 +200,149 @@ export const demoStore = {
   getSavedDestinations(): Destination[] {
     const savedIds = demoStore.getSavedDestinationIds();
     return sampleDestinations.filter((d) => savedIds.includes(d.id));
+  },
+
+  // Saved Experiences
+  getSavedExperienceIds(): string[] {
+    const data = safeGetJSON<unknown>(STORAGE_KEYS.SAVED_EXPERIENCES, ['exp-bat-trang-pottery', 'exp-hanoi-pho-lineage']);
+    if (!Array.isArray(data)) return ['exp-bat-trang-pottery', 'exp-hanoi-pho-lineage'];
+    return data.filter((id): id is string => typeof id === 'string' && id.trim().length > 0);
+  },
+
+  isExperienceSaved(expId: string): boolean {
+    const saved = demoStore.getSavedExperienceIds();
+    return saved.includes(expId);
+  },
+
+  toggleSaveExperience(expId: string): boolean {
+    const saved = demoStore.getSavedExperienceIds();
+    const exists = saved.includes(expId);
+    const updated = exists ? saved.filter((id) => id !== expId) : [...saved, expId];
+    safeSetJSON(STORAGE_KEYS.SAVED_EXPERIENCES, updated);
+    emitSync('saved_experiences');
+    return !exists;
+  },
+
+  // Saved Stories
+  getSavedStoryIds(): string[] {
+    const data = safeGetJSON<unknown>(STORAGE_KEYS.SAVED_STORIES, ['story-hanoi-pho-lineages']);
+    if (!Array.isArray(data)) return ['story-hanoi-pho-lineages'];
+    return data.filter((id): id is string => typeof id === 'string' && id.trim().length > 0);
+  },
+
+  isStorySaved(storyId: string): boolean {
+    const saved = demoStore.getSavedStoryIds();
+    return saved.includes(storyId);
+  },
+
+  toggleSaveStory(storyId: string): boolean {
+    const saved = demoStore.getSavedStoryIds();
+    const exists = saved.includes(storyId);
+    const updated = exists ? saved.filter((id) => id !== storyId) : [...saved, storyId];
+    safeSetJSON(STORAGE_KEYS.SAVED_STORIES, updated);
+    emitSync('saved_stories');
+    return !exists;
+  },
+
+  // Explored Places Tracker
+  getExploredPlaceIds(): string[] {
+    const data = safeGetJSON<unknown>(STORAGE_KEYS.EXPLORED_PLACES, ['ha-noi']);
+    if (!Array.isArray(data)) return ['ha-noi'];
+    return data.filter((id): id is string => typeof id === 'string' && id.trim().length > 0);
+  },
+
+  isPlaceExplored(placeId: string): boolean {
+    const explored = demoStore.getExploredPlaceIds();
+    return explored.includes(placeId);
+  },
+
+  toggleExploredPlace(placeId: string): boolean {
+    const explored = demoStore.getExploredPlaceIds();
+    const exists = explored.includes(placeId);
+    const updated = exists ? explored.filter((id) => id !== placeId) : [...explored, placeId];
+    safeSetJSON(STORAGE_KEYS.EXPLORED_PLACES, updated);
+    emitSync('explored_places');
+    return !exists;
+  },
+
+  // Custom Collections
+  getCollections(): DiscoveryCollection[] {
+    const data = safeGetJSON<unknown>(STORAGE_KEYS.COLLECTIONS, curatedEditorialCollections);
+    if (!Array.isArray(data) || data.length === 0) return curatedEditorialCollections;
+    return data as DiscoveryCollection[];
+  },
+
+  createCollection(col: Omit<DiscoveryCollection, 'id' | 'createdAt' | 'updatedAt'>): DiscoveryCollection {
+    const cols = demoStore.getCollections();
+    const newCol: DiscoveryCollection = {
+      ...col,
+      id: `col-${Date.now()}`,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    safeSetJSON(STORAGE_KEYS.COLLECTIONS, [newCol, ...cols]);
+    emitSync('collections');
+    return newCol;
+  },
+
+  updateCollection(id: string, updates: Partial<DiscoveryCollection>): DiscoveryCollection | null {
+    const cols = demoStore.getCollections();
+    const idx = cols.findIndex((c) => c.id === id);
+    if (idx === -1) return null;
+    const updated = { ...cols[idx], ...updates, updatedAt: new Date().toISOString() };
+    cols[idx] = updated;
+    safeSetJSON(STORAGE_KEYS.COLLECTIONS, cols);
+    emitSync('collections');
+    return updated;
+  },
+
+  deleteCollection(id: string): boolean {
+    const cols = demoStore.getCollections();
+    const filtered = cols.filter((c) => c.id !== id);
+    if (filtered.length === cols.length) return false;
+    safeSetJSON(STORAGE_KEYS.COLLECTIONS, filtered);
+    emitSync('collections');
+    return true;
+  },
+
+  addItemToCollection(collectionId: string, itemType: 'destination' | 'experience' | 'story', itemId: string): boolean {
+    const cols = demoStore.getCollections();
+    const idx = cols.findIndex((c) => c.id === collectionId);
+    if (idx === -1) return false;
+    const col = { ...cols[idx] };
+    if (itemType === 'destination' && !col.destinationIds.includes(itemId)) {
+      col.destinationIds = [...col.destinationIds, itemId];
+    } else if (itemType === 'experience' && !col.experienceIds.includes(itemId)) {
+      col.experienceIds = [...col.experienceIds, itemId];
+    } else if (itemType === 'story' && !col.storyIds.includes(itemId)) {
+      col.storyIds = [...col.storyIds, itemId];
+    } else {
+      return false;
+    }
+    col.updatedAt = new Date().toISOString();
+    cols[idx] = col;
+    safeSetJSON(STORAGE_KEYS.COLLECTIONS, cols);
+    emitSync('collections');
+    return true;
+  },
+
+  removeItemFromCollection(collectionId: string, itemType: 'destination' | 'experience' | 'story', itemId: string): boolean {
+    const cols = demoStore.getCollections();
+    const idx = cols.findIndex((c) => c.id === collectionId);
+    if (idx === -1) return false;
+    const col = { ...cols[idx] };
+    if (itemType === 'destination') {
+      col.destinationIds = col.destinationIds.filter((id) => id !== itemId);
+    } else if (itemType === 'experience') {
+      col.experienceIds = col.experienceIds.filter((id) => id !== itemId);
+    } else if (itemType === 'story') {
+      col.storyIds = col.storyIds.filter((id) => id !== itemId);
+    }
+    col.updatedAt = new Date().toISOString();
+    cols[idx] = col;
+    safeSetJSON(STORAGE_KEYS.COLLECTIONS, cols);
+    emitSync('collections');
+    return true;
   },
 
   // Memories
@@ -374,6 +523,10 @@ export function useDemoStore() {
   // Local demo state (active for unauthenticated guests)
   const [localTrips, setLocalTrips] = useState<Trip[]>(() => demoStore.getTrips());
   const [localSavedIds, setLocalSavedIds] = useState<string[]>(() => demoStore.getSavedDestinationIds());
+  const [localSavedExpIds, setLocalSavedExpIds] = useState<string[]>(() => demoStore.getSavedExperienceIds());
+  const [localSavedStoryIds, setLocalSavedStoryIds] = useState<string[]>(() => demoStore.getSavedStoryIds());
+  const [localExploredIds, setLocalExploredIds] = useState<string[]>(() => demoStore.getExploredPlaceIds());
+  const [collections, setCollections] = useState<DiscoveryCollection[]>(() => demoStore.getCollections());
   const [localMemories, setLocalMemories] = useState<Memory[]>(() => demoStore.getMemories());
   const [dispatches, setDispatches] = useState<StoredDispatch[]>(() => demoStore.getDispatches());
   const [inquiries, setInquiries] = useState<StoredInquiry[]>(() => demoStore.getInquiries());
@@ -391,6 +544,10 @@ export function useDemoStore() {
   const refreshLocal = useCallback(() => {
     setLocalTrips(demoStore.getTrips());
     setLocalSavedIds(demoStore.getSavedDestinationIds());
+    setLocalSavedExpIds(demoStore.getSavedExperienceIds());
+    setLocalSavedStoryIds(demoStore.getSavedStoryIds());
+    setLocalExploredIds(demoStore.getExploredPlaceIds());
+    setCollections(demoStore.getCollections());
     setLocalMemories(demoStore.getMemories());
     setDispatches(demoStore.getDispatches());
     setInquiries(demoStore.getInquiries());
@@ -603,10 +760,62 @@ export function useDemoStore() {
 
   const savedDestinations = getAllDestinations().filter((d) => savedDestIds.includes(d.id));
 
+  const toggleSaveExperience = useCallback((expId: string): boolean => {
+    const res = demoStore.toggleSaveExperience(expId);
+    refreshLocal();
+    return res;
+  }, [refreshLocal]);
+
+  const isExperienceSaved = useCallback((expId: string): boolean => {
+    return localSavedExpIds.includes(expId);
+  }, [localSavedExpIds]);
+
+  const toggleSaveStory = useCallback((storyId: string): boolean => {
+    const res = demoStore.toggleSaveStory(storyId);
+    refreshLocal();
+    return res;
+  }, [refreshLocal]);
+
+  const isStorySaved = useCallback((storyId: string): boolean => {
+    return localSavedStoryIds.includes(storyId);
+  }, [localSavedStoryIds]);
+
+  const toggleExploredPlace = useCallback((placeId: string): boolean => {
+    const res = demoStore.toggleExploredPlace(placeId);
+    refreshLocal();
+    return res;
+  }, [refreshLocal]);
+
+  const isPlaceExplored = useCallback((placeId: string): boolean => {
+    return localExploredIds.includes(placeId);
+  }, [localExploredIds]);
+
+  const createCollection = useCallback((col: Parameters<typeof demoStore.createCollection>[0]): DiscoveryCollection => {
+    const res = demoStore.createCollection(col);
+    refreshLocal();
+    return res;
+  }, [refreshLocal]);
+
+  const updateCollection = useCallback((id: string, updates: Parameters<typeof demoStore.updateCollection>[1]): DiscoveryCollection | null => {
+    const res = demoStore.updateCollection(id, updates);
+    refreshLocal();
+    return res;
+  }, [refreshLocal]);
+
+  const deleteCollection = useCallback((id: string): boolean => {
+    const res = demoStore.deleteCollection(id);
+    refreshLocal();
+    return res;
+  }, [refreshLocal]);
+
   return {
     trips,
     savedDestIds,
     savedDestinations,
+    savedExpIds: localSavedExpIds,
+    savedStoryIds: localSavedStoryIds,
+    exploredPlaceIds: localExploredIds,
+    collections,
     memories,
     dispatches,
     inquiries,
@@ -624,6 +833,15 @@ export function useDemoStore() {
     deleteTrip,
     toggleSaveDestination,
     isDestinationSaved,
+    toggleSaveExperience,
+    isExperienceSaved,
+    toggleSaveStory,
+    isStorySaved,
+    toggleExploredPlace,
+    isPlaceExplored,
+    createCollection,
+    updateCollection,
+    deleteCollection,
     createMemory,
     deleteMemory,
     createDispatch: demoStore.createDispatch,

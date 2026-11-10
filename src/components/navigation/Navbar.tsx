@@ -1,23 +1,26 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import {
   Compass,
   MapPin,
-  Clock,
   Sparkles,
   Bot,
-  Users,
   Menu,
   X,
   Play,
   SlidersHorizontal,
-  GitBranch
+  GitBranch,
+  BookOpen,
+  Bookmark,
+  Search,
+  Map as MapIcon
 } from 'lucide-react';
 import { TraviLogo } from '../brand/TraviLogo.tsx';
 import { useDemoStore } from '../../services/storage/demoStore.ts';
 import { useAuth } from '../../services/firebase/useAuth.ts';
 import { TasteProfileModal } from '../taste/TasteProfileModal.tsx';
 import { CulturalRabbitHoleModal } from '../rabbithole/CulturalRabbitHoleModal.tsx';
+import { GlobalSearchModal } from '../search/GlobalSearchModal.tsx';
 
 interface NavbarProps {
   onOpenBrandIntro?: () => void;
@@ -27,22 +30,38 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBrandIntro }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isTasteModalOpen, setIsTasteModalOpen] = useState(false);
   const [isRabbitHoleOpen, setIsRabbitHoleOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const location = useLocation();
-  const { trips, tasteProfile } = useDemoStore();
+  const { tasteProfile, savedDestIds, savedExpIds, savedStoryIds } = useDemoStore();
   const { user, session } = useAuth();
+
+  const totalSaved = (savedDestIds?.length || 0) + (savedExpIds?.length || 0) + (savedStoryIds?.length || 0);
 
   const activePillarsCount = useMemo(() => {
     const pillars = ['films', 'music', 'food', 'architecture', 'art', 'history', 'nature', 'localCulture'] as const;
     return pillars.filter((p) => Array.isArray(tasteProfile[p]) && tasteProfile[p].length > 0).length;
   }, [tasteProfile]);
 
+  // Global Ctrl+K / Cmd+K search hotkey listener
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setIsSearchModalOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const navLinks = [
-    { name: 'Explore', path: '/explore', icon: Compass, badge: null },
-    { name: 'My Trips', path: '/trips', icon: MapPin, badge: trips.length > 0 ? trips.length.toString() : null },
-    { name: 'Memories', path: '/memories', icon: Clock, badge: null },
-    { name: 'Experiences', path: '/experiences', icon: Sparkles, badge: null },
-    { name: 'Concierge', path: '/copilot', icon: Bot, badge: 'Planner' },
-    { name: 'Social', path: '/social', icon: Users, badge: null },
+    { name: 'Khám phá', path: '/', icon: Compass, badge: null },
+    { name: 'Bản đồ', path: '/map/north', icon: MapIcon, badge: 'Miền Bắc' },
+    { name: 'Điểm đến', path: '/explore', icon: MapPin, badge: null },
+    { name: 'Trải nghiệm', path: '/experiences', icon: Sparkles, badge: null },
+    { name: 'Câu chuyện', path: '/stories', icon: BookOpen, badge: null },
+    { name: 'Đã lưu', path: '/discoveries', icon: Bookmark, badge: totalSaved > 0 ? totalSaved.toString() : null },
+    { name: 'Lên lịch trình', path: '/copilot', icon: Bot, badge: 'Lịch trình' },
   ];
 
   return (
@@ -52,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBrandIntro }) => {
         <Link
           to="/"
           className="group flex items-center transition-opacity hover:opacity-95"
-          aria-label="Travi Home"
+          aria-label="TRAVI Trang chủ"
         >
           <TraviLogo size="md" variant="lockup" showTagline={true} />
         </Link>
@@ -85,7 +104,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBrandIntro }) => {
                 {link.badge && (
                   <span
                     className={`ml-1 rounded-full px-1.5 py-0.2 text-[10px] font-semibold leading-tight ${
-                      link.badge === 'AI' || link.badge === 'Planner'
+                      link.badge === 'Lịch trình'
                         ? 'bg-[#48E3EF]/20 text-[#48E3EF] border border-[#48E3EF]/30'
                         : 'bg-[#3DDC97]/20 text-[#3DDC97] border border-[#3DDC97]/30'
                     }`}
@@ -103,18 +122,32 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBrandIntro }) => {
         </nav>
 
         {/* Right Secondary Utilities */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
+          {/* Quick Nationwide Search Button with Keyboard Hint */}
+          <button
+            type="button"
+            onClick={() => setIsSearchModalOpen(true)}
+            title="Tìm kiếm khám phá Việt Nam (Ctrl+K)"
+            className="flex items-center gap-2 rounded-xl border border-[#243049] bg-[#121C30] px-3 py-1.5 text-xs font-medium text-[#9BA9C3] hover:border-[#3DDC97]/60 hover:text-white transition-all cursor-pointer shadow-sm"
+          >
+            <Search className="h-3.5 w-3.5 text-[#3DDC97]" />
+            <span className="hidden xl:inline text-xs">Tìm kiếm...</span>
+            <kbd className="hidden sm:inline-block rounded border border-[#243049] bg-[#18253E] px-1.5 py-0.5 text-[10px] font-mono text-[#9BA9C3]">
+              Ctrl+K
+            </kbd>
+          </button>
+
           {/* Brand Intro Replay Button */}
           {onOpenBrandIntro && (
             <button
               onClick={onOpenBrandIntro}
               id="btn-play-brand-intro"
-              title="Replay Travi Logo Transition Experience"
+              title="Xem lại chuyển động thương hiệu TRAVI"
               type="button"
               className="hidden sm:flex items-center gap-2 rounded-xl border border-[#243049] bg-[#121C30] px-3 py-1.5 text-xs font-medium text-[#9BA9C3] transition-all hover:border-[#48E3EF]/50 hover:text-white hover:bg-[#1A2640] cursor-pointer"
             >
               <Play className="h-3 w-3 fill-[#48E3EF] text-[#48E3EF]" />
-              <span className="hidden md:inline">Logo Motion</span>
+              <span className="hidden md:inline">Giới thiệu</span>
             </button>
           )}
 
@@ -122,24 +155,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBrandIntro }) => {
           <button
             onClick={() => setIsRabbitHoleOpen(true)}
             id="btn-rabbit-hole"
-            title="Explore Cross-Domain Cultural Rabbit Hole"
+            title="Khám phá Dòng chảy Văn hóa Đa chiều"
             type="button"
-            className="flex items-center gap-1.5 rounded-xl border border-[#9875FF]/40 bg-[#121C30] px-3 py-1.5 text-xs font-medium text-[#C4D0E5] transition-all hover:border-[#9875FF] hover:text-white hover:bg-[#1A2640] cursor-pointer"
+            className="hidden md:flex items-center gap-1.5 rounded-xl border border-[#9875FF]/40 bg-[#121C30] px-3 py-1.5 text-xs font-medium text-[#C4D0E5] transition-all hover:border-[#9875FF] hover:text-white hover:bg-[#1A2640] cursor-pointer"
           >
             <GitBranch className="h-3.5 w-3.5 text-[#9875FF]" />
-            <span className="hidden sm:inline">Rabbit Hole</span>
+            <span className="hidden lg:inline">Dòng chảy</span>
           </button>
 
           {/* Taste Studio Quick Tuning Button */}
           <button
             onClick={() => setIsTasteModalOpen(true)}
             id="btn-taste-studio"
-            title="Tune 8-Pillar Cultural Taste Profile"
+            title="Hiệu chỉnh Gu Văn hóa 8 Trụ cột"
             type="button"
-            className="flex items-center gap-1.5 rounded-xl border border-[#243049] bg-[#121C30] px-3 py-1.5 text-xs font-medium text-[#9BA9C3] transition-all hover:border-[#3DDC97]/50 hover:text-white hover:bg-[#1A2640] cursor-pointer"
+            className="hidden sm:flex items-center gap-1.5 rounded-xl border border-[#243049] bg-[#121C30] px-3 py-1.5 text-xs font-medium text-[#9BA9C3] transition-all hover:border-[#3DDC97]/50 hover:text-white hover:bg-[#1A2640] cursor-pointer"
           >
             <SlidersHorizontal className="h-3.5 w-3.5 text-[#3DDC97]" />
-            <span className="hidden sm:inline">Taste Studio</span>
+            <span className="hidden lg:inline">Gu văn hóa</span>
             <span className="rounded-full bg-[#3DDC97]/20 border border-[#3DDC97]/30 px-1.5 py-0.2 text-[10px] font-mono text-[#3DDC97] font-semibold">
               {activePillarsCount}/8
             </span>
@@ -160,17 +193,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBrandIntro }) => {
               <img src={session.photoURL} alt="Avatar" className="h-7 w-7 rounded-lg object-cover border border-[#3DDC97]" />
             ) : (
               <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-tr from-[#3DDC97] to-[#48E3EF] text-[#080D18] font-bold text-xs shadow-sm">
-                {user ? (session?.displayName?.slice(0, 2).toUpperCase() || 'TR') : 'GE'}
+                {user ? (session?.displayName?.slice(0, 2).toUpperCase() || 'TR') : 'KH'}
               </div>
             )}
             <span className="hidden md:inline font-medium">
-              {user ? (session?.displayName || 'Explorer') : 'Guest Explorer'}
+              {user ? (session?.displayName || 'Nhà khám phá') : 'Khách khám phá'}
             </span>
-            {!user && (
-              <span className="hidden xl:inline rounded bg-[#18253E] px-1.5 py-0.2 text-[9px] font-mono text-[#48E3EF] border border-[#48E3EF]/30">
-                Demo
-              </span>
-            )}
           </NavLink>
 
           {/* Mobile Menu Toggle Button */}
@@ -178,7 +206,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBrandIntro }) => {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             type="button"
             className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#243049] bg-[#121C30] text-[#9BA9C3] lg:hidden hover:text-white cursor-pointer"
-            aria-label="Toggle Navigation Menu"
+            aria-label="Mở bảng điều hướng"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -189,6 +217,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBrandIntro }) => {
       {mobileMenuOpen && (
         <div className="border-b border-[#243049] bg-[#0E1626]/95 backdrop-blur-xl px-4 py-5 lg:hidden animate-in slide-in-from-top-2 duration-200">
           <div className="flex flex-col gap-1.5">
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setIsSearchModalOpen(true);
+              }}
+              className="flex items-center gap-3 rounded-xl border border-[#3DDC97]/40 bg-[#18253E] px-4 py-3 text-sm font-medium text-white mb-2 cursor-pointer"
+            >
+              <Search className="h-5 w-5 text-[#3DDC97]" />
+              <span>Tìm kiếm toàn quốc...</span>
+            </button>
+
             {navLinks.map((link) => {
               const Icon = link.icon;
               const isActive = location.pathname === link.path;
@@ -212,7 +252,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBrandIntro }) => {
                   {link.badge && (
                     <span
                       className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
-                        link.badge === 'AI' || link.badge === 'Planner'
+                        link.badge === 'Lịch trình'
                           ? 'bg-[#48E3EF]/20 text-[#48E3EF]'
                           : 'bg-[#3DDC97]/20 text-[#3DDC97]'
                       }`}
@@ -234,7 +274,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBrandIntro }) => {
                 className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl border border-[#243049] bg-[#121C30] py-3 text-sm font-medium text-white hover:bg-[#1A2640] cursor-pointer"
               >
                 <Play className="h-4 w-4 fill-[#48E3EF] text-[#48E3EF]" />
-                <span>Watch Logo Motion</span>
+                <span>Xem chuyển động thương hiệu</span>
               </button>
             )}
 
@@ -247,7 +287,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBrandIntro }) => {
               className="mt-1 flex w-full items-center justify-center gap-2 rounded-xl border border-[#9875FF]/40 bg-[#121C30] py-3 text-sm font-medium text-[#C4D0E5] hover:bg-[#1A2640] cursor-pointer"
             >
               <GitBranch className="h-4 w-4 text-[#9875FF]" />
-              <span>Cultural Rabbit Hole</span>
+              <span>Dòng chảy Văn hóa Đa chiều</span>
             </button>
 
             <button
@@ -256,30 +296,37 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBrandIntro }) => {
                 setMobileMenuOpen(false);
                 setIsTasteModalOpen(true);
               }}
-              className="mt-1 flex w-full items-center justify-center gap-2 rounded-xl border border-[#3DDC97]/40 bg-[#121C30] py-3 text-sm font-medium text-[#3DDC97] hover:bg-[#1A2640] cursor-pointer"
+              className="mt-1 flex w-full items-center justify-between rounded-xl border border-[#243049] bg-[#121C30] px-4 py-3 text-sm font-medium text-[#9BA9C3] hover:bg-[#1A2640] cursor-pointer"
             >
-              <SlidersHorizontal className="h-4 w-4" />
-              <span>Tune Taste Profile ({activePillarsCount}/8)</span>
+              <div className="flex items-center gap-2">
+                <SlidersHorizontal className="h-4 w-4 text-[#3DDC97]" />
+                <span>Gu Văn hóa Cá nhân</span>
+              </div>
+              <span className="rounded-full bg-[#3DDC97]/20 border border-[#3DDC97]/30 px-2 py-0.5 text-xs font-mono text-[#3DDC97] font-semibold">
+                {activePillarsCount}/8
+              </span>
             </button>
           </div>
         </div>
       )}
 
-      {/* Taste Profile Tuning Modal */}
-      {isTasteModalOpen && (
-        <TasteProfileModal
-          isOpen={isTasteModalOpen}
-          onClose={() => setIsTasteModalOpen(false)}
-        />
-      )}
+      {/* Global Search Modal */}
+      <GlobalSearchModal
+        isOpen={isSearchModalOpen}
+        onClose={() => setIsSearchModalOpen(false)}
+      />
 
       {/* Cultural Rabbit Hole Modal */}
-      {isRabbitHoleOpen && (
-        <CulturalRabbitHoleModal
-          isOpen={isRabbitHoleOpen}
-          onClose={() => setIsRabbitHoleOpen(false)}
-        />
-      )}
+      <CulturalRabbitHoleModal
+        isOpen={isRabbitHoleOpen}
+        onClose={() => setIsRabbitHoleOpen(false)}
+      />
+
+      {/* Taste Profile Tuning Modal */}
+      <TasteProfileModal
+        isOpen={isTasteModalOpen}
+        onClose={() => setIsTasteModalOpen(false)}
+      />
     </header>
   );
 };

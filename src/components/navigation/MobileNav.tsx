@@ -1,19 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Compass, MapPin, Bot, Clock, User } from 'lucide-react';
+import { Compass, MapPin, Sparkles, BookOpen, Bookmark } from 'lucide-react';
 
 export const MobileNav: React.FC = () => {
   const tabs = [
-    { name: 'Explore', path: '/explore', icon: Compass },
-    { name: 'Trips', path: '/trips', icon: MapPin },
-    { name: 'Concierge', path: '/copilot', icon: Bot, isHighlighted: true },
-    { name: 'Memories', path: '/memories', icon: Clock },
-    { name: 'Profile', path: '/profile', icon: User },
+    { name: 'Khám phá', path: '/', icon: Compass },
+    { name: 'Điểm đến', path: '/explore', icon: MapPin },
+    { name: 'Trải nghiệm', path: '/experiences', icon: Sparkles },
+    { name: 'Câu chuyện', path: '/stories', icon: BookOpen },
+    { name: 'Đã lưu', path: '/discoveries', icon: Bookmark, isHighlighted: true },
   ];
 
   return (
     <nav
-      aria-label="Mobile Navigation Bar"
+      aria-label="Thanh điều hướng di động"
       className="fixed bottom-0 left-0 right-0 z-40 lg:hidden border-t border-[#243049]/90 bg-[#080D18]/95 backdrop-blur-2xl px-2 py-2 pb-safe shadow-[0_-8px_24px_rgba(0,0,0,0.4)]"
     >
       <div className="flex items-center justify-around max-w-md mx-auto">

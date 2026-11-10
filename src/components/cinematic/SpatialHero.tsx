@@ -208,7 +208,7 @@ export const SpatialHero: React.FC<SpatialHeroProps> = ({
           <div className="mb-4 flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-[#10B981]/30 bg-[#0A1628]/80 px-3 py-1 text-[11px] font-mono uppercase tracking-widest text-[#3DDC97] backdrop-blur-md shadow-[0_0_12px_rgba(61,220,151,0.15)]">
               <Sparkles className="h-3 w-3 text-[#3DDC97] animate-pulse" />
-              <span>Vietnam Travel Discovery & Planning</span>
+              <span>Nền tảng khám phá du lịch Việt Nam</span>
             </span>
 
             <span
@@ -219,21 +219,20 @@ export const SpatialHero: React.FC<SpatialHeroProps> = ({
               }`}
             >
               <Activity className="h-2.5 w-2.5" />
-              <span>{isAiActive ? 'Vietnam Travel Engine Active' : 'Editorial Catalog Mode'}</span>
+              <span>{isAiActive ? 'Hệ thống gợi ý bản địa đang hoạt động' : 'Chế độ mục lục tuyển chọn'}</span>
             </span>
           </div>
 
           {/* Central Hero Narrative */}
           <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.08] mb-5">
-            DISCOVER VIETNAM.{' '}
+            KHÁM PHÁ VIỆT NAM.{' '}
             <span className="bg-gradient-to-r from-white via-[#F4F7FF] to-[#3DDC97] bg-clip-text text-transparent">
-              EXPERIENCE MORE.
+              MỖI MIỀN ĐẤT, MỘT CÂU CHUYỆN.
             </span>
           </h1>
 
           <p className="text-base sm:text-lg text-[#C4D0E5] font-light leading-relaxed max-w-2xl mb-8">
-            Plan your journey through towering karst canyons, UNESCO imperial citadels, living craft ateliers,
-            and legendary street food alleys. Experience travel calibrated to authentic Vietnam.
+            Khám phá những hẻm vực đá vôi hùng vĩ, cố đô di sản UNESCO, làng nghề truyền thống và ẩm thực trăm năm. Trải nghiệm du lịch bản địa sâu sắc trên khắp 34 tỉnh thành Việt Nam.
           </p>
 
           {/* Primary & Secondary Call to Actions */}
@@ -244,7 +243,7 @@ export const SpatialHero: React.FC<SpatialHeroProps> = ({
               onClick={onDiscoverJourney}
               className="group shadow-[0_0_20px_rgba(61,220,151,0.25)] hover:shadow-[0_0_28px_rgba(61,220,151,0.4)]"
             >
-              <span>Discover My Cultural Journey</span>
+              <span>Khám phá hành trình văn hóa</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
 
@@ -255,17 +254,17 @@ export const SpatialHero: React.FC<SpatialHeroProps> = ({
               className="border-[#243049] hover:border-[#48E3EF]/50 hover:bg-[#121C30]"
             >
               <Compass className="h-4 w-4 text-[#48E3EF]" />
-              <span>Explore Destinations</span>
+              <span>Khám phá điểm đến</span>
             </Button>
 
             <button
               type="button"
               onClick={onOpenTasteStudio}
               className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-[#0E1626]/80 px-4 py-3 text-xs font-medium text-[#C4D0E5] hover:border-[#9875FF]/40 hover:text-white backdrop-blur-md transition-all cursor-pointer"
-              title="Calibrate your 8 cultural pillars"
+              title="Hiệu chỉnh 8 chiều sở thích văn hóa"
             >
               <SlidersHorizontal className="h-3.5 w-3.5 text-[#9875FF]" />
-              <span>Calibrate Taste Studio</span>
+              <span>Hiệu chỉnh gu du lịch</span>
             </button>
           </div>
 
@@ -273,41 +272,41 @@ export const SpatialHero: React.FC<SpatialHeroProps> = ({
           <div className="mt-10 pt-6 border-t border-[#243049]/60 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
             <div className="rounded-xl border border-white/5 bg-[#0E1626]/40 p-3 backdrop-blur-sm">
               <div className="text-[10px] uppercase font-mono text-[#9BA9C3] tracking-wider mb-1">
-                Active Pillars
+                Trụ cột sở thích
               </div>
               <div className="text-xl font-serif font-semibold text-white">
                 {activePillarsCount}{' '}
-                <span className="text-xs font-sans font-normal text-[#9BA9C3]">/ 8 Dimensions</span>
+                <span className="text-xs font-sans font-normal text-[#9BA9C3]">/ 8 chiều</span>
               </div>
             </div>
 
             <div className="rounded-xl border border-white/5 bg-[#0E1626]/40 p-3 backdrop-blur-sm">
               <div className="text-[10px] uppercase font-mono text-[#9BA9C3] tracking-wider mb-1">
-                Taste Signals
+                Tín hiệu cá nhân
               </div>
               <div className="text-xl font-serif font-semibold text-[#48E3EF]">
                 {totalSelectionsCount}{' '}
-                <span className="text-xs font-sans font-normal text-[#9BA9C3]">Selections</span>
+                <span className="text-xs font-sans font-normal text-[#9BA9C3]">lựa chọn</span>
               </div>
             </div>
 
             <div className="rounded-xl border border-white/5 bg-[#0E1626]/40 p-3 backdrop-blur-sm">
               <div className="text-[10px] uppercase font-mono text-[#9BA9C3] tracking-wider mb-1">
-                Verified Pool
+                Điểm đến tuyển chọn
               </div>
               <div className="text-xl font-serif font-semibold text-[#3DDC97]">
                 {totalDestinationsCount}{' '}
-                <span className="text-xs font-sans font-normal text-[#9BA9C3]">Sanctuaries</span>
+                <span className="text-xs font-sans font-normal text-[#9BA9C3]">điểm đến</span>
               </div>
             </div>
 
             <div className="rounded-xl border border-white/5 bg-[#0E1626]/40 p-3 backdrop-blur-sm">
               <div className="text-[10px] uppercase font-mono text-[#9BA9C3] tracking-wider mb-1">
-                Mass Tourism
+                Du lịch bản địa
               </div>
               <div className="text-xl font-serif font-semibold text-white">
-                0%{' '}
-                <span className="text-xs font-sans font-normal text-[#9BA9C3]">Isolation</span>
+                100%{' '}
+                <span className="text-xs font-sans font-normal text-[#9BA9C3]">Bản sắc</span>
               </div>
             </div>
           </div>

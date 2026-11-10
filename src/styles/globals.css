@@ -253,3 +253,123 @@ html.reduce-motion .travi-skeleton {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(61, 220, 151, 0.4);
 }
+
+/* ========================================================================= */
+/* LEAFLET & TRAVI MAP STYLES */
+/* ========================================================================= */
+@import "leaflet/dist/leaflet.css";
+
+/* Leaflet dark container defaults */
+.leaflet-container {
+  background-color: #080D18 !important;
+  font-family: var(--font-sans) !important;
+  outline: none;
+  z-index: 10;
+}
+
+/* Leaflet Tile Fade In & Invert / Tone */
+.leaflet-tile-pane {
+  filter: brightness(0.92) contrast(1.05);
+}
+
+/* Leaflet controls dark styling */
+.leaflet-bar {
+  border: 1px solid #243049 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 0.75rem !important;
+  overflow: hidden !important;
+}
+
+.leaflet-bar a {
+  background-color: #0E1626 !important;
+  color: #C4D0E5 !important;
+  border-bottom: 1px solid #243049 !important;
+  transition: all 0.2s ease !important;
+}
+
+.leaflet-bar a:hover {
+  background-color: #151F33 !important;
+  color: #3DDC97 !important;
+}
+
+/* Leaflet attribution styling */
+.leaflet-control-attribution {
+  background: rgba(8, 13, 24, 0.85) !important;
+  backdrop-filter: blur(8px) !important;
+  color: #9BA9C3 !important;
+  font-size: 11px !important;
+  border-top-left-radius: 0.5rem;
+  padding: 3px 8px !important;
+  border: 1px solid rgba(36, 48, 73, 0.6) !important;
+}
+
+.leaflet-control-attribution a {
+  color: #48E3EF !important;
+  text-decoration: none !important;
+}
+
+.leaflet-control-attribution a:hover {
+  text-decoration: underline !important;
+}
+
+/* Custom Marker Pin Animation */
+@keyframes markerPulseHalo {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(72, 227, 239, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 14px rgba(72, 227, 239, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(72, 227, 239, 0);
+  }
+}
+
+.travi-marker-active {
+  animation: markerPulseHalo 2s infinite ease-in-out;
+}
+
+/* Leaflet Popup Dark Override */
+.leaflet-popup-content-wrapper {
+  background: #0E1626 !important;
+  color: #F4F7FF !important;
+  border: 1px solid #243049 !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.7) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.leaflet-popup-tip {
+  background: #0E1626 !important;
+  border: 1px solid #243049 !important;
+}
+
+.leaflet-popup-close-button {
+  color: #9BA9C3 !important;
+  padding: 6px 8px !important;
+  z-index: 20;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #F4F7FF !important;
+}
+
+/* Reset Leaflet DivIcon default square white background */
+.travi-sovereignty-marker,
+.island-label-pin,
+.island-mini-pin,
+.travi-cluster-marker,
+.travi-pin-marker {
+  background: transparent !important;
+  border: none !important;
+}
+

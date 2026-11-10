@@ -46,15 +46,21 @@ describe('Route-Level Code Splitting & Lazy Architecture (Milestone v0.9)', () =
       expect(module.ProfilePage || module.default).toBeDefined();
     });
 
-    it('resolves MemoriesPage, ExperiencesPage, and SocialPage lazy chunks', async () => {
-      const [memories, experiences, social] = await Promise.all([
+    it('resolves MemoriesPage, ExperiencesPage, StoriesPage, StoryDetailPage, and MyDiscoveriesPage lazy chunks', async () => {
+      const [memories, experiences, social, stories, storyDetail, discoveries] = await Promise.all([
         import('../../pages/MemoriesPage.tsx'),
         import('../../pages/ExperiencesPage.tsx'),
         import('../../pages/SocialPage.tsx'),
+        import('../../pages/StoriesPage.tsx'),
+        import('../../pages/StoryDetailPage.tsx'),
+        import('../../pages/MyDiscoveriesPage.tsx'),
       ]);
       expect(memories.MemoriesPage || memories.default).toBeDefined();
       expect(experiences.ExperiencesPage || experiences.default).toBeDefined();
       expect(social.SocialPage || social.default).toBeDefined();
+      expect(stories.StoriesPage || stories.default).toBeDefined();
+      expect(storyDetail.StoryDetailPage || storyDetail.default).toBeDefined();
+      expect(discoveries.MyDiscoveriesPage || discoveries.default).toBeDefined();
     });
   });
 
@@ -69,12 +75,15 @@ describe('Route-Level Code Splitting & Lazy Architecture (Milestone v0.9)', () =
       const childPaths = rootRoute.children?.map((c) => c.path || (c.index ? '/' : ''));
       expect(childPaths).toContain('explore');
       expect(childPaths).toContain('destinations/:id');
+      expect(childPaths).toContain('experiences');
+      expect(childPaths).toContain('stories');
+      expect(childPaths).toContain('stories/:id');
+      expect(childPaths).toContain('discoveries');
       expect(childPaths).toContain('trips');
       expect(childPaths).toContain('copilot');
       expect(childPaths).toContain('concierge');
       expect(childPaths).toContain('profile');
       expect(childPaths).toContain('memories');
-      expect(childPaths).toContain('experiences');
       expect(childPaths).toContain('social');
     });
   });

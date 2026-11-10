@@ -113,11 +113,11 @@ export const TraviLogo: React.FC<TraviLogoProps> = ({
     return (
       <div className={`flex flex-col ${className}`}>
         <span className={`font-serif tracking-tight leading-none text-white font-medium ${currentSize.text}`}>
-          Travi
+          TRAVI
         </span>
         {showTagline && (
           <span className={`text-[#9BA9C3] tracking-wide mt-1 font-light ${currentSize.tag}`}>
-            Travel Beyond the Ordinary.
+            Mỗi miền đất, một câu chuyện.
           </span>
         )}
       </div>
@@ -130,11 +130,11 @@ export const TraviLogo: React.FC<TraviLogoProps> = ({
       {size === 'xs' || size === 'sm' ? renderMiniIcon() : renderFullIcon()}
       <div className="flex flex-col">
         <span className={`font-serif tracking-tight leading-none text-white font-medium ${currentSize.text}`}>
-          Travi
+          TRAVI
         </span>
         {showTagline && (
           <span className={`text-[#9BA9C3] tracking-normal mt-0.5 font-light ${currentSize.tag}`}>
-            Travel Beyond the Ordinary.
+            Mỗi miền đất, một câu chuyện.
           </span>
         )}
       </div>

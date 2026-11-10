@@ -51,9 +51,9 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
       const initialTrail = await initiateRabbitHole(seed);
       setTrail(initialTrail);
       setSelectedNodeId(initialTrail.nodes[initialTrail.nodes.length - 1].id);
-      triggerToast('Cultural Rabbit Hole Opened', `Traversing cross-domain affinities for "${seed}".`, 'success');
+      triggerToast('Mở mạch văn hóa', `Đang kết nối các chiều sở thích cho "${seed}".`, 'success');
     } catch {
-      triggerToast('Error Opening Trail', 'Unable to initiate cultural trail. Please try another interest.', 'warning');
+      triggerToast('Lỗi mở mạch văn hóa', 'Không thể khởi tạo mạch khám phá. Vui lòng thử từ khóa khác.', 'warning');
     } finally {
       setIsLoading(false);
     }
@@ -94,9 +94,9 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
       const updatedTrail = await executeRabbitHoleHop(trail, selectedNodeId, hop);
       setTrail(updatedTrail);
       setSelectedNodeId(updatedTrail.activeNodeId);
-      triggerToast('Hopped Deeper', `Connected to "${hop.title}".`, 'success');
+      triggerToast('Mở rộng nhánh mới', `Đã kết nối với "${hop.title}".`, 'success');
     } catch {
-      triggerToast('Hop Failed', 'Could not expand trail. Please try an alternative hop.', 'warning');
+      triggerToast('Lỗi mở rộng nhánh', 'Không thể kết nối nhánh này. Vui lòng chọn nhánh khác.', 'warning');
     } finally {
       setIsLoading(false);
     }
@@ -106,7 +106,7 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
     if (!trail) return;
     const tripPayload = convertRabbitHoleTrailToTrip(trail);
     createTrip(tripPayload);
-    triggerToast('Saved to My Trips', `Saved "${tripPayload.title}" to your traveler dossier.`, 'success');
+    triggerToast('Đã lưu chuyến đi', `Đã lưu "${tripPayload.title}" vào sổ tay cá nhân.`, 'success');
   };
 
   const handleSendToCopilot = () => {
@@ -137,14 +137,14 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
             <div>
               <div className="flex items-center gap-2">
                 <h2 id="rabbit-hole-title" className="text-base font-semibold text-white tracking-wide">
-                  Vietnam Cultural Rabbit Hole
+                  Khám phá đa tầng văn hóa Việt Nam
                 </h2>
                 <span className="rounded-full bg-[#48E3EF]/15 border border-[#48E3EF]/30 px-2 py-0.5 text-[10px] font-mono text-[#48E3EF]">
-                  Cultural Lineage Traversal
+                  Mạch nguồn văn hóa
                 </span>
               </div>
               <p className="text-xs text-[#9BA9C3] font-light">
-                Follow living cultural lineages across Vietnamese gastronomy, traditional craft guilds, imperial history, and mountain passes.
+                Dõi theo dòng chảy văn hóa sống động từ ẩm thực truyền thống, phường hội làng nghề, lịch sử cung đình đến đèo mây hùng vĩ.
               </p>
             </div>
           </div>
@@ -153,7 +153,7 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
             <button
               onClick={onClose}
               className="rounded-xl border border-[#243049] bg-[#121C30] p-2 text-[#9BA9C3] hover:text-white hover:bg-[#18253E] transition-colors"
-              aria-label="Close dialog"
+              aria-label="Đóng cửa sổ"
             >
               <X className="h-5 w-5" />
             </button>
@@ -165,7 +165,7 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
           <form onSubmit={handleCustomSubmit} className="flex gap-2">
             <div className="relative flex-1">
               <label htmlFor={searchInputId} className="sr-only">
-                Enter any cultural interest, artist, film, or cuisine
+                Nhập sở thích văn hóa, nghệ thuật, ẩm thực
               </label>
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#9BA9C3]" />
               <input
@@ -173,7 +173,7 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
                 type="text"
                 value={seedInput}
                 onChange={(e) => setSeedInput(e.target.value)}
-                placeholder="Enter any cultural interest (e.g., Ryuichi Sakamoto, Studio Ghibli, Mezcal, Brian Eno)..."
+                placeholder="Nhập sở thích văn hóa (ví dụ: gốm Bát Tràng, cà phê Tây Nguyên, chèo, lụa Vạn Phúc)..."
                 className="w-full rounded-xl border border-[#243049] bg-[#080D18] pl-10 pr-4 py-2 text-xs text-white placeholder-[#9BA9C3] focus:border-[#48E3EF] focus:outline-none transition-colors"
               />
             </div>
@@ -184,14 +184,14 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
               disabled={isLoading || !seedInput.trim()}
               className="text-xs"
             >
-              {isLoading ? 'Traversing...' : 'Explore Trail'}
+              {isLoading ? 'Đang kết nối...' : 'Khám phá mạch văn hóa'}
             </Button>
           </form>
 
           {/* Quick Preset Pills */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
             <span className="text-[11px] font-mono uppercase text-[#9BA9C3] shrink-0 mr-1">
-              Inspiration Seeds:
+              Gợi ý khơi nguồn:
             </span>
             {RABBIT_HOLE_PRESETS.map((p) => (
               <button
@@ -219,17 +219,17 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
           <div className="lg:col-span-5 border-r border-[#243049] bg-[#080D18] p-5 overflow-y-auto space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#9BA9C3] font-mono">
-                Cultural Discovery Trail ({trail?.nodes.length || 0} Nodes)
+                Mạch văn hóa ({trail?.nodes.length || 0} Điểm kết nối)
               </span>
               <span className="text-[10px] font-mono text-[#3DDC97]">
-                Provenanced Step-by-Step
+                Nguồn gốc rõ ràng
               </span>
             </div>
 
             {isLoading && !trail && (
               <div className="flex flex-col items-center justify-center py-20 text-center space-y-3">
                 <RefreshCw className="h-6 w-6 text-[#48E3EF] animate-spin" />
-                <p className="text-xs text-[#9BA9C3]">Traversing Vietnamese cultural lineages and mapping authentic sanctuaries...</p>
+                <p className="text-xs text-[#9BA9C3]">Đang kết nối mạch nguồn văn hóa và định vị điểm đến bản địa...</p>
               </div>
             )}
 
@@ -347,7 +347,7 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
                   {/* Why this connects reasoning */}
                   <div className="rounded-2xl border border-white/5 bg-[#080D18] p-4 space-y-1.5">
                     <span className="text-[10px] font-mono uppercase tracking-wider text-[#48E3EF] block">
-                      Cultural Bridge & Provenance Reasoning:
+                      Cầu nối văn hóa & Lý do liên kết:
                     </span>
                     <p className="text-xs text-[#C4D0E5] font-light leading-relaxed">
                       {activeNode.connectionReason}
@@ -358,7 +358,7 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
                   {activeNode.curatedExperience && (
                     <div className="rounded-2xl border border-[#3DDC97]/30 bg-[#3DDC97]/5 p-4 space-y-1">
                       <span className="text-[10px] font-mono uppercase tracking-wider text-[#3DDC97] block">
-                        Exclusive Living Atelier:
+                        Trải nghiệm bản địa đặc sắc:
                       </span>
                       <p className="text-xs text-white font-medium">
                         {activeNode.curatedExperience}
@@ -387,11 +387,11 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
                     <div className="flex items-center gap-2">
                       <Compass className="h-4 w-4 text-[#48E3EF]" />
                       <span className="text-xs font-semibold uppercase tracking-wider text-white">
-                        Next Hops — Expand Cultural Rabbit Hole
+                        Bước tiếp theo — Mở rộng nhánh văn hóa
                       </span>
                     </div>
                     <span className="text-[10px] font-mono text-[#9BA9C3]">
-                      Click to Branch Trail
+                      Nhấp để mở nhánh mới
                     </span>
                   </div>
 
@@ -431,7 +431,7 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
                       className="text-xs flex items-center gap-2"
                     >
                       <BookmarkPlus className="h-4 w-4 text-[#3DDC97]" />
-                      Save Trail to My Trips
+                      Lưu mạch văn hóa vào chuyến đi
                     </Button>
                   </div>
 
@@ -442,14 +442,14 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
                     className="text-xs flex items-center gap-2"
                   >
                     <Sparkles className="h-4 w-4" />
-                    Synthesize Itinerary in Agent Builder
+                    Chuyển thành lịch trình mẫu
                   </Button>
                 </div>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-24 text-center space-y-3">
                 <HelpCircle className="h-8 w-8 text-[#9BA9C3]" />
-                <p className="text-xs text-[#9BA9C3]">Select a node on the left to inspect its cultural provenance.</p>
+                <p className="text-xs text-[#9BA9C3]">Chọn một điểm kết nối bên trái để xem nguồn gốc văn hóa chi tiết.</p>
               </div>
             )}
           </div>

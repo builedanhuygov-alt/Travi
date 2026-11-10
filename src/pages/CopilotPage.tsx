@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import {
   Send,
@@ -17,7 +17,12 @@ import {
   Plus,
   ChevronUp,
   ChevronDown,
-  AlertCircle
+  AlertCircle,
+  Globe,
+  Home,
+  Car,
+  Users,
+  CloudSun,
 } from 'lucide-react';
 import { Button } from '../components/ui/Button.tsx';
 import { Badge } from '../components/ui/Badge.tsx';
@@ -37,10 +42,13 @@ import {
 } from '../services/concierge/agenticTripBuilder.ts';
 import {
   vietnamAiService,
-  getVietnamAiProviderStatus,
   type AiAssistantResponse,
 } from '../services/ai/vietnamAiService.ts';
 import type { CopilotMessage } from '../types/index.ts';
+import { classifyCustomerType } from '../services/adaptive/customerClassifier.ts';
+import { assessDestinationWeather } from '../services/weather/weatherService.ts';
+import { AiStatusIndicator } from '../components/ai/AiStatusIndicator.tsx';
+import type { CustomerType, PreferredLanguage, TravelCompanions } from '../types/adaptiveTravel.ts';
 
 
 let msgCounter = 0;
@@ -62,6 +70,13 @@ export const CopilotPage: React.FC = () => {
   const [travelPace, setTravelPace] = useState<TravelPace>('Deliberate');
   const [transportPreference, setTransportPreference] = useState<TransportPreference>('Reunification Express Train');
 
+  // Adaptive Travel Intelligence States
+  const [manualCustomerType, setManualCustomerType] = useState<CustomerType | null>(null);
+  const [originCountry] = useState<string>('Vietnam');
+  const [originProvince, setOriginProvince] = useState<string>('Hà Nội');
+  const [preferredLanguage, setPreferredLanguage] = useState<PreferredLanguage>('vi');
+  const [travelCompanions, setTravelCompanions] = useState<TravelCompanions>('Couple');
+
   // Selected cultural interests & foods
   const [selectedInterests] = useState<string[]>([
     'Living Heritage & Dynasties',
@@ -73,6 +88,33 @@ export const CopilotPage: React.FC = () => {
     'Bún Bò Huế',
     'Mekong Floating Market Delicacies',
   ]);
+
+  // Compute adaptive classification with user override support
+  const classificationResult = useMemo(() => {
+    if (manualCustomerType) {
+      return {
+        detected_type: manualCustomerType,
+        confidence: 1.0,
+        reasons: [`Người dùng chủ động chọn: ${manualCustomerType}`],
+        is_overridden: true,
+        available_types: ['INTERNATIONAL', 'DOMESTIC', 'LOCAL', 'INTERPROVINCIAL'] as CustomerType[],
+      };
+    }
+    return classifyCustomerType({
+      origin_country: originCountry,
+      origin_province: originProvince,
+      destination,
+      preferred_language: preferredLanguage,
+      travel_duration: durationDays,
+    });
+  }, [manualCustomerType, originCountry, originProvince, destination, preferredLanguage, durationDays]);
+
+  const customerType = classificationResult.detected_type;
+  const classificationReason = classificationResult.reasons[0] || '';
+  const isCustomerTypeOverridden = classificationResult.is_overridden;
+
+  // Weather assessment for selected destination
+  const destinationWeather = assessDestinationWeather(destination);
 
   // Agent Execution States
   const [workflowState, setWorkflowState] = useState<AgentWorkflowState | null>(null);
@@ -244,6 +286,17 @@ export const CopilotPage: React.FC = () => {
         durationDays,
         travelPace,
         budgetRange,
+        customerType,
+        profile: {
+          customer_type: customerType,
+          origin_country: originCountry,
+          origin_province: originProvince,
+          destination,
+          preferred_language: preferredLanguage,
+          budget: budgetRange,
+          travel_duration: durationDays,
+          interests: selectedInterests,
+        },
       });
 
       const aiMsg: CopilotMessage = {
@@ -253,6 +306,7 @@ export const CopilotPage: React.FC = () => {
         content: response.content,
         suggestions: response.suggestions,
         itineraryTeaser: response.itineraryTeaser,
+        sources: response.sources,
         provenance: response.provenance,
       };
 
@@ -286,33 +340,36 @@ export const CopilotPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Mode Switcher Tabs */}
-            <div className="flex items-center rounded-2xl border border-[#243049] bg-[#080D18] p-1.5 shadow-inner">
-              <button
-                type="button"
-                onClick={() => setActiveTab('concierge')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
-                  activeTab === 'concierge'
-                    ? 'bg-[#18253E] text-white shadow-sm border border-white/10'
-                    : 'text-[#9BA9C3] hover:text-white'
-                }`}
-              >
-                <Workflow className="h-4 w-4 text-[#3DDC97]" />
-                <span>Smart Trip Planner</span>
-              </button>
+            {/* Mode Switcher Tabs & Live AI Status */}
+            <div className="flex flex-wrap items-center gap-3">
+              <AiStatusIndicator />
+              <div className="flex items-center rounded-2xl border border-[#243049] bg-[#080D18] p-1.5 shadow-inner">
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('concierge')}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+                    activeTab === 'concierge'
+                      ? 'bg-[#18253E] text-white shadow-sm border border-white/10'
+                      : 'text-[#9BA9C3] hover:text-white'
+                  }`}
+                >
+                  <Workflow className="h-4 w-4 text-[#3DDC97]" />
+                  <span>Smart Trip Planner</span>
+                </button>
 
-              <button
-                type="button"
-                onClick={() => setActiveTab('chat')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
-                  activeTab === 'chat'
-                    ? 'bg-[#18253E] text-white shadow-sm border border-white/10'
-                    : 'text-[#9BA9C3] hover:text-white'
-                }`}
-              >
-                <Bot className="h-4 w-4 text-[#48E3EF]" />
-                <span>AI Travel Assistant</span>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('chat')}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+                    activeTab === 'chat'
+                      ? 'bg-[#18253E] text-white shadow-sm border border-white/10'
+                      : 'text-[#9BA9C3] hover:text-white'
+                  }`}
+                >
+                  <Bot className="h-4 w-4 text-[#48E3EF]" />
+                  <span>AI Travel Assistant</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -329,10 +386,94 @@ export const CopilotPage: React.FC = () => {
               <div className="rounded-3xl border border-[#243049] bg-gradient-to-b from-[#0E1626]/90 to-[#0A1120] p-6 shadow-xl backdrop-blur-xl">
                 <h2 className="text-xs font-mono uppercase tracking-widest text-[#3DDC97] mb-4 flex items-center gap-2">
                   <SlidersHorizontal className="h-4 w-4" />
-                  Trip Parameters
+                  Hồ Sơ & Tham Số Lịch Trình Thích Ứng
                 </h2>
 
                 <div className="space-y-4">
+                  {/* Customer Type Selector & Classifier */}
+                  <div className="bg-[#080D18] border border-[#243049] p-3.5 rounded-2xl space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-semibold text-white flex items-center gap-1.5">
+                        <Users className="h-3.5 w-3.5 text-[#3DDC97]" />
+                        Nhóm Khách Du Lịch (Customer Type)
+                      </label>
+                      <span className="text-[10px] font-mono text-[#3DDC97] bg-[#3DDC97]/10 px-2 py-0.5 rounded-full border border-[#3DDC97]/20">
+                        {isCustomerTypeOverridden ? 'Tự chọn' : 'Tự động nhận diện'}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {[
+                        { type: 'INTERNATIONAL' as CustomerType, label: 'Quốc tế', icon: Globe },
+                        { type: 'DOMESTIC' as CustomerType, label: 'Nội địa', icon: User },
+                        { type: 'LOCAL' as CustomerType, label: 'Bản địa', icon: Home },
+                        { type: 'INTERPROVINCIAL' as CustomerType, label: 'Liên tỉnh', icon: Car },
+                      ].map((item) => {
+                        const Icon = item.icon;
+                        const isSelected = customerType === item.type;
+                        return (
+                          <button
+                            key={item.type}
+                            type="button"
+                            onClick={() => {
+                              setManualCustomerType(item.type);
+                              triggerToast(`Đã chuyển nhóm khách: ${item.label}`, 'info');
+                            }}
+                            className={`flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl text-xs font-medium transition-all ${
+                              isSelected
+                                ? 'bg-[#3DDC97] text-[#080D18] font-semibold shadow-md shadow-[#3DDC97]/20'
+                                : 'bg-[#101A2C] text-[#9BA9C3] hover:text-white border border-[#243049]/60'
+                            }`}
+                          >
+                            <Icon className="h-3.5 w-3.5" />
+                            <span>{item.label}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <p className="text-[10px] text-[#9BA9C3] leading-relaxed italic">
+                      {classificationReason}
+                    </p>
+                  </div>
+
+                  {/* Origin & Language Row */}
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                        Tỉnh/Nước xuất phát
+                      </label>
+                      <input
+                        type="text"
+                        value={originProvince}
+                        onChange={(e) => {
+                          setOriginProvince(e.target.value);
+                          setManualCustomerType(null);
+                        }}
+                        placeholder="Hà Nội / France..."
+                        className="w-full rounded-xl border border-[#243049] bg-[#080D18] px-3 py-2 text-xs text-white focus:border-[#3DDC97] focus:outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                        Ngôn ngữ ưu tiên
+                      </label>
+                      <select
+                        value={preferredLanguage}
+                        onChange={(e) => {
+                          setPreferredLanguage(e.target.value as PreferredLanguage);
+                          setManualCustomerType(null);
+                        }}
+                        className="w-full rounded-xl border border-[#243049] bg-[#080D18] px-3 py-2 text-xs text-white focus:border-[#3DDC97] focus:outline-none"
+                      >
+                        <option value="vi">Tiếng Việt (VI)</option>
+                        <option value="en">English (EN)</option>
+                        <option value="fr">Français (FR)</option>
+                        <option value="ja">日本語 (JA)</option>
+                      </select>
+                    </div>
+                  </div>
+
                   {/* Destination Selector */}
                   <div>
                     <label className="text-xs font-semibold text-white block mb-1.5">
@@ -349,6 +490,44 @@ export const CopilotPage: React.FC = () => {
                         </option>
                       ))}
                     </select>
+                  </div>
+
+                  {/* Weather Advisory Card */}
+                  <div className="bg-[#101A2C] border border-[#243049] p-3 rounded-xl text-xs space-y-1">
+                    <div className="flex items-center justify-between text-[#48E3EF]">
+                      <span className="font-semibold flex items-center gap-1.5">
+                        <CloudSun className="h-3.5 w-3.5" /> Thời tiết: {destinationWeather.seasonName}
+                      </span>
+                      <span className="font-mono text-[10px] bg-[#48E3EF]/10 px-2 py-0.5 rounded-full border border-[#48E3EF]/20">
+                        {destinationWeather.temperatureRange}
+                      </span>
+                    </div>
+                    <p className="text-[10px] text-[#9BA9C3] leading-relaxed">
+                      {destinationWeather.advisory}
+                    </p>
+                  </div>
+
+                  {/* Travel Companions */}
+                  <div>
+                    <label className="text-xs font-semibold text-white block mb-1.5">
+                      Bạn đồng hành (Companions)
+                    </label>
+                    <div className="grid grid-cols-4 gap-1.5">
+                      {(['Solo', 'Couple', 'Family', 'Friends'] as TravelCompanions[]).map((comp) => (
+                        <button
+                          key={comp}
+                          type="button"
+                          onClick={() => setTravelCompanions(comp)}
+                          className={`py-1.5 rounded-lg text-[11px] font-medium transition-all ${
+                            travelCompanions === comp
+                              ? 'bg-[#48E3EF] text-[#080D18] font-semibold'
+                              : 'bg-[#080D18] text-[#9BA9C3] border border-[#243049]'
+                          }`}
+                        >
+                          {comp}
+                        </button>
+                      ))}
+                    </div>
                   </div>
 
                   {/* Starting Location */}
@@ -549,6 +728,14 @@ export const CopilotPage: React.FC = () => {
                           Starting from: <strong className="text-white">{generatedDraft.startingLocation}</strong> via{' '}
                           <strong className="text-white">{generatedDraft.transportPreference}</strong>
                         </p>
+                        <div className="flex flex-wrap items-center gap-2 mt-2">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#3DDC97]/15 text-[#3DDC97] border border-[#3DDC97]/30">
+                            <Users className="h-3 w-3" /> Nhóm khách: {customerType}
+                          </span>
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-[#48E3EF]/15 text-[#48E3EF] border border-[#48E3EF]/30">
+                            <CloudSun className="h-3 w-3" /> Thời tiết: {destinationWeather.seasonName}
+                          </span>
+                        </div>
                       </div>
 
                       {/* Save to Trips Button */}
@@ -816,16 +1003,14 @@ export const CopilotPage: React.FC = () => {
                   <Bot className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white flex flex-wrap items-center gap-2">
-                    Travi Vietnam Travel Assistant
-                    <Badge variant="outline" className="text-[10px] text-[#3DDC97] border-[#3DDC97]/30 font-mono">
-                      {getVietnamAiProviderStatus().modelLabel}
-                    </Badge>
-                  </h3>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-sm font-bold text-white">
+                      Travi Vietnam Travel Assistant
+                    </h3>
+                    <AiStatusIndicator />
+                  </div>
                   <p className="text-[11px] text-[#9BA9C3]">
-                    {getVietnamAiProviderStatus().isExternalApiConfigured
-                      ? 'Live generative AI model inference active'
-                      : 'Deterministic Expert Mode • Grounded in verified Vietnam cultural & logistics records'}
+                    Trợ lý du lịch thích ứng • Tự động cá nhân hóa theo nhóm khách và đối soát dữ liệu thực địa
                   </p>
                 </div>
               </div>
@@ -897,6 +1082,25 @@ export const CopilotPage: React.FC = () => {
                           >
                             Open in Planner
                           </Button>
+                        </div>
+                      )}
+
+                      {msg.sources && msg.sources.length > 0 && (
+                        <div className="mt-2.5 pt-2 border-t border-white/5 space-y-1">
+                          <span className="text-[10px] font-mono text-[#48E3EF] block uppercase tracking-wider">
+                            Nguồn đối soát thực địa (RAG Grounding):
+                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            {msg.sources.map((src, i) => (
+                              <span
+                                key={i}
+                                className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#48E3EF]/10 border border-[#48E3EF]/20 text-[10px] text-[#48E3EF]"
+                              >
+                                <span className="font-medium">{src.name}</span>
+                                {src.province && <span className="text-[#9BA9C3]">({src.province})</span>}
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       )}
 

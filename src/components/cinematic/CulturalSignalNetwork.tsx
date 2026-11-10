@@ -133,15 +133,14 @@ export const CulturalSignalNetwork: React.FC<CulturalSignalNetworkProps> = ({
             <div className="flex items-center gap-2 mb-2">
               <span className="flex h-2 w-2 rounded-full bg-[#48E3EF] animate-ping" />
               <span className="text-[11px] font-mono uppercase tracking-widest text-[#48E3EF]">
-                Signal Network Uncalibrated
+                Chưa hiệu chỉnh mạng lưới sở thích
               </span>
             </div>
             <h3 className="font-serif text-2xl font-medium text-white mb-2">
-              Connect Your Cultural Signal Network
+              Kết nối mạng lưới sở thích văn hóa của bạn
             </h3>
             <p className="text-xs sm:text-sm text-[#9BA9C3] font-light leading-relaxed">
-              Your travel preferences calibrate personalized Vietnam discovery tracks and custom itinerary lanes.
-              Calibrate your profile across 8 cultural dimensions, or select a Vietnam persona:
+              Sở thích du lịch giúp hiệu chỉnh luồng khám phá và lịch trình phù hợp với bạn. Hãy chọn hồ sơ văn hóa gợi ý hoặc tự điều chỉnh qua 8 trụ cột:
             </p>
           </div>
 
@@ -151,21 +150,21 @@ export const CulturalSignalNetwork: React.FC<CulturalSignalNetworkProps> = ({
               onClick={() => handleApplyPreset('zen')}
               className="rounded-xl border border-[#3DDC97]/30 bg-[#0E1B27] px-3.5 py-2 text-xs font-medium text-[#3DDC97] hover:bg-[#3DDC97]/15 transition-all cursor-pointer shadow-sm"
             >
-              🏔️ Northern Karst & Pass
+              🏔️ Tây Bắc & Đá vôi
             </button>
             <button
               type="button"
               onClick={() => handleApplyPreset('mediterranean')}
               className="rounded-xl border border-[#48E3EF]/30 bg-[#0A1A2B] px-3.5 py-2 text-xs font-medium text-[#48E3EF] hover:bg-[#48E3EF]/15 transition-all cursor-pointer shadow-sm"
             >
-              🏛️ Imperial Citadel & Silk
+              🏛️ Cố đô Di sản & Làng lụa
             </button>
             <button
               type="button"
               onClick={() => handleApplyPreset('highland')}
               className="rounded-xl border border-[#9875FF]/30 bg-[#15122B] px-3.5 py-2 text-xs font-medium text-[#9875FF] hover:bg-[#9875FF]/15 transition-all cursor-pointer shadow-sm"
             >
-              🏝️ Coastal & Island Atolls
+              🏝️ Biển đảo & Bán đảo
             </button>
             <button
               type="button"
@@ -173,7 +172,7 @@ export const CulturalSignalNetwork: React.FC<CulturalSignalNetworkProps> = ({
               className="rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium text-white hover:bg-white/20 transition-all cursor-pointer"
             >
               <SlidersHorizontal className="h-3 w-3 inline mr-1.5" />
-              Open Travel Studio
+              Hiệu chỉnh gu du lịch
             </button>
           </div>
         </div>
@@ -193,11 +192,11 @@ export const CulturalSignalNetwork: React.FC<CulturalSignalNetworkProps> = ({
           <div className="flex items-center gap-2 mb-1">
             <span className="flex h-2 w-2 rounded-full bg-[#3DDC97]" />
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#9BA9C3]">
-              Active Signal Network ({allSignals.length} Active Nodes across {signalsByPillar.length} Pillars)
+              Mạng lưới tín hiệu hoạt động ({allSignals.length} lựa chọn qua {signalsByPillar.length} trụ cột)
             </span>
           </div>
           <h2 className="font-serif text-xl sm:text-2xl font-medium text-white">
-            Your Cultural Taste Constellation
+            Bản đồ gu văn hóa cá nhân
           </h2>
         </div>
 
@@ -207,9 +206,9 @@ export const CulturalSignalNetwork: React.FC<CulturalSignalNetworkProps> = ({
               type="button"
               onClick={() => onSelectFilter?.(null)}
               className="inline-flex items-center gap-1.5 rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-1.5 text-xs text-rose-300 hover:bg-rose-500/20 transition-all cursor-pointer"
-              title="Clear active signal filter"
+              title="Xóa bộ lọc tín hiệu đang chọn"
             >
-              <span>Filtering by: {activeFilter}</span>
+              <span>Đang lọc: {activeFilter}</span>
               <X className="h-3 w-3" />
             </button>
           )}
@@ -220,7 +219,7 @@ export const CulturalSignalNetwork: React.FC<CulturalSignalNetworkProps> = ({
             className="inline-flex items-center gap-1.5 rounded-lg border border-[#243049] bg-[#121C30] px-3.5 py-1.5 text-xs font-medium text-[#C4D0E5] hover:border-[#3DDC97]/40 hover:text-white transition-all cursor-pointer"
           >
             <SlidersHorizontal className="h-3 w-3 text-[#3DDC97]" />
-            <span>Edit Profile</span>
+            <span>Chỉnh sửa gu</span>
           </button>
         </div>
       </div>
@@ -284,13 +283,13 @@ export const CulturalSignalNetwork: React.FC<CulturalSignalNetworkProps> = ({
           <Sparkles className="h-3.5 w-3.5 text-[#3DDC97]" />
           <span>
             {hoveredSignal
-              ? `Inspecting: "${hoveredSignal.label}" (${hoveredSignal.pillarLabel}) — Click node to filter recommendations.`
-              : 'Click any node above to focus destination discovery on that specific cultural signal.'}
+              ? `Đang xem: "${hoveredSignal.label}" (${hoveredSignal.pillarLabel}) — Nhấp để lọc gợi ý điểm đến.`
+              : 'Nhấp vào bất kỳ tín hiệu nào ở trên để lọc điểm đến theo sở thích văn hóa tương ứng.'}
           </span>
         </div>
 
         <span className="text-[11px] font-mono text-[#9BA9C3]/80">
-          Derived from authentic Taste Studio selections • Zero synthetic traits
+          Dựa trên thiết lập gu du lịch thực tế • Không tạo thuộc tính giả
         </span>
       </div>
     </div>

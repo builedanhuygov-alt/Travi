@@ -8,7 +8,8 @@ import {
   LayoutGrid,
   Rows3,
   TrendingUp,
-  Map
+  Map,
+  ExternalLink
 } from 'lucide-react';
 import { Button } from '../components/ui/Button.tsx';
 import { CinematicDestinationCard } from '../components/cinematic/CinematicDestinationCard.tsx';
@@ -28,6 +29,7 @@ import { recommendationService } from '../services/recommendations/Recommendatio
 import { partitionDiscoveryLanes } from '../services/recommendations/pipeline/RecommendationPipeline.ts';
 import type { Destination } from '../types/index.ts';
 import type { DiscoveryLane } from '../services/recommendations/types.ts';
+import { translateRegion, translateCategory } from '../lib/i18n/index.ts';
 
 export const ExplorePage: React.FC = () => {
   const navigate = useNavigate();
@@ -107,7 +109,7 @@ export const ExplorePage: React.FC = () => {
         return prev.filter((id) => id !== dest.id);
       }
       if (prev.length >= 3) {
-        triggerToast('Maximum 3 destinations can be compared at once', 'info');
+        triggerToast('Chỉ có thể so sánh tối đa 3 điểm đến cùng lúc', 'info');
         return prev;
       }
       return [...prev, dest.id];
@@ -173,7 +175,7 @@ export const ExplorePage: React.FC = () => {
               updatedAt: new Date().toISOString(),
               isCustomized: true,
             });
-            triggerToast('Applied Vietnam travel persona', 'success');
+            triggerToast('Đã áp dụng hồ sơ du lịch mẫu', 'success');
           }}
         />
 
@@ -182,13 +184,13 @@ export const ExplorePage: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#3DDC97]/30 bg-[#3DDC97]/10 px-3 py-1 text-xs font-semibold text-[#3DDC97] mb-2">
               <Compass className="h-3.5 w-3.5" />
-              Discover Vietnam
+              Khám phá Việt Nam
             </div>
             <h1 className="text-2xl sm:text-3xl font-display font-bold text-white">
-              Discover Vietnam
+              Điểm đến khắp Việt Nam
             </h1>
             <p className="text-xs sm:text-sm text-[#9BA9C3] mt-1">
-              Explore 34 provincial destinations across North Vietnam, Central Vietnam, and South Vietnam.
+              Khám phá 34 đơn vị hành chính và điểm đến trải dài từ Bắc Bộ, Trung Bộ, Tây Nguyên đến Nam Bộ.
             </p>
           </div>
         </div>
@@ -206,13 +208,13 @@ export const ExplorePage: React.FC = () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search Vietnam destinations, UNESCO sites, street food, provinces..."
+                placeholder="Tìm kiếm điểm đến, di sản UNESCO, ẩm thực, tỉnh thành..."
                 className="w-full rounded-xl border border-[#243049] bg-[#0A101D] pl-10 pr-10 py-3 text-xs sm:text-sm text-white placeholder-[#4A5D7E] focus:border-[#3DDC97] focus:outline-none transition-colors"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  aria-label="Clear search"
+                  aria-label="Xóa tìm kiếm"
                   className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#9BA9C3] hover:text-white"
                 >
                   <X className="h-4 w-4" />
@@ -229,7 +231,7 @@ export const ExplorePage: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-xl border border-[#3DDC97]/30 bg-[#3DDC97]/10 px-3.5 py-2.5 text-xs font-semibold text-[#3DDC97] hover:bg-[#3DDC97]/20 transition-all cursor-pointer shadow-sm"
               >
                 <TrendingUp className="h-3.5 w-3.5" />
-                <span>Seasonal Calendar</span>
+                <span>Lịch hội & Mùa đẹp</span>
               </button>
 
               {/* View Mode Pills: Rails / Grid / Map */}
@@ -237,7 +239,7 @@ export const ExplorePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setViewMode('rails')}
-                  aria-label="Curated Rails View"
+                  aria-label="Chế độ dòng tuyển chọn"
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                     viewMode === 'rails'
                       ? 'bg-[#18253E] text-white shadow-sm border border-white/10'
@@ -245,13 +247,13 @@ export const ExplorePage: React.FC = () => {
                   }`}
                 >
                   <Rows3 className="h-3.5 w-3.5" />
-                  <span className="hidden sm:inline">Curated Rails</span>
+                  <span className="hidden sm:inline">Tuyển chọn</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setViewMode('grid')}
-                  aria-label="Grid View"
+                  aria-label="Chế độ lưới"
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                     viewMode === 'grid'
                       ? 'bg-[#18253E] text-white shadow-sm border border-white/10'
@@ -259,13 +261,13 @@ export const ExplorePage: React.FC = () => {
                   }`}
                 >
                   <LayoutGrid className="h-3.5 w-3.5" />
-                  <span className="hidden sm:inline">Grid</span>
+                  <span className="hidden sm:inline">Dạng lưới</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setViewMode('map')}
-                  aria-label="Interactive Map View"
+                  aria-label="Bản đồ tương tác"
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                     viewMode === 'map'
                       ? 'bg-[#3DDC97]/20 text-[#3DDC97] shadow-sm border border-[#3DDC97]/40'
@@ -273,7 +275,7 @@ export const ExplorePage: React.FC = () => {
                   }`}
                 >
                   <Map className="h-3.5 w-3.5" />
-                  <span className="hidden sm:inline">Interactive Map</span>
+                  <span className="hidden sm:inline">Bản đồ</span>
                 </button>
               </div>
             </div>
@@ -282,7 +284,7 @@ export const ExplorePage: React.FC = () => {
           {/* Regional Pills Bar */}
           <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-[#243049]/60">
             <span className="text-[11px] font-semibold uppercase tracking-wider text-[#9BA9C3] mr-1">
-              Region:
+              Khu vực:
             </span>
             <button
               onClick={() => setSelectedRegion('All')}
@@ -292,7 +294,7 @@ export const ExplorePage: React.FC = () => {
                   : 'text-[#9BA9C3] hover:text-white hover:bg-white/5'
               }`}
             >
-              All Vietnam ({vietnamDestinations.length})
+              Tất cả ({vietnamDestinations.length})
             </button>
             {VIETNAM_REGIONS.map((region) => (
               <button
@@ -304,7 +306,7 @@ export const ExplorePage: React.FC = () => {
                     : 'text-[#9BA9C3] hover:text-white hover:bg-white/5'
                 }`}
               >
-                {region}
+                {translateRegion(region)}
               </button>
             ))}
           </div>
@@ -312,7 +314,7 @@ export const ExplorePage: React.FC = () => {
           {/* Category Filter Pills Bar */}
           <div className="flex flex-wrap items-center gap-2 mt-3 overflow-x-auto no-scrollbar py-1">
             <span className="text-[11px] font-semibold uppercase tracking-wider text-[#9BA9C3] mr-1">
-              Category:
+              Chủ đề:
             </span>
             <button
               onClick={() => setActiveCategory('All')}
@@ -322,7 +324,7 @@ export const ExplorePage: React.FC = () => {
                   : 'text-[#9BA9C3] hover:text-white hover:bg-white/5'
               }`}
             >
-              All Categories
+              Tất cả chủ đề
             </button>
             {VIETNAM_CATEGORIES.map((cat) => (
               <button
@@ -334,7 +336,7 @@ export const ExplorePage: React.FC = () => {
                     : 'text-[#9BA9C3] hover:text-white hover:bg-white/5'
                 }`}
               >
-                {cat.label}
+                {translateCategory(cat.label)}
               </button>
             ))}
           </div>
@@ -350,7 +352,7 @@ export const ExplorePage: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-xs sm:text-sm font-bold text-white">
-                    Comparison Shortlist ({shortlistIds.length}/3 Destinations)
+                    Danh sách so sánh ({shortlistIds.length}/3 điểm đến)
                   </h4>
                   <div className="flex flex-wrap items-center gap-2 mt-0.5">
                     {shortlistedDestinations.map((d) => (
@@ -378,14 +380,14 @@ export const ExplorePage: React.FC = () => {
                   onClick={() => setShortlistIds([])}
                   className="text-xs text-[#9BA9C3] hover:text-white"
                 >
-                  Clear
+                  Xóa tất cả
                 </Button>
                 <Button
                   size="sm"
                   onClick={() => setIsComparisonOpen(true)}
                   className="bg-[#48E3EF] text-[#080D18] hover:bg-[#3AC9D4] font-semibold text-xs"
                 >
-                  Compare Side-by-Side
+                  So sánh chi tiết
                 </Button>
               </div>
             </div>
@@ -396,10 +398,52 @@ export const ExplorePage: React.FC = () => {
         {viewMode === 'map' ? (
           /* Interactive Map View */
           <div className="space-y-6">
-            <VietnamInteractiveMap
-              onSelectDestination={(dest) => handleSelectDestination({ id: dest.id, name: dest.name } as Destination)}
-              highlightedIds={shortlistIds}
-            />
+            {/* Dedicated Northern Map Portal Banner */}
+            <div className="rounded-2xl border border-[#3DDC97]/30 bg-gradient-to-r from-[#0C1B17] via-[#0E241E] to-[#0A1424] p-6 shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-72 h-72 bg-[#3DDC97]/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
+                <div className="space-y-2 max-w-2xl">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-[#3DDC97]/20 text-[#3DDC97] border border-[#3DDC97]/30">
+                    <span className="w-2 h-2 rounded-full bg-[#3DDC97] animate-pulse" />
+                    Bản đồ số Miền Bắc — Leaflet GIS Chuyên Sâu
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-white">
+                    Khám phá 81 Điểm đến Miền Bắc trên Bản đồ Địa lý Thật
+                  </h3>
+                  <p className="text-xs text-[#9BA9C3] leading-relaxed">
+                    Hỗ trợ lọc theo 3 phân vùng (Tây Bắc, Đông Bắc, Đồng bằng sông Hồng), phân loại danh lam, di sản, độ cao địa hình và tọa độ GPS chuẩn xác.
+                  </p>
+                </div>
+                <div className="flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const params = new URLSearchParams();
+                      if (searchQuery.trim()) params.set('search', searchQuery.trim());
+                      if (selectedRegion && selectedRegion !== 'All') params.set('region', selectedRegion);
+                      navigate(`/map/north${params.toString() ? `?${params.toString()}` : ''}`);
+                    }}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#3DDC97] text-[#080D18] font-bold text-xs sm:text-sm hover:bg-[#32B87D] transition-all shadow-lg shadow-[#3DDC97]/25 cursor-pointer"
+                  >
+                    <span>Mở Bản đồ miền Bắc</span>
+                    <ExternalLink className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Legacy Nationwide Reference Map */}
+            <div className="pt-2">
+              <div className="flex items-center justify-between mb-3">
+                <h4 className="text-xs font-semibold text-[#9BA9C3] uppercase tracking-wider">
+                  Bản đồ sơ đồ tổng quan toàn quốc
+                </h4>
+              </div>
+              <VietnamInteractiveMap
+                onSelectDestination={(dest) => handleSelectDestination({ id: dest.id, name: dest.name } as Destination)}
+                highlightedIds={shortlistIds}
+              />
+            </div>
           </div>
         ) : viewMode === 'rails' && !searchQuery.trim() && activeCategory === 'All' && selectedRegion === 'All' ? (
           /* Curated Discovery Rails */
@@ -423,19 +467,18 @@ export const ExplorePage: React.FC = () => {
           <div>
             <div className="flex items-center justify-between mb-6">
               <h3 className="font-serif text-xl sm:text-2xl font-medium text-white">
-                {displayRecommendations.length}{' '}
-                {displayRecommendations.length === 1 ? 'Sanctuary Found' : 'Sanctuaries Found'}
+                {displayRecommendations.length} điểm đến phù hợp
               </h3>
               <div className="flex items-center gap-2 text-xs text-[#9BA9C3]">
-                <span>Sort by:</span>
+                <span>Sắp xếp theo:</span>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as any)}
                   className="rounded-lg border border-[#243049] bg-[#0E1626] px-2.5 py-1 text-xs text-white focus:outline-none"
                 >
-                  <option value="affinity">Relevance Alignment</option>
-                  <option value="rating">Top Rated</option>
-                  <option value="days">Recommended Duration</option>
+                  <option value="affinity">Độ phù hợp nhất</option>
+                  <option value="rating">Đánh giá cao nhất</option>
+                  <option value="days">Thời gian lưu trú</option>
                 </select>
               </div>
             </div>
@@ -443,9 +486,9 @@ export const ExplorePage: React.FC = () => {
             {displayRecommendations.length === 0 ? (
               <div className="flex flex-col items-center justify-center rounded-2xl border border-[#243049] bg-[#0E1626] p-12 text-center">
                 <Compass className="h-10 w-10 text-[#4A5D7E] mb-3" />
-                <h4 className="text-base font-bold text-white mb-1">No Sanctuaries Matched</h4>
+                <h4 className="text-base font-bold text-white mb-1">Không tìm thấy điểm đến phù hợp</h4>
                 <p className="text-xs text-[#9BA9C3] max-w-md mb-4 leading-relaxed">
-                  No destinations matched your search and filter criteria. Try expanding your search terms or clearing region filters.
+                  Không có điểm đến nào khớp với từ khóa và bộ lọc hiện tại. Hãy thử từ khóa khác hoặc xóa bộ lọc khu vực.
                 </p>
                 <Button
                   size="sm"
@@ -457,7 +500,7 @@ export const ExplorePage: React.FC = () => {
                   }}
                   className="text-xs border-[#243049] text-white"
                 >
-                  Reset All Filters
+                  Đặt lại bộ lọc
                 </Button>
               </div>
             ) : (

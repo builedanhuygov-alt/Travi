@@ -51,6 +51,7 @@ export interface DestinationRecommendation {
     matchedTraits: string[];
   }[];
   explanation: string;
+  explanationTag?: string;
   scoringBreakdown: ScoringBreakdown;
   providerId: string;
   isSimulatedDemo: boolean;

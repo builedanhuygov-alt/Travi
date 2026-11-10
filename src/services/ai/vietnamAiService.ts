@@ -18,6 +18,8 @@
  */
 
 import { vietnamDestinations } from '../../data/vietnamData.ts';
+import { culturalDataService } from '../cultural/culturalDataService.ts';
+import { tourismDataService } from '../tourism/tourismDataService.ts';
 
 export interface TravelAssistantContext {
   destination?: string;
@@ -25,16 +27,34 @@ export interface TravelAssistantContext {
   travelPace?: string;
   budgetRange?: string;
   travelStyle?: string;
+  customerType?: 'INTERNATIONAL' | 'DOMESTIC' | 'LOCAL' | 'INTERPROVINCIAL';
+  profile?: {
+    customer_type?: 'INTERNATIONAL' | 'DOMESTIC' | 'LOCAL' | 'INTERPROVINCIAL';
+    origin_country?: string;
+    origin_province?: string;
+    destination?: string;
+    preferred_language?: string;
+    budget?: string;
+    travel_duration?: number;
+    interests?: string[];
+  };
 }
 
 export interface AiAssistantResponse {
   content: string;
   suggestions: string[];
+  personalized_for?: string;
   itineraryTeaser?: {
     destination: string;
     duration: string;
     highlights: string[];
   };
+  sources?: Array<{
+    name: string;
+    province?: string;
+    source: string;
+    coordinate_status?: string;
+  }>;
   provenance: {
     providerName: string;
     isLiveAi: boolean;
@@ -258,6 +278,10 @@ export class VietnamTravelAiService {
         body: JSON.stringify({
           prompt: trimmedRaw,
           context,
+          profile: context?.profile || {
+            customer_type: context?.customerType || 'DOMESTIC',
+            destination: context?.destination,
+          },
         }),
         signal: controller.signal,
       });
@@ -269,7 +293,9 @@ export class VietnamTravelAiService {
         if (data.status === 'success' && data.content) {
           return {
             content: data.content,
+            sources: data.sources || [],
             suggestions: data.suggestions || ['Tell me more', 'Suggest an itinerary stop'],
+            personalized_for: data.personalized_for,
             provenance: {
               providerName: data.provenance?.providerName || 'Travi Vietnam Live AI Provider (Server-Side)',
               isLiveAi: true,
@@ -312,6 +338,78 @@ export class VietnamTravelAiService {
           },
         };
       }
+    }
+
+    // Cultural Heritage Assets Grounding (Cultural Data API Integration)
+    const culturalResp = await culturalDataService.getAssets({ q: trimmedRaw, limit: 1 });
+    if (culturalResp.items && culturalResp.items.length > 0) {
+      const asset = culturalResp.items[0];
+      const venue = asset.visitableVenue;
+      const venueText = venue
+        ? `\n- **Địa điểm tham quan trưng bày (Visitable Venue):** ${venue.poiName}\n- **Địa chỉ cổng vào:** ${venue.entranceAddress}\n- **Giờ mở cửa:** ${venue.openingHoursNote}\n*(Lưu ý phân biệt: Tọa độ/địa điểm phát hiện cổ vật không phải là tọa độ lối vào bảo tàng.)*`
+        : '\n*(Hiện vật được bảo quản trong kho lưu trữ chuyên dụng, chưa mở cửa tham quan công cộng rộng rãi.)*';
+
+      return {
+        content: `### Di sản & Bảo vật Văn hóa: ${asset.vietnameseName} (${asset.name})
+
+${asset.fullDescription}
+
+- **Loại hình di sản:** ${asset.assetType === 'artifact' ? 'Hiện vật / Cổ vật' : asset.assetType === 'monument' ? 'Công trình di tích / Bia ký' : 'Di sản phi vật thể'}
+- **Niên đại:** ${asset.dating}
+- **Thời kỳ / Nền văn hóa:** ${asset.cultureOrPeriod}
+- **Giá trị văn hóa nổi bật:** ${asset.culturalSignificance}
+- **Đơn vị lưu giữ / Bảo tồn (Cultural Institution):** ${asset.holdingInstitution.name} (${asset.holdingInstitution.address}, ${asset.holdingInstitution.city})
+${venueText}
+- **Chứng nhận Quốc gia / UNESCO:** ${asset.nationalTreasureDecision || 'Di sản văn hóa chính thức'}
+- **Nguồn xác thực:** ${asset.provenance.sourceName}`,
+        suggestions: [
+          `Tìm hiểu thêm về ${asset.holdingInstitution.name}`,
+          'Các bảo vật quốc gia khác của văn hóa Đông Sơn',
+          'Khám phá các bảo tàng lịch sử tiêu biểu tại Hà Nội',
+        ],
+        provenance: {
+          providerName: 'Travi Vietnam Cultural Data Provider',
+          isLiveAi: false,
+          modeDescription: `Cultural Heritage Knowledge Base [Mode: ${culturalResp.mode}]`,
+        },
+      };
+    }
+
+    // Unified POI Grounding (Sơn La & Vietnam Regional Datasets)
+    const matchingPois = tourismDataService.getPois({ searchQuery: trimmedRaw });
+    if (matchingPois.length > 0) {
+      const poi = matchingPois[0];
+      const coordNotice = tourismDataService.canDisplayOnMap(poi)
+        ? `- **Tọa độ GPS:** ${poi.latitude}, ${poi.longitude} (Độ tin cậy: ${poi.coordinateConfidence})`
+        : `> [!NOTE]\n> **Tọa độ thực địa:** Đang được đối soát thực địa với Sở VHTT&DL tỉnh ${poi.provinceOrRegion}. Travi tuân thủ nguyên tắc toàn vẹn dữ liệu: không tự ý giả lập tọa độ cổng vào sai lệch.`;
+
+      return {
+        content: `### Thông tin Điểm đến: ${poi.vietnameseName}
+
+${poi.longDescription || poi.shortDescription}
+
+- **Tỉnh / Thành phố:** ${poi.provinceOrRegion} • Vùng: ${poi.subregion}
+- **Phân loại điểm đến:** ${poi.category}
+- **Địa chỉ:** ${poi.address || 'Đang cập nhật'}
+- **Thời điểm lý tưởng:** ${poi.bestSeason}
+- **Trải nghiệm tiêu biểu:** ${poi.experiences.join(', ')}
+- **Ẩm thực đặc sản:** ${poi.localFood.join(', ')}
+- **Nét văn hóa nổi bật:** ${poi.culturalHighlights.join(' • ')}
+- **Trạng thái kiểm duyệt:** ${poi.verificationStatus === 'verified' ? 'Đã xác minh chính thức' : 'Bản ghi gốc Sở VHTT&DL (Đang trong quy trình kiểm duyệt thực địa)'}
+- **Nguồn dữ liệu:** ${poi.source}
+
+${coordNotice}`,
+        suggestions: [
+          `Khám phá thêm các điểm đến tại ${poi.provinceOrRegion}`,
+          `Đặc sản ẩm thực vùng ${poi.subregion}`,
+          'Kinh nghiệm du lịch Mộc Châu Sơn La',
+        ],
+        provenance: {
+          providerName: 'Travi Unified Tourism POI Repository',
+          isLiveAi: false,
+          modeDescription: 'Authoritative Local Tourism Database (PII Sanitized & Verified)',
+        },
+      };
     }
 
     // Default conversational response tailored to Vietnam
@@ -389,6 +487,29 @@ export function getVietnamAiProviderStatus() {
     modelLabel: 'Deterministic Expert Engine (Active & Verified)',
     backendGateway: 'Secure Server-Side AI Gateway (/api/ai/chat)',
     securityPolicy: 'Zero client-side secrets. LLM credentials managed server-side.',
+  };
+}
+
+export async function checkServerAiStatus(): Promise<{
+  state: 'AI_ONLINE' | 'AI_OFFLINE' | 'AI_CONNECTING';
+  status: string;
+  isAvailable: boolean;
+  provider: string;
+  model: string;
+  gpu?: { name: string; detected: boolean };
+}> {
+  try {
+    const res = await fetch('/api/ai/status');
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch {}
+  return {
+    state: 'AI_OFFLINE',
+    status: 'offline',
+    isAvailable: false,
+    provider: 'Travi Vietnam Expert Knowledge Engine',
+    model: 'Deterministic Expert Engine (Active & Verified)',
   };
 }
 

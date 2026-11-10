@@ -50,7 +50,7 @@ export const DestinationDiscoveryRail: React.FC<DestinationDiscoveryRailProps> =
               {lane.badge}
             </span>
             <span className="text-[11px] font-mono text-[#9BA9C3]">
-              • {lane.recommendations.length} Curated Sanctuaries
+              • {lane.recommendations.length} điểm đến tuyển chọn
             </span>
           </div>
 
@@ -114,7 +114,7 @@ export const DestinationDiscoveryRail: React.FC<DestinationDiscoveryRailProps> =
       {/* Transparent Selection Rule Legend */}
       <div className="mt-2 text-[11px] font-mono text-[#9BA9C3]/75 flex items-center gap-1.5">
         <Sparkles className="h-3 w-3 text-[#3DDC97]" />
-        <span>Rule: {lane.selectionRule}</span>
+        <span>Tiêu chí tuyển chọn: {lane.selectionRule}</span>
       </div>
     </section>
   );

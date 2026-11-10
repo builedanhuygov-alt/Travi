@@ -96,17 +96,17 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
       updatedAt: 'calibrated',
       isCustomized: true,
     });
-    triggerToast(`Applied "${presetName}" travel profile`, 'info');
+    triggerToast(`Đã áp dụng hồ sơ "${presetName}"`, 'info');
   };
 
   const handleReset = () => {
     setDraftProfile({ ...EMPTY_TASTE_PROFILE, isCustomized: false });
-    triggerToast('Preferences reset to default', 'info');
+    triggerToast('Đã đặt lại sở thích về mặc định', 'info');
   };
 
   const handleApplyCuratedDemo = () => {
     setDraftProfile({ ...CURATED_DEMO_TASTE_PROFILE });
-    triggerToast('Applied Curated Vietnam Explorer profile', 'info');
+    triggerToast('Đã áp dụng hồ sơ Người khám phá Việt Nam', 'info');
   };
 
   const handleAddCustomTag = (e: React.FormEvent) => {
@@ -126,7 +126,7 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
       };
     });
     setCustomTagInput('');
-    triggerToast(`Added custom preference: "${tag}"`, 'info');
+    triggerToast(`Đã thêm sở thích riêng: "${tag}"`, 'info');
   };
 
   const handleRemoveTrait = (pillarId: keyof Omit<TasteProfile, 'updatedAt' | 'isCustomized'>, trait: string) => {
@@ -139,7 +139,7 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
 
   const handleSave = () => {
     saveTasteProfile(draftProfile);
-    triggerToast('Vietnam Travel Preferences saved successfully', 'success');
+    triggerToast('Đã lưu sở thích du lịch thành công', 'success');
     onClose();
   };
 
@@ -172,20 +172,20 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
             </div>
             <div>
               <h2 id="taste-modal-title" className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
-                Vietnam Travel Profile Studio
+                Phòng hiệu chỉnh gu du lịch TRAVI
                 <span className="text-xs font-normal text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded-full border border-[#10B981]/20">
-                  Cultural Calibration
+                  Hiệu chỉnh văn hóa
                 </span>
               </h2>
               <p className="text-xs text-[#9BA9C3]">
-                Configure your cultural, culinary, and landscape dimensions for personalized Vietnam discovery.
+                Thiết lập các chiều văn hóa, ẩm thực và cảnh sắc để cá nhân hóa gợi ý khám phá Việt Nam.
               </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            aria-label="Close preferences studio"
+            aria-label="Đóng phòng hiệu chỉnh"
             className="rounded-lg p-2 text-[#9BA9C3] hover:text-white hover:bg-white/5 transition-colors"
           >
             <X className="h-5 w-5" />
@@ -203,7 +203,7 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
             }`}
           >
             <Sliders className="h-3.5 w-3.5" />
-            <span>8 Cultural Pillars</span>
+            <span>8 Trụ cột văn hóa</span>
             <span className="ml-1 rounded-full bg-[#18253E] px-1.5 py-0.5 text-[10px] text-white">
               {totalSelectedCount}
             </span>
@@ -218,7 +218,7 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
             }`}
           >
             <Layers className="h-3.5 w-3.5" />
-            <span>Curated Personas</span>
+            <span>Hồ sơ du lịch mẫu</span>
           </button>
 
           <button
@@ -230,7 +230,7 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
             }`}
           >
             <Plus className="h-3.5 w-3.5" />
-            <span>Custom Interests & Keywords</span>
+            <span>Từ khóa & Sở thích riêng</span>
           </button>
         </div>
 
@@ -241,7 +241,7 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
               {/* Left Pillar Selector Sidebar */}
               <div className="md:col-span-4 flex flex-col gap-1.5 border-r border-[#243049]/60 pr-4">
                 <div className="text-[11px] font-semibold uppercase tracking-wider text-[#9BA9C3] mb-1">
-                  Select Dimension
+                  Chọn trụ cột
                 </div>
                 {TASTE_PILLARS.map((pillar, idx) => {
                   const Icon = PILLAR_ICONS[pillar.id] || Compass;
@@ -353,7 +353,7 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
                     onClick={() => handleApplyPreset(preset.profile, preset.name)}
                     className="w-full text-xs border-[#243049] hover:bg-[#3DDC97]/10 hover:border-[#3DDC97]/50 hover:text-[#3DDC97]"
                   >
-                    Apply Persona
+                    Áp dụng hồ sơ
                   </Button>
                 </div>
               ))}
@@ -363,9 +363,9 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
           {activeTab === 'custom' && (
             <div className="flex flex-col gap-6">
               <div className="rounded-xl border border-[#243049] bg-[#0E1626] p-4">
-                <h3 className="text-sm font-semibold text-white mb-1">Add Custom Travel Keywords</h3>
+                <h3 className="text-sm font-semibold text-white mb-1">Thêm từ khóa sở thích cá nhân</h3>
                 <p className="text-xs text-[#9BA9C3] mb-3">
-                  Have specific interests like a regional dish, craft village, national park, or festival? Type it below to calibrate your preferences.
+                  Bạn có sở thích cụ thể như món ăn đặc sản, làng nghề, vườn quốc gia hoặc lễ hội? Nhập từ khóa để hiệu chỉnh:
                 </p>
 
                 <form onSubmit={handleAddCustomTag} className="flex gap-2">
@@ -373,12 +373,12 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
                     type="text"
                     value={customTagInput}
                     onChange={(e) => setCustomTagInput(e.target.value)}
-                    placeholder="e.g. Bánh cuốn nóng, Làng gốm Phù Lãng, Trekking Tà Xùa, Đờn ca tài tử..."
+                    placeholder="Ví dụ: Bánh cuốn nóng, Làng gốm Phù Lãng, Trekking Tà Xùa, Đờn ca tài tử..."
                     className="flex-1 rounded-xl border border-[#243049] bg-[#080D18] px-3.5 py-2 text-xs text-white placeholder-[#4A5D7E] focus:border-[#3DDC97] focus:outline-none"
                   />
                   <Button type="submit" size="sm" className="bg-[#3DDC97] text-[#080D18] hover:bg-[#32B87D] text-xs font-semibold">
                     <Plus className="h-3.5 w-3.5 mr-1" />
-                    Add
+                    Thêm
                   </Button>
                 </form>
               </div>
@@ -386,7 +386,7 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
               {/* Current Active Selections by Pillar */}
               <div>
                 <h4 className="text-xs font-semibold uppercase tracking-wider text-[#9BA9C3] mb-3">
-                  Current Selected Dimensions ({totalSelectedCount})
+                  Các lựa chọn hiện tại ({totalSelectedCount})
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {TASTE_PILLARS.map((pillar) => {
@@ -401,7 +401,7 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
                         <button
                           type="button"
                           onClick={() => handleRemoveTrait(pillar.id, trait)}
-                          aria-label={`Remove ${trait}`}
+                          aria-label={`Bỏ chọn ${trait}`}
                           className="text-[#9BA9C3] hover:text-red-400 ml-0.5"
                         >
                           <X className="h-3 w-3" />
@@ -420,7 +420,7 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
           <div className="flex items-center gap-2 text-xs text-[#9BA9C3]">
             <ShieldCheck className="h-4 w-4 text-[#3DDC97]" />
             <span>
-              {activePillarsCount} of 8 pillars active ({totalSelectedCount} selections)
+              {activePillarsCount}/8 trụ cột đang kích hoạt ({totalSelectedCount} lựa chọn)
             </span>
           </div>
 
@@ -432,7 +432,7 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
               className="text-xs text-[#9BA9C3] hover:text-white"
             >
               <RotateCcw className="h-3.5 w-3.5 mr-1" />
-              Reset
+              Đặt lại
             </Button>
             <Button
               variant="outline"
@@ -440,14 +440,14 @@ export const TasteProfileModal: React.FC<TasteProfileModalProps> = ({ isOpen, on
               onClick={handleApplyCuratedDemo}
               className="text-xs border-[#243049] hover:bg-white/5"
             >
-              Curated Sample
+              Mẫu tuyển chọn
             </Button>
             <Button
               size="sm"
               onClick={handleSave}
               className="bg-gradient-to-r from-[#10B981] to-[#3DDC97] text-[#080D18] hover:opacity-95 font-semibold text-xs px-5"
             >
-              Save Preferences
+              Lưu sở thích
             </Button>
           </div>
         </div>

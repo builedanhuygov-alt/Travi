@@ -1,4 +1,5 @@
 export * from './vietnam.ts';
+export * from './discovery.ts';
 
 export interface DestinationCulturalDimensions {
   culturalInterests: string[]; // Cinema, narrative world-building, and cultural themes
@@ -22,6 +23,7 @@ export interface DestinationCulturalProfile extends DestinationCulturalDimension
 export interface Destination {
   id: string;
   name: string;
+  vietnameseName?: string;
   country: string;
   region: string;
   tagline: string;
@@ -120,6 +122,12 @@ export interface CopilotMessage {
     duration: string;
     highlights: string[];
   };
+  sources?: Array<{
+    name: string;
+    province?: string;
+    source: string;
+    coordinate_status?: string;
+  }>;
   provenance?: {
     providerName: string;
     isLiveAi: boolean;
