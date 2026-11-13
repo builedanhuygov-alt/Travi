@@ -27,8 +27,18 @@ dist-ssr
 *.sw?
 scratch/
 *.bak
+# Python & Colab local runtime artifacts
+__pycache__/
+*.pyc
+.travi_token
+
 .vercel
 *.mp4
 *.zip
+
+# Python & Colab local runtime artifacts
+__pycache__/
+*.pyc
+.travi_token
 
 .vercel

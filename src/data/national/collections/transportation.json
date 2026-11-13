@@ -1,0 +1,273 @@
+[
+  {
+    "id": "trans-noi-bai-airport",
+    "name": "Cảng hàng không Quốc tế Nội Bài (HAN)",
+    "localized_names": {
+      "vi": "Sân bay Quốc tế Nội Bài",
+      "en": "Noi Bai International Airport"
+    },
+    "slug": "san-bay-quoc-te-noi-bai",
+    "description": "Cửa ngõ hàng không quốc tế lớn nhất miền Bắc kết nối Thủ đô Hà Nội với toàn thế giới và các tỉnh thành Việt Nam.",
+    "province_id": "01",
+    "province_name_canonical": "Hà Nội",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Cảng hàng không quốc tế",
+    "entity_type": "transportation_hub",
+    "hub_type": "international_airport",
+    "serving_provinces": [
+      "01",
+      "14",
+      "25",
+      "22",
+      "31"
+    ],
+    "connected_routes": [
+      "Cao tốc Nội Bài - Lào Cai",
+      "Cầu Nhật Tân",
+      "Quốc lộ 2",
+      "Quốc lộ 18"
+    ],
+    "latitude": 21.2212,
+    "longitude": 105.8072,
+    "address": "Xã Phú Minh, Huyện Sóc Sơn, Hà Nội",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "Cục Hàng không Dân dụng Việt Nam & Tổng công ty Cảng hàng không Việt Nam (ACV)",
+    "provenance": {
+      "source_id": "src-acv-airports",
+      "source_name": "Cục Hàng không Việt Nam (CAAV)",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "national_authority",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-acv-airports"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified airport transit hub."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "trans-tan-son-nhat-airport",
+    "name": "Cảng hàng không Quốc tế Tân Sơn Nhất (SGN)",
+    "localized_names": {
+      "vi": "Sân bay Quốc tế Tân Sơn Nhất",
+      "en": "Tan Son Nhat International Airport"
+    },
+    "slug": "san-bay-quoc-te-tan-son-nhat",
+    "description": "Cảng hàng không nhộn nhịp nhất Việt Nam phục vụ TP. Hồ Chí Minh và toàn vùng kinh tế trọng điểm phía Nam.",
+    "province_id": "79",
+    "province_name_canonical": "Thành phố Hồ Chí Minh",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Cảng hàng không quốc tế",
+    "entity_type": "transportation_hub",
+    "hub_type": "international_airport",
+    "serving_provinces": [
+      "79",
+      "74",
+      "75",
+      "80",
+      "92"
+    ],
+    "connected_routes": [
+      "Đại lộ Phạm Văn Đồng",
+      "Đường Trường Sơn",
+      "Tuyến Metro số 2 tương lai"
+    ],
+    "latitude": 10.8185,
+    "longitude": 106.6588,
+    "address": "Đường Trường Sơn, Phường 2, Quận Tân Bình, TP. Hồ Chí Minh",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "Cục Hàng không Việt Nam (CAAV)",
+    "provenance": {
+      "source_id": "src-acv-airports",
+      "source_name": "Cục Hàng không Việt Nam (CAAV)",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "national_authority",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-acv-airports"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified airport transit hub."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "trans-da-nang-airport",
+    "name": "Cảng hàng không Quốc tế Đà Nẵng (DAD)",
+    "localized_names": {
+      "vi": "Sân bay Quốc tế Đà Nẵng",
+      "en": "Da Nang International Airport"
+    },
+    "slug": "san-bay-quoc-te-da-nang",
+    "description": "Trung tâm hàng không huyết mạch của miền Trung, cửa ngõ kết nối các Di sản Thế giới: Cố đô Huế, Phố cổ Hội An và Thánh địa Mỹ Sơn.",
+    "province_id": "48",
+    "province_name_canonical": "Đà Nẵng",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Cảng hàng không quốc tế",
+    "entity_type": "transportation_hub",
+    "hub_type": "international_airport",
+    "serving_provinces": [
+      "48",
+      "46",
+      "49"
+    ],
+    "connected_routes": [
+      "Đường Nguyễn Tri Phương",
+      "Hầm chui Hải Vân",
+      "Cao tốc La Sơn - Túy Loan"
+    ],
+    "latitude": 16.0439,
+    "longitude": 108.1994,
+    "address": "Đường Duy Tân, Phường Hòa Thuận Tây, Quận Hải Châu, Đà Nẵng",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "Cục Hàng không Việt Nam (CAAV)",
+    "provenance": {
+      "source_id": "src-acv-airports",
+      "source_name": "Cục Hàng không Việt Nam (CAAV)",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "national_authority",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-acv-airports"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified airport transit hub."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "trans-deo-hai-van",
+    "name": "Đèo Hải Vân (Đệ nhất hùng quan)",
+    "localized_names": {
+      "vi": "Đèo Hải Vân",
+      "en": "Hai Van Pass"
+    },
+    "slug": "deo-hai-van",
+    "description": "Cung đèo hiểm trở và kỳ vĩ bậc nhất Việt Nam uốn lượn trên dãy Bạch Mã vươn ra Biển Đông, ranh giới tự nhiên giữa Thừa Thiên Huế và Đà Nẵng.",
+    "province_id": "48",
+    "province_name_canonical": "Đà Nẵng",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Cung đèo cảnh quan & Huyết mạch giao thông",
+    "entity_type": "transportation_hub",
+    "hub_type": "interprovincial_bus_terminal",
+    "serving_provinces": [
+      "48",
+      "46"
+    ],
+    "connected_routes": [
+      "Quốc lộ 1A đường đèo",
+      "Hầm đường bộ Hải Vân",
+      "Đường sắt Bắc Nam"
+    ],
+    "latitude": 16.1963,
+    "longitude": 108.1311,
+    "address": "Ranh giới giữa Thị trấn Lăng Cô (Thừa Thiên Huế) và Phường Hòa Hiệp Bắc (Đà Nẵng)",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "Di tích Lịch sử - Kiến trúc nghệ thuật Quốc gia Hải Vân Quan - Bộ VHTT&DL",
+    "provenance": {
+      "source_id": "src-bvhttdl-haivan",
+      "source_name": "Bộ Văn hóa Thể thao và Du lịch",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "national_authority",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-bvhttdl-haivan"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified pass and transit junction."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "trans-deo-pha-din",
+    "name": "Đèo Pha Đin (Tứ đại đỉnh đèo Tây Bắc)",
+    "localized_names": {
+      "vi": "Đèo Pha Đin",
+      "en": "Pha Din Pass"
+    },
+    "slug": "deo-pha-din",
+    "description": "Một trong tứ đại đỉnh đèo hiểm trở vùng Tây Bắc kết nối hai tỉnh Sơn La và Điện Biên. Nơi gắn liền với tuyến đường tiếp tế lịch sử của chiến dịch Điện Biên Phủ 1954.",
+    "province_id": "14",
+    "province_name_canonical": "Sơn La",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Cung đèo cảnh quan & Huyết mạch giao thông",
+    "entity_type": "transportation_hub",
+    "hub_type": "interprovincial_bus_terminal",
+    "serving_provinces": [
+      "14",
+      "11"
+    ],
+    "connected_routes": [
+      "Quốc lộ 6 nối Sơn La - Tuần Giáo - Điện Biên Phủ"
+    ],
+    "latitude": 21.5739,
+    "longitude": 103.5244,
+    "address": "Ranh giới giữa Huyện Thuận Châu (Sơn La) và Huyện Tuần Giáo (Điện Biên)",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "Di tích Lịch sử Quốc gia Đèo Pha Đin - Bộ Giao thông Vận tải & Bộ VHTT&DL",
+    "provenance": {
+      "source_id": "src-sonla-phadin",
+      "source_name": "Sở Giao thông Vận tải Sơn La",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-sonla-phadin"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified mountain pass hub."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  }
+]

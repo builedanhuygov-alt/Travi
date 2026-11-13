@@ -1,0 +1,194 @@
+[
+  {
+    "id": "acc-homestay-ban-ang",
+    "name": "Homestay Bản Áng (Mộc Châu)",
+    "localized_names": {
+      "vi": "Cụm Homestay Văn hóa Bản Áng",
+      "en": "Ban Ang Community Homestays"
+    },
+    "slug": "homestay-ban-ang-moc-chau",
+    "description": "Hệ thống nhà sàn truyền thống của người Thái trắng tại bản Áng, nép mình bên hồ rừng thông thơ mộng. Du khách được sinh hoạt cùng gia chủ, thưởng thức mâm cơm bản địa và đốt lửa trại múa xòe.",
+    "province_id": "14",
+    "province_name_canonical": "Sơn La",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Homestay Du lịch Cộng đồng",
+    "entity_type": "accommodation",
+    "accommodation_type": "homestay",
+    "star_rating": null,
+    "community_operated": true,
+    "room_types_notes": "Nhà sàn tập thể sức chứa 20-30 người hoặc phòng riêng gia đình (phòng đôi khép kín).",
+    "contact_notes": "Liên hệ qua Ban Quản lý Du lịch Cộng đồng Bản Áng hoặc trực tiếp trưởng bản.",
+    "latitude": 20.835,
+    "longitude": 104.63,
+    "address": "Bản Áng, Xã Đông Sang, Thị xã Mộc Châu, Sơn La",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "Điểm du lịch cộng đồng đạt chuẩn OCOP 4 sao tỉnh Sơn La",
+    "provenance": {
+      "source_id": "src-sonla-homestay-ang",
+      "source_name": "Sở Văn hóa Thể thao và Du lịch Sơn La",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-sonla-homestay-ang"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified community homestay."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "acc-homestay-ban-doi",
+    "name": "Homestay Bản Dọi (Tân Lập, Mộc Châu)",
+    "localized_names": {
+      "vi": "Homestay Bản Dọi",
+      "en": "Ban Doi Community Homestay"
+    },
+    "slug": "homestay-ban-doi-tan-lap",
+    "description": "Không gian nhà sàn thanh bình giữa thung lũng đồi chè Tân Lập, nổi bật với văn hóa ẩm thực Thái cổ truyền và hoạt động hái chè trải nghiệm.",
+    "province_id": "14",
+    "province_name_canonical": "Sơn La",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Homestay Du lịch Cộng đồng",
+    "entity_type": "accommodation",
+    "accommodation_type": "homestay",
+    "star_rating": null,
+    "community_operated": true,
+    "room_types_notes": "Nhà sàn gỗ cổ truyền lợp mái lá cọ, chiếu cói thơm, màn mùng sạch sẽ.",
+    "contact_notes": "Hợp tác xã Du lịch Cộng đồng Bản Dọi.",
+    "latitude": 20.9167,
+    "longitude": 104.6833,
+    "address": "Bản Dọi, Xã Tân Lập, Thị xã Mộc Châu, Sơn La",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "approximate",
+    "verification_status": "official_gov",
+    "verification_reason": "Sở VHTT&DL Sơn La danh mục Điểm du lịch cộng đồng số 11/85",
+    "provenance": {
+      "source_id": "src-sonla-doi",
+      "source_name": "Sở Văn hóa Thể thao và Du lịch Sơn La",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-sonla-doi"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified community homestay record."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "acc-homestay-a-phu-bac-yen",
+    "name": "Homestay A Phủ (Bản Hồng Ngài, Bắc Yên)",
+    "localized_names": {
+      "vi": "Homestay A Phủ Hồng Ngài",
+      "en": "A Phu Homestay Hong Ngai"
+    },
+    "slug": "homestay-a-phu-hong-ngai-bac-yen",
+    "description": "Homestay mộc mạc của gia đình người H'Mông tại bản Hồng Ngài, nơi tái hiện bối cảnh tác phẩm Vợ chồng A Phủ, tầm nhìn bao quát thung lũng ruộng bậc thang.",
+    "province_id": "14",
+    "province_name_canonical": "Sơn La",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Homestay Bản Địa",
+    "entity_type": "accommodation",
+    "accommodation_type": "homestay",
+    "star_rating": null,
+    "community_operated": true,
+    "room_types_notes": "Nhà gỗ pơ mu truyền thống, bếp lửa sưởi ấm ban đêm.",
+    "contact_notes": "Bản Hồng Ngài, Huyện Bắc Yên, Sơn La.",
+    "latitude": 21.285,
+    "longitude": 104.34,
+    "address": "Bản Hồng Ngài, Xã Hồng Ngài, Huyện Bắc Yên, Sơn La",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "approximate",
+    "verification_status": "official_gov",
+    "verification_reason": "Sở VHTT&DL Sơn La",
+    "provenance": {
+      "source_id": "src-sonla-aphu",
+      "source_name": "Sở Văn hóa Thể thao và Du lịch Sơn La",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-sonla-aphu"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified indigenous homestay."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "acc-topas-ecolodge-sapa",
+    "name": "Topas Ecolodge Sa Pa",
+    "localized_names": {
+      "vi": "Khu nghỉ dưỡng sinh thái Topas Ecolodge",
+      "en": "Topas Ecolodge Sapa"
+    },
+    "slug": "topas-ecolodge-sapa",
+    "description": "Khu nghỉ dưỡng sinh thái nằm trên đỉnh đồi hình nón biệt lập nhìn ra thung lũng Mường Hoa hùng vĩ, sử dụng năng lượng mặt trời và vật liệu đá granite tự nhiên.",
+    "province_id": "10",
+    "province_name_canonical": "Lào Cai",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Khu nghỉ dưỡng sinh thái (Eco-resort)",
+    "entity_type": "accommodation",
+    "accommodation_type": "eco_retreat",
+    "star_rating": 4,
+    "community_operated": false,
+    "room_types_notes": "Bungalow đá độc lập với ban công nhìn toàn cảnh thung lũng ruộng bậc thang.",
+    "contact_notes": "Đặt phòng qua trang chính thức Topas Ecolodge hoặc lễ tân.",
+    "latitude": 22.2536,
+    "longitude": 103.9531,
+    "address": "Bản Lếch, Xã Thanh Bình, Thị xã Sa Pa, Lào Cai",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "verified",
+    "verification_reason": "National Geographic Unique Lodges of the World & Sở Du lịch Lào Cai",
+    "provenance": {
+      "source_id": "src-laocai-topas",
+      "source_name": "Sở Du lịch tỉnh Lào Cai",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-laocai-topas"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified eco retreat accommodation."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  }
+]

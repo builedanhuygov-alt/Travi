@@ -1,0 +1,319 @@
+[
+  {
+    "id": "fes-den-hung",
+    "name": "Giỗ Tổ Hùng Vương - Lễ hội Đền Hùng",
+    "localized_names": {
+      "vi": "Lễ hội Đền Hùng",
+      "en": "Hung Kings Temple Festival"
+    },
+    "slug": "le-hoi-den-hung",
+    "description": "Ngày hội non sông tưởng nhớ công đức các vua Hùng đã có công dựng nước, diễn ra tại Khu di tích lịch sử Quốc gia đặc biệt Đền Hùng trên núi Nghĩa Lĩnh.",
+    "province_id": "25",
+    "province_name_canonical": "Phú Thọ",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Lễ hội Quốc gia",
+    "entity_type": "festival",
+    "lunar_date": "Mùng 10 tháng 3 Âm lịch",
+    "solar_date_range": "Tháng 4 Dương lịch",
+    "frequency": "annual",
+    "rituals": [
+      "Lễ rước kiệu các xã vùng ven",
+      "Lễ dâng hương tưởng niệm các Vua Hùng",
+      "Lễ giỗ Đức Quốc Tổ Lạc Long Quân"
+    ],
+    "activities": [
+      "Hội thi gói bánh chưng giã bánh giầy",
+      "Hát Xoan Phú Thọ",
+      "Đánh trống đồng",
+      "Bắn pháo hoa tầm cao"
+    ],
+    "organizer": "Ủy ban Nhân dân tỉnh Phú Thọ & Bộ Văn hóa Thể thao và Du lịch",
+    "target_audience": [
+      "Đồng bào cả nước",
+      "Du khách quốc tế",
+      "Gia đình"
+    ],
+    "unesco_recognized": true,
+    "latitude": 21.3653,
+    "longitude": 105.3278,
+    "address": "Khu Di tích Lịch sử Đền Hùng, Xã Hy Cương, TP Việt Trì, Phú Thọ",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "Tín ngưỡng thờ cúng Hùng Vương được UNESCO vinh danh Di sản Văn hóa Phi vật thể của nhân loại (2012)",
+    "provenance": {
+      "source_id": "src-unesco-hungking",
+      "source_name": "UNESCO & Ban Quản lý Khu di tích Đền Hùng",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "national_authority",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-unesco-hungking"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Authoritative national festival record."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "fes-chua-huong",
+    "name": "Lễ hội Chùa Hương",
+    "localized_names": {
+      "vi": "Lễ hội Chùa Hương",
+      "en": "Huong Pagoda Festival"
+    },
+    "slug": "le-hoi-chua-huong",
+    "description": "Lễ hội Phật giáo dài ngày nhất Việt Nam diễn ra tại thung lũng suối Yến thơ mộng và quần thể danh thắng Hương Sơn, nơi có động Hương Tích được xưng tụng là Nam thiên đệ nhất động.",
+    "province_id": "01",
+    "province_name_canonical": "Hà Nội",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Lễ hội Phật giáo & Thắng cảnh",
+    "entity_type": "festival",
+    "lunar_date": "Từ mùng 6 tháng Giêng đến hết tháng 3 Âm lịch",
+    "solar_date_range": "Tháng 2 - Tháng 4 Dương lịch",
+    "frequency": "annual",
+    "rituals": [
+      "Lễ khai hội Chùa Hương",
+      "Dâng hương tại Đền Trình",
+      "Lễ Phật tại Chùa Thiên Trù và Động Hương Tích"
+    ],
+    "activities": [
+      "Đi thuyền nan trên Suối Yến ngắm hoa súng",
+      "Leo núi vãn cảnh chùa",
+      "Thưởng thức mơ Hương Tích rau sắng"
+    ],
+    "organizer": "Ủy ban Nhân dân Huyện Mỹ Đức, Hà Nội",
+    "target_audience": [
+      "Phật tử",
+      "Khách hành hương",
+      "Gia đình"
+    ],
+    "unesco_recognized": false,
+    "latitude": 20.6186,
+    "longitude": 105.7533,
+    "address": "Xã Hương Sơn, Huyện Mỹ Đức, Hà Nội",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "Di tích Quốc gia đặc biệt Quần thể Hương Sơn - Quyết định của Thủ tướng Chính phủ",
+    "provenance": {
+      "source_id": "src-hanoi-huongpagoda",
+      "source_name": "UBND Thành phố Hà Nội & Sở Du lịch Hà Nội",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-hanoi-huongpagoda"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified Huong Pagoda festival record."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "fes-hoa-ban-son-la",
+    "name": "Lễ hội Hoa Ban (Xên Mường / Xên Bản)",
+    "localized_names": {
+      "vi": "Lễ hội Hoa Ban Sơn La",
+      "en": "Ban Flower Festival"
+    },
+    "slug": "le-hoi-hoa-ban-son-la",
+    "description": "Lễ hội mùa xuân tôn vinh vẻ đẹp của hoa ban trắng - biểu tượng cho tình yêu thủy chung son sắt và sức sống kiên cường của đồng bào các dân tộc vùng Tây Bắc.",
+    "province_id": "14",
+    "province_name_canonical": "Sơn La",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Lễ hội Văn hóa Dân gian",
+    "entity_type": "festival",
+    "lunar_date": "Tháng 2 - Tháng 3 Âm lịch",
+    "solar_date_range": "Tháng 3 Dương lịch",
+    "frequency": "annual",
+    "rituals": [
+      "Lễ cúng Then",
+      "Lễ tạ ơn trời đất tổ tiên cầu mùa màng bội thu",
+      "Nghi thức cầu may bên suối"
+    ],
+    "activities": [
+      "Hội thi múa xòe hoa",
+      "Ném còn",
+      "Thi bắn nỏ",
+      "Trưng bày ẩm thực dân tộc Thái",
+      "Hội thi trình diễn trang phục dân tộc"
+    ],
+    "organizer": "Sở Văn hóa Thể thao và Du lịch tỉnh Sơn La",
+    "target_audience": [
+      "Đồng bào địa phương",
+      "Du khách khám phá văn hóa",
+      "Nhiếp ảnh"
+    ],
+    "unesco_recognized": false,
+    "latitude": 21.3283,
+    "longitude": 103.9148,
+    "address": "Thành phố Sơn La và các huyện Mai Sơn, Mộc Châu, Quỳnh Nhai",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "approximate",
+    "verification_status": "official_gov",
+    "verification_reason": "Lễ hội truyền thống cấp tỉnh - Sở VHTT&DL Sơn La",
+    "provenance": {
+      "source_id": "src-sonla-hoaban",
+      "source_name": "Sở Văn hóa Thể thao và Du lịch tỉnh Sơn La",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-sonla-hoaban"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified Ban flower festival."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "fes-ka-te",
+    "name": "Lễ hội Ka-tê của người Chăm",
+    "localized_names": {
+      "vi": "Lễ hội Ka-tê",
+      "en": "Kate Festival of the Cham People"
+    },
+    "slug": "le-hoi-ka-te",
+    "description": "Lễ hội dân gian thiêng liêng nhất của cộng đồng người Chăm Bàlamôn, tưởng nhớ các vị thần linh, vua Chăm anh minh như Po Klong Garai, Po Rome và ông bà tổ tiên.",
+    "province_id": "58",
+    "province_name_canonical": "Ninh Thuận",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Di sản Văn hóa Phi vật thể Quốc gia",
+    "entity_type": "festival",
+    "lunar_date": "Đầu tháng 7 lịch Chăm (khoảng tháng 9 - 10 Dương lịch)",
+    "solar_date_range": "Tháng 10 Dương lịch",
+    "frequency": "annual",
+    "rituals": [
+      "Lễ đón y phục nữ thần Po Nagar",
+      "Lễ rước y trang lên tháp",
+      "Lễ tắm tượng thần và mặc y phục"
+    ],
+    "activities": [
+      "Hòa tấu trống Paranưng kèn Saranai",
+      "Điệu múa Chăm duyên dáng với quạt",
+      "Hội thi dệt thổ cẩm Mỹ Nghiệp"
+    ],
+    "organizer": "Hội đồng Sư cả Chăm Bàlamôn & Sở VHTT&DL tỉnh Ninh Thuận",
+    "target_audience": [
+      "Cộng đồng người Chăm",
+      "Nhà nghiên cứu văn hóa",
+      "Du khách"
+    ],
+    "unesco_recognized": false,
+    "latitude": 11.5947,
+    "longitude": 108.9567,
+    "address": "Tháp Po Klong Garai, Phường Đô Vinh, TP Phan Rang - Tháp Chàm, Ninh Thuận",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "Bộ Văn hóa Thể thao và Du lịch ghi danh Di sản Văn hóa Phi vật thể Quốc gia (2014)",
+    "provenance": {
+      "source_id": "src-ninhthuan-kate",
+      "source_name": "Cục Di sản Văn hóa & Sở VHTT&DL Ninh Thuận",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "national_authority",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-ninhthuan-kate"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified Kate festival record."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "fes-ooc-om-boc",
+    "name": "Lễ hội Oóc Om Bóc - Đua ghe Ngo",
+    "localized_names": {
+      "vi": "Lễ hội Oóc Om Bóc",
+      "en": "Ok Om Bok Festival and Ngo Boat Race"
+    },
+    "slug": "le-hoi-ooc-om-boc",
+    "description": "Lễ cúng Trăng tạ ơn Thần Nước và Thần Mặt Trăng của đồng bào Khmer Nam Bộ vào dịp kết thúc năm nông nghiệp, nổi bật với giải đua ghe Ngo cuồng nhiệt trên sông Maspero.",
+    "province_id": "94",
+    "province_name_canonical": "Sóc Trăng",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Di sản Văn hóa Phi vật thể Quốc gia",
+    "entity_type": "festival",
+    "lunar_date": "Rằm tháng 10 Âm lịch",
+    "solar_date_range": "Tháng 11 Dương lịch",
+    "frequency": "annual",
+    "rituals": [
+      "Lễ cúng Trăng tạ ơn",
+      "Nghi thức đút cốm dẹp cho trẻ nhỏ để đón nhận lời chúc phúc"
+    ],
+    "activities": [
+      "Đua ghe Ngo truyền thống trên sông Maspero",
+      "Thả đèn nước Lôi Protip",
+      "Trình diễn nhạc ngũ âm Khmer"
+    ],
+    "organizer": "Ủy ban Nhân dân tỉnh Sóc Trăng",
+    "target_audience": [
+      "Đồng bào Khmer Nam Bộ",
+      "Du khách miền Tây",
+      "Gia đình"
+    ],
+    "unesco_recognized": false,
+    "latitude": 9.6033,
+    "longitude": 105.9723,
+    "address": "Khán đài đường đua ghe Ngo sông Maspero, TP Sóc Trăng, Tỉnh Sóc Trăng",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "Bộ Văn hóa Thể thao và Du lịch ghi danh Di sản Văn hóa Phi vật thể Quốc gia",
+    "provenance": {
+      "source_id": "src-soctrang-oocombok",
+      "source_name": "Sở Văn hóa Thể thao và Du lịch Sóc Trăng",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-soctrang-oocombok"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified Ok Om Bok festival."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  }
+]

@@ -1,0 +1,482 @@
+[
+  {
+    "id": "dish-be-chao-moc-chau",
+    "name": "Bê chao Mộc Châu",
+    "localized_names": {
+      "vi": "Bê chao Mộc Châu",
+      "en": "Moc Chau Crisp-Fried Veal"
+    },
+    "slug": "be-chao-moc-chau",
+    "description": "Thịt bê đồi non được xắt con chì, ướp gừng, sả và gia vị thảo mộc rồi chao nhanh trong chảo dầu sôi già. Thịt giòn bì ngoài, mềm ngọt mọng nước bên trong, chấm cùng tương bần đậm đà.",
+    "province_id": "14",
+    "province_name_canonical": "Sơn La",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Đặc sản địa phương",
+    "entity_type": "local_cuisine",
+    "dish_type": "roast_grill",
+    "signature_ingredients": [
+      "Thịt bê non Mộc Châu",
+      "Gừng tươi",
+      "Sả",
+      "Hạt tiêu rừng",
+      "Tương bần"
+    ],
+    "culinary_heritage_notes": "Bắt nguồn từ các trang trại chăn nuôi bò sữa và bò thịt trên thảo nguyên cao nguyên Mộc Châu.",
+    "seasonal_availability": "Quanh năm, ngon nhất vào mùa lạnh",
+    "famous_serving_localities": [
+      "Thị xã Mộc Châu",
+      "Thị trấn Nông trường Mộc Châu"
+    ],
+    "dining_etiquette_notes": "Nên ăn ngay khi vừa vớt khỏi chảo dầu nóng để cảm nhận vị giòn và ngậy.",
+    "latitude": 20.8436,
+    "longitude": 104.6468,
+    "address": "Cao nguyên Mộc Châu, Tỉnh Sơn La",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "approximate",
+    "verification_status": "official_gov",
+    "verification_reason": "Sở VHTT&DL tỉnh Sơn La công nhận đặc sản OCOP du lịch tiêu biểu",
+    "provenance": {
+      "source_id": "src-sonla-cuisine",
+      "source_name": "Cổng Thông tin Du lịch Sơn La",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-sonla-cuisine"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified Sơn La cuisine record."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "dish-pa-pinh-top",
+    "name": "Cá suối nướng Pa Pỉnh Tộp",
+    "localized_names": {
+      "vi": "Cá nướng Pa Pỉnh Tộp",
+      "en": "Pa Pinh Top Grilled River Fish"
+    },
+    "slug": "ca-nuong-pa-pinh-top",
+    "description": "Món cá suối gập đôi nướng than hoa đặc trưng của đồng bào người Thái Tây Bắc. Cá chép hoặc cá trôi suối được mổ lưng, nhồi mắc khén, hạt dổi, thì là, hành lá, ớt tươi rồi kẹp thanh tre nướng vàng ruộm.",
+    "province_id": "14",
+    "province_name_canonical": "Sơn La",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Ẩm thực dân tộc",
+    "entity_type": "local_cuisine",
+    "dish_type": "roast_grill",
+    "signature_ingredients": [
+      "Cá suối tươi",
+      "Mắc khén",
+      "Hạt dổi",
+      "Húng thảo mộc",
+      "Rau thơm rừng",
+      "Ớt chỉ thiên"
+    ],
+    "culinary_heritage_notes": "Pa Pỉnh Tộp trong tiếng Thái nghĩa là cá nướng gập đôi. Món ăn thể hiện sự hiếu khách tối cao trong mâm cỗ truyền thống của người Thái.",
+    "seasonal_availability": "Quanh năm, đặc biệt ngon vào mùa thu đông",
+    "famous_serving_localities": [
+      "Bản Áng",
+      "Bản Vặt",
+      "Bản Dọi",
+      "Bản Hìn"
+    ],
+    "dining_etiquette_notes": "Ăn cùng xôi nếp nương đồ trong chõ gỗ và chấm chẩm chéo cay nồng.",
+    "latitude": 20.835,
+    "longitude": 104.63,
+    "address": "Các bản văn hóa cộng đồng tỉnh Sơn La",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "approximate",
+    "verification_status": "official_gov",
+    "verification_reason": "Di sản ẩm thực dân tộc Thái - Sở VHTT&DL Sơn La",
+    "provenance": {
+      "source_id": "src-sonla-cuisine",
+      "source_name": "Sở Văn hóa Thể thao và Du lịch Sơn La",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-sonla-cuisine"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified Pa Pỉnh Tộp record."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "dish-thit-trau-gac-bep",
+    "name": "Thịt trâu gác bếp Sơn La",
+    "localized_names": {
+      "vi": "Thịt trâu gác bếp",
+      "en": "Smoked Buffalo Jerky"
+    },
+    "slug": "thit-trau-gac-bep",
+    "description": "Thịt bắp trâu tươi được thái dọc thớ, tẩm ướp hạt mắc khén, gừng, ớt, muối hạt rồi treo lên gác bếp củi hun khói tự nhiên hàng tuần lễ.",
+    "province_id": "14",
+    "province_name_canonical": "Sơn La",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Đặc sản quà tặng",
+    "entity_type": "local_cuisine",
+    "dish_type": "roast_grill",
+    "signature_ingredients": [
+      "Bắp trâu tươi",
+      "Mắc khén rừng",
+      "Hạt dổi",
+      "Khói củi nhãn"
+    ],
+    "culinary_heritage_notes": "Cách bảo quản thực phẩm thông minh của cư dân miền núi để dùng trong những chuyến đi rừng dài ngày và vụ đông rét.",
+    "seasonal_availability": "Quanh năm",
+    "famous_serving_localities": [
+      "Thành phố Sơn La",
+      "Huyện Thuận Châu",
+      "Mộc Châu"
+    ],
+    "dining_etiquette_notes": "Hấp cách thủy hoặc nướng sơ qua than hồng trước khi xé sợi, chấm chẩm chéo.",
+    "latitude": 21.3283,
+    "longitude": 103.9148,
+    "address": "Sơn La",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "province_level",
+    "verification_status": "official_gov",
+    "verification_reason": "Chỉ dẫn địa lý và OCOP tỉnh Sơn La",
+    "provenance": {
+      "source_id": "src-sonla-cuisine",
+      "source_name": "Cổng Xúc tiến Thương mại và Du lịch Sơn La",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-sonla-cuisine"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified smoked jerky record."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "dish-pho-bo-ha-noi",
+    "name": "Phở bò Hà Nội",
+    "localized_names": {
+      "vi": "Phở bò Hà Nội",
+      "en": "Hanoi Beef Pho"
+    },
+    "slug": "pho-bo-ha-noi",
+    "description": "Món ăn quốc hồn quốc túy của thủ đô với nước dùng ninh xương bò trong veo, dậy hương hồi, quế, thảo quả nướng kết hợp cùng bánh phở mềm dẻo và thịt bò tái lăn/chín.",
+    "province_id": "01",
+    "province_name_canonical": "Hà Nội",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Di sản Văn hóa Phi vật thể Quốc gia",
+    "entity_type": "local_cuisine",
+    "dish_type": "soup_noodle",
+    "signature_ingredients": [
+      "Xương ống bò",
+      "Thịt bò thăn/nạm",
+      "Bánh phở tươi",
+      "Gừng nướng",
+      "Hồi quế thảo quả",
+      "Hành hoa"
+    ],
+    "culinary_heritage_notes": "Được ghi danh là Di sản Văn hóa Phi vật thể Quốc gia năm 2024. Phở truyền thống Hà Nội không dùng đường hay rau thơm miền Nam ngọt gắt mà chú trọng vị ngọt thanh nguyên bản từ tủy xương.",
+    "seasonal_availability": "Quanh năm, đặc biệt ngon vào buổi sáng se lạnh",
+    "famous_serving_localities": [
+      "Phố cổ Hà Nội",
+      "Bát Đàn",
+      "Lò Đúc",
+      "Hàng Trống"
+    ],
+    "dining_etiquette_notes": "Thêm giấm tỏi ớt truyền thống và ăn kèm quẩy giòn.",
+    "latitude": 21.034,
+    "longitude": 105.85,
+    "address": "Quận Hoàn Kiếm, Hà Nội",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "approximate",
+    "verification_status": "official_gov",
+    "verification_reason": "Bộ Văn hóa Thể thao và Du lịch ghi danh Di sản Văn hóa Phi vật thể Quốc gia (2024)",
+    "provenance": {
+      "source_id": "src-bvhttdl-pho",
+      "source_name": "Bộ Văn hóa Thể thao và Du lịch",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "national_authority",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-bvhttdl-pho"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified national culinary heritage."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "dish-bun-bo-hue",
+    "name": "Bún bò Huế",
+    "localized_names": {
+      "vi": "Bún bò Huế",
+      "en": "Hue Spicy Beef Noodle Soup"
+    },
+    "slug": "bun-bo-hue",
+    "description": "Đặc sản kinh đô Huế với sợi bún to, nước dùng thơm nồng sả cây và mắm ruốc Huế đặc trưng, hòa cùng vị cay của ớt sa tế, bắp bò hoa và chả cua.",
+    "province_id": "46",
+    "province_name_canonical": "Thừa Thiên Huế",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Di sản Ẩm thực Cố đô",
+    "entity_type": "local_cuisine",
+    "dish_type": "soup_noodle",
+    "signature_ingredients": [
+      "Bắp bò hoa",
+      "Chân giò heo",
+      "Mắm ruốc Huế",
+      "Sả cây",
+      "Huyết",
+      "Chả cua"
+    ],
+    "culinary_heritage_notes": "Đỉnh cao của nghệ thuật phối hương ngũ vị, đại diện cho tinh hoa ẩm thực Cố đô được TasteAtlas và CNN nhiều lần vinh danh.",
+    "seasonal_availability": "Quanh năm",
+    "famous_serving_localities": [
+      "Đường Bạch Đằng",
+      "Nguyễn Du",
+      "Phố cổ Gia Hội",
+      "Bến Ngự"
+    ],
+    "dining_etiquette_notes": "Ăn kèm bắp chuối thái mỏng, rau húng quế và vắt chanh tươi.",
+    "latitude": 16.4637,
+    "longitude": 107.5909,
+    "address": "Thành phố Huế, Tỉnh Thừa Thiên Huế",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "approximate",
+    "verification_status": "official_gov",
+    "verification_reason": "Sở Du lịch Thừa Thiên Huế - Ẩm thực Cố đô",
+    "provenance": {
+      "source_id": "src-hue-cuisine",
+      "source_name": "Sở Du lịch Thừa Thiên Huế",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-hue-cuisine"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified Hue culinary heritage."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "dish-mi-quang",
+    "name": "Mì Quảng",
+    "localized_names": {
+      "vi": "Mì Quảng",
+      "en": "Quang Style Noodles"
+    },
+    "slug": "mi-quang",
+    "description": "Sợi mì gạo cán dẹt nhuộm màu nghệ vàng tươi hoặc trắng ngà, chan nước nhưn đậm đà xâm xấp đáy tô, ăn kèm tôm sông, thịt heo ba chỉ, trứng cút, đậu phộng rang giòn và bánh tráng mè nướng.",
+    "province_id": "48",
+    "province_name_canonical": "Đà Nẵng",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Di sản Văn hóa Phi vật thể Quốc gia",
+    "entity_type": "local_cuisine",
+    "dish_type": "soup_noodle",
+    "signature_ingredients": [
+      "Sợi mì gạo cán",
+      "Tôm sông rim",
+      "Thịt ba chỉ",
+      "Bánh tráng nướng",
+      "Đậu phộng",
+      "Rau sống búp chuối"
+    ],
+    "culinary_heritage_notes": "Mì Quảng được Bộ VHTT&DL công nhận là Di sản Văn hóa Phi vật thể Quốc gia năm 2024.",
+    "seasonal_availability": "Quanh năm",
+    "famous_serving_localities": [
+      "Đà Nẵng",
+      "Hội An",
+      "Điện Bàn"
+    ],
+    "dining_etiquette_notes": "Bẻ vụn bánh tráng mè rắc lên trên, trộn đều cùng ớt xanh cay nồng.",
+    "latitude": 16.0544,
+    "longitude": 108.2022,
+    "address": "Đà Nẵng & Quảng Nam",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "approximate",
+    "verification_status": "official_gov",
+    "verification_reason": "Bộ Văn hóa Thể thao và Du lịch ghi danh Di sản Văn hóa Phi vật thể Quốc gia (2024)",
+    "provenance": {
+      "source_id": "src-bvhttdl-miquang",
+      "source_name": "Bộ Văn hóa Thể thao và Du lịch",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "national_authority",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-bvhttdl-miquang"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified national culinary heritage."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "dish-com-tam-sai-gon",
+    "name": "Cơm tấm Sài Gòn",
+    "localized_names": {
+      "vi": "Cơm tấm Sài Gòn",
+      "en": "Saigon Broken Rice"
+    },
+    "slug": "com-tam-sai-gon",
+    "description": "Cơm nấu từ hạt gạo tấm vỡ thơm mềm, ăn cùng sườn cốt lết nướng than hoa thơm lừng mỡ hành, bì heo trộn thính vàng óng, chả trứng hấp, đồ chua và chén nước mắm kẹo chua ngọt.",
+    "province_id": "79",
+    "province_name_canonical": "Thành phố Hồ Chí Minh",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Di sản Ẩm thực Phương Nam",
+    "entity_type": "local_cuisine",
+    "dish_type": "rice_dish",
+    "signature_ingredients": [
+      "Gạo tấm",
+      "Sườn cốt lết ướp mật ong sả",
+      "Bì heo thính",
+      "Chả trứng chưng",
+      "Mỡ hành",
+      "Nước mắm chua ngọt"
+    ],
+    "culinary_heritage_notes": "Kỷ lục Ẩm thực Châu Á (2012). Món ăn đường phố biểu tượng cho nhịp sống sôi động và cởi mở của người dân Nam Bộ.",
+    "seasonal_availability": "Quanh năm",
+    "famous_serving_localities": [
+      "Quận 1",
+      "Quận 3",
+      "Bình Thạnh",
+      "Chợ Lớn"
+    ],
+    "dining_etiquette_notes": "Dùng muỗng và nĩa theo phong cách ẩm thực Nam Bộ; rưới đều nước mắm tỏi ớt lên dĩa.",
+    "latitude": 10.7769,
+    "longitude": 106.7009,
+    "address": "Thành phố Hồ Chí Minh",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "approximate",
+    "verification_status": "official_gov",
+    "verification_reason": "Tổ chức Kỷ lục Châu Á xác lập Kỷ lục Ẩm thực (2012) & Sở Du lịch TP.HCM",
+    "provenance": {
+      "source_id": "src-tphcm-cuisine",
+      "source_name": "Sở Du lịch Thành phố Hồ Chí Minh",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-tphcm-cuisine"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified Saigon culinary heritage."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "dish-banh-xeo-mien-tay",
+    "name": "Bánh xèo miền Tây",
+    "localized_names": {
+      "vi": "Bánh xèo miền Tây",
+      "en": "Mekong Crispy Pancake"
+    },
+    "slug": "banh-xeo-mien-tay",
+    "description": "Chiếc bánh xèo giòn rụm khổ lớn tráng trong chảo gang, nhân tôm đất, thịt ba rọi, củ hủ dừa hoặc giá đỗ, ăn kèm rổ rau rừng hơn 20 loại rau thiên nhiên sông nước.",
+    "province_id": "92",
+    "province_name_canonical": "Cần Thơ",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Ẩm thực dân gian Nam Bộ",
+    "entity_type": "local_cuisine",
+    "dish_type": "cake_dessert",
+    "signature_ingredients": [
+      "Bột gạo pha cốt dừa nghệ",
+      "Tôm đất",
+      "Thịt ba chỉ",
+      "Củ hủ dừa",
+      "Rau rừng",
+      "Nước mắm cá linh"
+    ],
+    "culinary_heritage_notes": "Món bánh gắn liền với Lễ hội Bánh Dân gian Nam Bộ tổ chức thường niên tại Cần Thơ.",
+    "seasonal_availability": "Quanh năm, đặc biệt phong phú vào mùa nước nổi (tháng 9-11)",
+    "famous_serving_localities": [
+      "Cồn Khương",
+      "Cồn Sơn",
+      "Cái Răng"
+    ],
+    "dining_etiquette_notes": "Cuộn bánh xèo trong lá cải bẹ xanh, lá cóc, lá đọt xoài non rồi chấm ngập chén nước mắm chua ngọt.",
+    "latitude": 10.0452,
+    "longitude": 105.7469,
+    "address": "Thành phố Cần Thơ",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "approximate",
+    "verification_status": "official_gov",
+    "verification_reason": "Lễ hội Bánh Dân gian Nam Bộ - Sở VHTT&DL TP Cần Thơ",
+    "provenance": {
+      "source_id": "src-cantho-cuisine",
+      "source_name": "Sở Văn hóa Thể thao và Du lịch TP Cần Thơ",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-cantho-cuisine"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified Mekong delta cuisine."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  }
+]

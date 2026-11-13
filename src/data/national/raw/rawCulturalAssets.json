@@ -1,0 +1,242 @@
+[
+  {
+    "id": "ca-trong-dong-ngoc-lu",
+    "slug": "trong-dong-ngoc-lu",
+    "name": "Ngoc Lu Bronze Drum",
+    "vietnameseName": "Trống đồng Ngọc Lũ",
+    "assetType": "artifact",
+    "dating": "Khoảng thế kỷ II - III trước Công nguyên (khoảng 2.500 năm trước)",
+    "cultureOrPeriod": "Văn hóa Đông Sơn (Thời đại Kim khí)",
+    "shortDescription": "Bảo vật quốc gia số 1 của Việt Nam, đỉnh cao của nghệ thuật đúc đồng và tư duy thẩm mỹ Đông Sơn.",
+    "fullDescription": "Trống đồng Ngọc Lũ loại I Heger là hiện vật tiêu biểu và hoàn mỹ nhất trong phức hệ văn hóa Đông Sơn. Mặt trống đúc nổi hình ngôi sao 14 cánh, xen kẽ họa tiết lông công, chim bay, đoàn người hóa trang lông chim múa hát, giã gạo và thuyền chiến. Trống được phát hiện ngẫu nhiên vào khoảng năm 1893-1894 tại xã Như Trác, huyện Lý Nhân, tỉnh Hà Nam, sau đó được cúng tiến vào chùa Ngọc Lũ.",
+    "culturalSignificance": "Minh chứng vật chất tối thượng cho nền văn minh nông nghiệp lúa nước, tổ chức xã hội và tín ngưỡng thờ thần Mặt trời của cư dân Việt cổ thời các vua Hùng dựng nước.",
+    "holdingInstitution": {
+      "id": "inst-vn-history-museum",
+      "name": "Bảo tàng Lịch sử Quốc gia",
+      "slug": "bao-tang-lich-su-quoc-gia",
+      "institutionType": "museum",
+      "address": "Số 1 Tràng Tiền, Phường Tràng Tiền, Quận Hoàn Kiếm",
+      "city": "Hà Nội",
+      "website": "http://baotanglichsu.vn",
+      "visitablePoiId": "poi-bao-tang-lich-su-quoc-gia"
+    },
+    "discoveryLocation": {
+      "communeOrWard": "Xã Như Trác",
+      "district": "Huyện Lý Nhân",
+      "province": "Hà Nam",
+      "yearDiscovered": 1893,
+      "notes": "Tọa độ phát hiện khảo cổ là vị trí phát hiện lòng đất, không phải tọa độ tham quan du lịch."
+    },
+    "visitableVenue": {
+      "poiId": "poi-bao-tang-lich-su-quoc-gia",
+      "poiName": "Bảo tàng Lịch sử Quốc gia (Khu vực trưng bày Kim khí)",
+      "coordinates": {
+        "lat": 21.0253,
+        "lng": 105.8582
+      },
+      "coordinateConfidence": "exact",
+      "entranceAddress": "Cổng chính: Số 1 Tràng Tiền, Hoàn Kiếm, Hà Nội",
+      "openingHoursNote": "Mở cửa từ Thứ Ba đến Chủ Nhật (08:00 - 12:00, 13:30 - 17:00). Đóng cửa Thứ Hai.",
+      "visitingGuideUrl": "http://baotanglichsu.vn/vi/Articles/3096/12316/trong-dong-ngoc-lu.html"
+    },
+    "isNationalTreasure": true,
+    "nationalTreasureDecision": "Quyết định số 1426/QĐ-TTg ngày 01/10/2012 của Thủ tướng Chính phủ (Đợt 1)",
+    "recognitionYear": 2012,
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1596401057633-54a8fe8ef647?auto=format&fit=crop&w=1200&q=80",
+        "caption": "Mặt trống đồng Ngọc Lũ với họa tiết ngôi sao 14 cánh và chim Lạc",
+        "photographerOrSource": "Bảo tàng Lịch sử Quốc gia Việt Nam",
+        "isPrimary": true
+      }
+    ],
+    "tags": [
+      "Bảo vật quốc gia",
+      "Đông Sơn",
+      "Đồ đồng",
+      "Thời Hùng Vương",
+      "Hà Nam",
+      "Hà Nội"
+    ],
+    "provenance": {
+      "sourceName": "Hồ sơ Di sản Văn hóa - Cục Di sản Văn hóa & Bảo tàng Lịch sử Quốc gia",
+      "sourceUrl": "http://dsvh.gov.vn/bao-vat-quoc-gia-trong-dong-ngoc-lu-3245",
+      "isMock": true,
+      "verificationStatus": "verified_official",
+      "lastUpdated": "2026-05-10"
+    }
+  },
+  {
+    "id": "ca-thap-dong-dao-thinh",
+    "slug": "thap-dong-dao-thinh",
+    "name": "Dao Thinh Bronze Jar",
+    "vietnameseName": "Thạp đồng Đào Thịnh",
+    "assetType": "artifact",
+    "dating": "Thế kỷ V - I trước Công nguyên (khoảng 2.500 năm trước)",
+    "cultureOrPeriod": "Văn hóa Đông Sơn",
+    "shortDescription": "Chiếc thạp đồng lớn nhất, nguyên vẹn nhất và chạm khắc hình tượng phồn thực độc đáo nhất của văn hóa Đông Sơn.",
+    "fullDescription": "Thạp đồng Đào Thịnh được phát hiện tại ven sông Hồng thuộc xã Đào Thịnh, huyện Trấn Yên, tỉnh Yên Bái năm 1961. Nắp thạp có 4 khối tượng tròn mô tả cảnh giao hoan nam nữ - biểu tượng phồn thực cầu mong mùa màng tốt tươi và sự sinh sôi nảy nở của con người.",
+    "culturalSignificance": "Biểu tượng văn hóa phồn thực và kỹ thuật đúc đồng cỡ lớn đỉnh cao của người Việt cổ ven lưu vực sông Hồng.",
+    "holdingInstitution": {
+      "id": "inst-vn-history-museum",
+      "name": "Bảo tàng Lịch sử Quốc gia",
+      "slug": "bao-tang-lich-su-quoc-gia",
+      "institutionType": "museum",
+      "address": "Số 1 Tràng Tiền, Quận Hoàn Kiếm",
+      "city": "Hà Nội",
+      "website": "http://baotanglichsu.vn",
+      "visitablePoiId": "poi-bao-tang-lich-su-quoc-gia"
+    },
+    "discoveryLocation": {
+      "communeOrWard": "Xã Đào Thịnh",
+      "district": "Huyện Trấn Yên",
+      "province": "Yên Bái",
+      "yearDiscovered": 1961,
+      "notes": "Phát hiện ven bờ sông Hồng do sạt lở đất."
+    },
+    "visitableVenue": {
+      "poiId": "poi-bao-tang-lich-su-quoc-gia",
+      "poiName": "Bảo tàng Lịch sử Quốc gia",
+      "coordinates": {
+        "lat": 21.0253,
+        "lng": 105.8582
+      },
+      "coordinateConfidence": "exact",
+      "entranceAddress": "Số 1 Tràng Tiền, Hoàn Kiếm, Hà Nội",
+      "openingHoursNote": "Mở cửa từ Thứ Ba đến Chủ Nhật"
+    },
+    "isNationalTreasure": true,
+    "nationalTreasureDecision": "Quyết định số 1426/QĐ-TTg ngày 01/10/2012 của Thủ tướng Chính phủ",
+    "recognitionYear": 2012,
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80",
+        "caption": "Thạp đồng Đào Thịnh trưng bày tại Bảo tàng Lịch sử Quốc gia",
+        "photographerOrSource": "Bảo tàng Lịch sử Quốc gia",
+        "isPrimary": true
+      }
+    ],
+    "tags": [
+      "Bảo vật quốc gia",
+      "Đông Sơn",
+      "Tín ngưỡng phồn thực",
+      "Yên Bái"
+    ],
+    "provenance": {
+      "sourceName": "Cục Di sản Văn hóa",
+      "sourceUrl": "http://dsvh.gov.vn",
+      "isMock": true,
+      "verificationStatus": "verified_official",
+      "lastUpdated": "2026-05-10"
+    }
+  },
+  {
+    "id": "ca-bia-tien-si-van-mieu",
+    "slug": "bia-tien-si-van-mieu",
+    "name": "82 Doctors Stelae at the Temple of Literature",
+    "vietnameseName": "82 Bia Tiến sĩ Triều Lê - Mạc tại Văn Miếu - Quốc Tử Giám",
+    "assetType": "monument",
+    "dating": "1484 - 1780 (Từ khoa thi năm 1442 đến khoa thi năm 1779)",
+    "cultureOrPeriod": "Triều Lê Sơ - Mạc - Lê Trung Hưng",
+    "shortDescription": "Di sản tư liệu thế giới ghi danh các bậc đại khoa hiền tài của đất nước trong suốt hơn 300 năm khoa cử.",
+    "fullDescription": "Hệ thống 82 tấm bia đá đặt trên lưng rùa đá tại Văn Miếu - Quốc Tử Giám Hà Nội, vinh danh 1.304 nhà khoa bảng đã đỗ tiến sĩ qua 82 khoa thi. Mỗi bài ký trên bia là một tác phẩm văn học mẫu mực khẳng định chân lý \"Hiền tài là nguyên khí của quốc gia\".",
+    "culturalSignificance": "Biểu tượng trường tồn cho truyền thống hiếu học, tôn sư trọng đạo và trọng dụng nhân tài của dân tộc Việt Nam.",
+    "holdingInstitution": {
+      "id": "inst-van-mieu-center",
+      "name": "Trung tâm Hoạt động Văn hóa Khoa học Văn Miếu - Quốc Tử Giám",
+      "slug": "trung-tam-van-mieu-quoc-tu-giam",
+      "institutionType": "monument_management",
+      "address": "Số 58 Phố Quốc Tử Giám, Quận Đống Đa",
+      "city": "Hà Nội",
+      "website": "http://vanmieu.gov.vn",
+      "visitablePoiId": "poi-van-mieu-quoc-tu-giam"
+    },
+    "visitableVenue": {
+      "poiId": "poi-van-mieu-quoc-tu-giam",
+      "poiName": "Di tích Quốc gia Đặc biệt Văn Miếu - Quốc Tử Giám",
+      "coordinates": {
+        "lat": 21.0285,
+        "lng": 105.8355
+      },
+      "coordinateConfidence": "exact",
+      "entranceAddress": "Số 58 Phố Quốc Tử Giám, Đống Đa, Hà Nội",
+      "openingHoursNote": "Mở cửa hàng ngày: 08:00 - 17:00 (Mùa hè mở đến 18:00)"
+    },
+    "isNationalTreasure": true,
+    "nationalTreasureDecision": "Công nhận Di sản Tư liệu Thế giới Khu vực Châu Á - Thái Bình Dương (2010), Di sản Tư liệu Thế giới (2011), Bảo vật Quốc gia (2015)",
+    "recognitionYear": 2015,
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80",
+        "caption": "Khu vườn bia Tiến sĩ bên giếng Thiên Quang tại Văn Miếu - Quốc Tử Giám",
+        "photographerOrSource": "Trung tâm VHKH Văn Miếu",
+        "isPrimary": true
+      }
+    ],
+    "tags": [
+      "Di sản tư liệu thế giới",
+      "Bảo vật quốc gia",
+      "Nho học",
+      "Thăng Long - Hà Nội"
+    ],
+    "provenance": {
+      "sourceName": "UNESCO Memory of the World & Trung tâm VHKH Văn Miếu",
+      "sourceUrl": "http://vanmieu.gov.vn",
+      "isMock": true,
+      "verificationStatus": "verified_official",
+      "lastUpdated": "2026-05-10"
+    }
+  },
+  {
+    "id": "ca-nghe-thuat-xoe-thai",
+    "slug": "nghe-thuat-xoe-thai",
+    "name": "Art of Xoe Dance of the Tai People",
+    "vietnameseName": "Nghệ thuật Xòe Thái",
+    "assetType": "intangible_heritage",
+    "dating": "Lưu truyền qua hàng thế kỷ trong cộng đồng người Thái Tây Bắc",
+    "cultureOrPeriod": "Văn hóa Dân tộc Thái (Tây Bắc Việt Nam)",
+    "shortDescription": "Di sản văn hóa phi vật thể đại diện của nhân loại, biểu trưng cho sự đoàn kết cộng đồng và lòng mến khách.",
+    "fullDescription": "Xòe Thái là loại hình múa truyền thống đặc sắc của người Thái ở 4 tỉnh Tây Bắc: Yên Bái, Mường Lò, Sơn La, Lai Châu và Điện Biên. Các điệu Xòe cơ bản gồm: Khắm khen (nắm tay nhau), Nhôm khăn (tung khăn), Đổn xôn (tiến lùi), Khắm khăn mơi lảu (nâng khăn mời rượu)...",
+    "culturalSignificance": "Không có Xòe, không thành hội vui. Điệu Xòe thể hiện nhân sinh quan gắn kết giữa con người với thiên nhiên vũ trụ và tinh thần cộng đồng bền chặt.",
+    "holdingInstitution": {
+      "id": "inst-son-la-culture",
+      "name": "Sở Văn hóa, Thể thao và Du lịch tỉnh Sơn La (Đơn vị bảo tồn chủ trì)",
+      "slug": "so-vhttdl-son-la",
+      "institutionType": "conservation_center",
+      "address": "Đường Hoàng Quốc Việt, Phường Chiềng Cơi",
+      "city": "Sơn La"
+    },
+    "visitableVenue": {
+      "poiId": "son-la-ban-vat-moc-chau",
+      "poiName": "Bản du lịch cộng đồng Bản Vặt / Bản Áng (Mộc Châu, Sơn La)",
+      "coordinates": null,
+      "coordinateConfidence": "none",
+      "entranceAddress": "Xã Mường Sang và Đông Sang, Thị xã Mộc Châu, Sơn La",
+      "openingHoursNote": "Trải nghiệm văn hóa sinh hoạt cùng đồng bào các dịp cuối tuần và lễ hội mùa xuân"
+    },
+    "isNationalTreasure": false,
+    "nationalTreasureDecision": "Ghi danh Danh sách Di sản văn hóa phi vật thể đại diện của nhân loại (UNESCO, 2021)",
+    "recognitionYear": 2021,
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80",
+        "caption": "Vòng xòe hoa bên lửa trại bản làng Tây Bắc",
+        "photographerOrSource": "Sở VHTT&DL Sơn La",
+        "isPrimary": true
+      }
+    ],
+    "tags": [
+      "UNESCO Di sản phi vật thể",
+      "Sơn La",
+      "Tây Bắc",
+      "Văn hóa Thái",
+      "Múa xòe"
+    ],
+    "provenance": {
+      "sourceName": "UNESCO Intangible Cultural Heritage Database & Sở VHTT&DL Sơn La",
+      "isMock": true,
+      "verificationStatus": "verified_official",
+      "lastUpdated": "2026-05-10"
+    }
+  }
+]

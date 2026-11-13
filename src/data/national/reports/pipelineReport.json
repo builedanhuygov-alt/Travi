@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-11-13T14:19:15.945Z",
+  "batch_id": "test-audit-batch",
+  "total_raw_ingested": 360,
+  "total_pois_normalized": 356,
+  "total_cultural_normalized": 4,
+  "total_canonical_records": 359,
+  "exact_merges_count": 1,
+  "ambiguous_review_items_count": 9,
+  "provinces_with_pois_count": 31,
+  "provinces_total_count": 34,
+  "coverage_percentage": "91.2%",
+  "data_confidence_summary": {
+    "robust": 2,
+    "moderate": 15,
+    "sparse": 14,
+    "no_verified_data": 3
+  }
+}

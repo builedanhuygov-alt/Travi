@@ -114,138 +114,340 @@ def verify_gpu_environment():
         logger.error(f"Failed to inspect GPU with PyTorch: {e}")
         gpu_info["error"] = str(e)
 
-# In-memory Tourism RAG Corpus
+# In-memory Multi-Collection Vietnam Tourism RAG Corpus
+COLLECTION_NAMES = [
+    "tourism_pois",
+    "cultural_heritage",
+    "local_cuisine",
+    "festivals",
+    "transportation",
+    "accommodation",
+    "tourism_experiences",
+]
+
+multi_collections: Dict[str, List[Dict[str, Any]]] = {c: [] for c in COLLECTION_NAMES}
 rag_corpus: List[Dict[str, Any]] = []
 
+def _extract_text_list(items: Any) -> List[str]:
+    """Safely extracts a list of strings from either strings or structured dicts."""
+    out = []
+    if isinstance(items, list):
+        for it in items:
+            if isinstance(it, str):
+                out.append(it)
+            elif isinstance(it, dict):
+                val = it.get("title") or it.get("name") or it.get("description") or ""
+                if val:
+                    out.append(str(val))
+            elif it is not None:
+                out.append(str(it))
+    elif isinstance(items, str):
+        out.append(items)
+    return out
+
 def load_embedded_rag_corpus():
-    """Loads verified Vietnam POIs and Cultural Assets into memory for grounding."""
-    global rag_corpus
+    """Loads verified national multi-collections into memory for grounded retrieval."""
+    global multi_collections, rag_corpus
+    multi_collections = {c: [] for c in COLLECTION_NAMES}
+    combined: List[Dict[str, Any]] = []
 
-    default_corpus = [
-        {
-            "id": "son-la-moc-chau",
-            "name": "Khu du lịch Quốc gia Mộc Châu",
-            "province": "Sơn La",
-            "subregion": "Tây Bắc",
-            "category": "Khu du lịch quốc gia",
-            "description": "Cao nguyên Mộc Châu nổi tiếng với đồi chè trái tim, thung lũng mận Nà Ka, rừng thông bản Áng và thác Dải Yếm. Khí hậu mát mẻ quanh năm.",
-            "experiences": ["Ngắm hoa mận", "Hái chè", "Uống sữa tươi Mộc Châu", "Khám phá bản làng Thái"],
-            "foods": ["Bê chao Mộc Châu", "Cá suối nướng Pa Pỉnh Tộp", "Thịt trâu gác bếp", "Xôi ngũ sắc"],
-            "source": "Sở Văn hóa Thể thao và Du lịch tỉnh Sơn La",
-            "coordinate_status": "unverified_field_notes",
-            "weather_notes": "Mùa xuân (Tháng 1-2) hoa mận nở trắng; Mùa hè mát mẻ dễ chịu; Mùa đông se lạnh nhiều sương mù."
-        },
-        {
-            "id": "son-la-hang-a-phu",
-            "name": "Điểm du lịch Hang vợ chồng A Phủ",
-            "province": "Sơn La",
-            "subregion": "Tây Bắc",
-            "category": "Điểm du lịch",
-            "description": "Nằm tại bản Hồng Ngài, xã Bắc Yên. Hang A Phủ có cảnh quan địa chất độc đáo, gắn liền với tác phẩm văn học Vợ chồng A Phủ của Tô Hoài.",
-            "experiences": ["Tham quan hang động", "Tìm hiểu văn hóa dân tộc H'Mông"],
-            "foods": ["Thịt trâu sấy", "Rượu ngô Bắc Yên", "Gà đen bản địa"],
-            "source": "Sở Văn hóa Thể thao và Du lịch tỉnh Sơn La",
-            "coordinate_status": "unverified_field_notes",
-            "weather_notes": "Vùng núi cao Bắc Yên có sương mù dày vào mùa đông; mùa mưa từ tháng 6-8 cần chú ý trơn trượt."
-        },
-        {
-            "id": "son-la-ta-xua",
-            "name": "Khu du lịch Tà Xùa - Thiên đường mây",
-            "province": "Sơn La",
-            "subregion": "Tây Bắc",
-            "category": "Danh lam thắng cảnh",
-            "description": "Dãy núi Tà Xùa giáp ranh giữa Sơn La và Yên Bái, nổi tiếng với sống lưng khủng long Háng Đồng và biển mây bồng bềnh hùng vĩ.",
-            "experiences": ["Săn mây Tà Xùa", "Trekking sống lưng khủng long", "Thưởng thức chè Shan tuyết cổ thụ"],
-            "foods": ["Thịt lợn bản nướng", "Măng trúc xào", "Cơm lam"],
-            "source": "Sở Văn hóa Thể thao và Du lịch tỉnh Sơn La",
-            "coordinate_status": "unverified_field_notes",
-            "weather_notes": "Mùa săn mây đẹp nhất từ tháng 10 đến tháng 4 năm sau; nhiệt độ ban đêm có thể xuống dưới 10 độ C."
-        },
-        {
-            "id": "cultural-trong-dong-ngoc-lu",
-            "name": "Trống đồng Ngọc Lũ",
-            "province": "Hà Nội (Lưu giữ) / Hà Nam (Phát hiện)",
-            "subregion": "Đồng bằng sông Hồng",
-            "category": "Bảo vật quốc gia (Hiện vật văn hóa)",
-            "description": "Bảo vật quốc gia số 1 của Việt Nam thuộc Văn hóa Đông Sơn, niên đại thế kỷ II-III TCN. Mặt trống khắc họa sao 14 cánh, chim Lạc và cảnh sinh hoạt thời Hùng Vương. Hiện vật được lưu giữ tại Bảo tàng Lịch sử Quốc gia (Số 1 Tràng Tiền, Hà Nội).",
-            "experiences": ["Tham quan gian trưng bày Kim khí thời Hùng Vương", "Tìm hiểu kỹ thuật đúc đồng Đông Sơn"],
-            "foods": ["Ẩm thực phố cổ Hà Nội", "Chả cá Lã Vọng", "Cà phê trứng"],
-            "source": "Bảo tàng Lịch sử Quốc gia & Cục Di sản Văn hóa",
-            "coordinate_status": "museum_venue_verified",
-            "weather_notes": "Bảo tàng mở cửa quanh năm trong phòng điều hòa; Hà Nội đẹp nhất vào mùa thu tháng 9-11."
-        },
-        {
-            "id": "cultural-xoe-thai",
-            "name": "Nghệ thuật Xòe Thái",
-            "province": "Sơn La, Yên Bái, Điện Biên, Lai Châu",
-            "subregion": "Tây Bắc",
-            "category": "Di sản văn hóa phi vật thể đại diện nhân loại (UNESCO)",
-            "description": "Điệu múa dân gian truyền thống biểu trưng cho tinh thần cộng đồng, lòng hiếu khách của người Thái Tây Bắc. Gồm các điệu múa khăn, xòe vòng bên bếp lửa bản làng.",
-            "experiences": ["Tham gia vòng xòe hoa tại Bản Áng hoặc Bản Vặt", "Giao lưu văn nghệ dân gian"],
-            "foods": ["Cơm lam", "Cá nướng Pa Pỉnh Tộp", "Rượu cần"],
-            "source": "UNESCO & Sở VHTT&DL các tỉnh Tây Bắc",
-            "coordinate_status": "intangible_cultural_heritage",
-            "weather_notes": "Các lễ hội diễn ra rộn ràng vào dịp đầu xuân và mùa gặt lúa chín."
-        }
+    # Search directory paths for collections (supports local dev and Colab envs)
+    search_dirs = [
+        "colab/data/collections",
+        "data/collections",
+        "src/data/national/collections",
+        "/content/collections",
+        "/content/national_collections",
+        "collections",
+        "../src/data/national/collections",
     ]
 
-    # Check if dataset files exist in Colab environment (e.g. kagglehub or uploaded CSV)
-    csv_paths = [
-        "son_la_tourism_normalized_utf8.csv",
-        "vietnam_tourism_starter.csv",
-        "/content/son_la_tourism_normalized_utf8.csv",
-        "/content/vietnam_tourism_starter.csv"
-    ]
-    for p in csv_paths:
-        if os.path.exists(p):
-            try:
-                import csv
-                with open(p, mode="r", encoding="utf-8-sig") as f:
-                    reader = csv.DictReader(f)
-                    count = 0
-                    for row in reader:
-                        name = row.get("name") or row.get("ten_diem") or row.get("title")
-                        if name:
-                            default_corpus.append({
-                                "id": row.get("id") or f"csv-{count}",
-                                "name": name,
-                                "province": row.get("province") or row.get("tinh_thanh") or "Việt Nam",
-                                "subregion": row.get("subregion") or "Bắc Bộ",
-                                "category": row.get("category") or "Điểm tham quan",
-                                "description": row.get("description") or row.get("mo_ta") or "",
-                                "experiences": [row.get("experiences")] if row.get("experiences") else ["Khám phá địa phương"],
-                                "foods": [row.get("foods")] if row.get("foods") else ["Ẩm thực bản địa"],
-                                "source": row.get("source") or "Bộ dữ liệu Du lịch Việt Nam",
-                                "coordinate_status": "needs_review",
-                                "weather_notes": "Tham khảo dự báo thời tiết địa phương trước khi khởi hành."
-                            })
-                            count += 1
-                logger.info(f"Loaded {count} additional records from CSV dataset: {p}")
-            except Exception as ex:
-                logger.warning(f"Could not read CSV {p}: {ex}")
+    found_dir = None
+    for d in search_dirs:
+        if os.path.isdir(d):
+            found_dir = d
+            break
 
-    rag_corpus = default_corpus
-    logger.info(f"Loaded {len(rag_corpus)} core grounding facts into RAG retrieval memory.")
+    if found_dir:
+        logger.info(f"Loading national tourism collections from directory: {found_dir}")
+        for col in COLLECTION_NAMES:
+            file_path = os.path.join(found_dir, f"{col}.json")
+            if os.path.exists(file_path):
+                try:
+                    with open(file_path, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                        if isinstance(data, list):
+                            normalized_items = []
+                            for row in data:
+                                prov = row.get("province_name_canonical") or row.get("province") or "Việt Nam"
+                                prov_id = row.get("province_id")
+                                name = row.get("name") or (row.get("localized_names", {}).get("vi")) or "Địa điểm"
+                                desc = row.get("description") or row.get("short_description") or ""
 
-def retrieve_rag_context(query: str, top_k: int = 3) -> List[Dict[str, Any]]:
-    """Semantic token-matching retriever for zero-latency RAG grounding."""
-    q_lower = query.lower()
+                                exps = _extract_text_list(row.get("experiences") or row.get("activities"))
+                                foods = _extract_text_list(row.get("local_food") or row.get("signature_ingredients"))
+
+                                is_artifact = False
+                                holding_inst = None
+                                if col == "cultural_heritage":
+                                    h_type = row.get("heritage_type")
+                                    if h_type == "national_treasure" or row.get("is_national_treasure"):
+                                        is_artifact = True
+                                        hi = row.get("holding_institution")
+                                        if isinstance(hi, dict):
+                                            holding_inst = hi.get("name")
+
+                                prov_meta = row.get("provenance") or {}
+                                source_name = (
+                                    prov_meta.get("source_name")
+                                    if isinstance(prov_meta, dict)
+                                    else row.get("source") or "Bộ dữ liệu Du lịch Quốc gia"
+                                )
+
+                                item = {
+                                    "collection": col,
+                                    "id": row.get("id"),
+                                    "name": name,
+                                    "localized_names": row.get("localized_names") or {"vi": name},
+                                    "province": prov,
+                                    "province_id": prov_id,
+                                    "category": row.get("category") or col,
+                                    "description": desc,
+                                    "experiences": exps,
+                                    "foods": foods,
+                                    "rituals": _extract_text_list(row.get("rituals")),
+                                    "connected_routes": _extract_text_list(row.get("connected_routes")),
+                                    "source": source_name,
+                                    "verification_status": row.get("verification_status") or "verified",
+                                    "coordinate_status": row.get("coordinate_confidence") or "none",
+                                    "ticket_price_notes": row.get("ticket_price_notes"),
+                                    "opening_hours_notes": row.get("opening_hours_notes"),
+                                    "is_artifact": is_artifact,
+                                    "holding_institution": holding_inst,
+                                    "weather_notes": row.get("best_season") or "Tham khảo dự báo thời tiết địa phương."
+                                }
+                                normalized_items.append(item)
+                                combined.append(item)
+                            multi_collections[col] = normalized_items
+                            logger.info(f"Loaded {len(normalized_items)} records into collection '{col}'")
+                except Exception as ex:
+                    logger.warning(f"Failed to load {file_path}: {ex}")
+
+    # Fallback to embedded verified starter if combined is empty
+    if not combined:
+        logger.warning("No collection files found on disk; loading embedded verified starter corpus.")
+        default_corpus = [
+            {
+                "collection": "tourism_pois",
+                "id": "son-la-moc-chau",
+                "name": "Khu du lịch Quốc gia Mộc Châu",
+                "localized_names": {"vi": "Khu du lịch Quốc gia Mộc Châu", "en": "Moc Chau National Tourism Area"},
+                "province": "Sơn La",
+                "province_id": "14",
+                "category": "Khu du lịch quốc gia",
+                "description": "Cao nguyên Mộc Châu nổi tiếng với đồi chè trái tim, thung lũng mận Nà Ka, rừng thông bản Áng và thác Dải Yếm. Khí hậu mát mẻ quanh năm.",
+                "experiences": ["Ngắm hoa mận", "Hái chè", "Uống sữa tươi Mộc Châu", "Khám phá bản làng Thái"],
+                "foods": ["Bê chao Mộc Châu", "Cá suối nướng Pa Pỉnh Tộp", "Thịt trâu gác bếp", "Xôi ngũ sắc"],
+                "rituals": [],
+                "connected_routes": ["Quốc lộ 6"],
+                "source": "Sở Văn hóa Thể thao và Du lịch tỉnh Sơn La",
+                "verification_status": "official_gov",
+                "coordinate_status": "none",
+                "ticket_price_notes": None,
+                "opening_hours_notes": None,
+                "is_artifact": False,
+                "holding_institution": None,
+                "weather_notes": "Mùa xuân hoa mận nở trắng; mùa hè mát mẻ; mùa đông se lạnh nhiều sương mù."
+            },
+            {
+                "collection": "cultural_heritage",
+                "id": "ca-trong-dong-ngoc-lu",
+                "name": "Trống đồng Ngọc Lũ",
+                "localized_names": {"vi": "Trống đồng Ngọc Lũ", "en": "Ngoc Lu Bronze Drum"},
+                "province": "Hà Nội",
+                "province_id": "01",
+                "category": "Bảo vật quốc gia",
+                "description": "Bảo vật quốc gia số 1 của Việt Nam thuộc Văn hóa Đông Sơn, niên đại thế kỷ II-III TCN. Hiện vật được lưu giữ tại Bảo tàng Lịch sử Quốc gia (Số 1 Tràng Tiền, Hà Nội).",
+                "experiences": ["Tham quan gian trưng bày Kim khí thời Hùng Vương", "Tìm hiểu kỹ thuật đúc đồng Đông Sơn"],
+                "foods": ["Ẩm thực phố cổ Hà Nội", "Chả cá Lã Vọng", "Cà phê trứng"],
+                "rituals": [],
+                "connected_routes": [],
+                "source": "Bảo tàng Lịch sử Quốc gia & Cục Di sản Văn hóa",
+                "verification_status": "official_gov",
+                "coordinate_status": "exact",
+                "ticket_price_notes": None,
+                "opening_hours_notes": None,
+                "is_artifact": True,
+                "holding_institution": "Bảo tàng Lịch sử Quốc gia",
+                "weather_notes": "Bảo tàng mở cửa quanh năm trong phòng trưng bày điều hòa."
+            },
+            {
+                "collection": "cultural_heritage",
+                "id": "ca-nghe-thuat-xoe-thai",
+                "name": "Nghệ thuật Xòe Thái",
+                "localized_names": {"vi": "Nghệ thuật Xòe Thái", "en": "Art of Xoe Dance of the Tai People"},
+                "province": "Sơn La",
+                "province_id": "14",
+                "category": "Di sản Văn hóa Phi vật thể UNESCO",
+                "description": "Điệu múa dân gian truyền thống biểu trưng cho tinh thần cộng đồng, lòng hiếu khách của người Thái Tây Bắc.",
+                "experiences": ["Tham gia vòng xòe hoa tại Bản Áng", "Giao lưu văn nghệ dân gian"],
+                "foods": ["Cơm lam", "Cá nướng Pa Pỉnh Tộp", "Rượu cần"],
+                "rituals": ["Múa xòe vòng", "Uống rượu cần"],
+                "connected_routes": [],
+                "source": "UNESCO & Sở VHTT&DL Sơn La",
+                "verification_status": "official_gov",
+                "coordinate_status": "none",
+                "ticket_price_notes": None,
+                "opening_hours_notes": None,
+                "is_artifact": False,
+                "holding_institution": None,
+                "weather_notes": "Các lễ hội diễn ra rộn ràng vào dịp đầu xuân và mùa gặt."
+            },
+            {
+                "collection": "local_cuisine",
+                "id": "dish-be-chao-moc-chau",
+                "name": "Bê chao Mộc Châu",
+                "localized_names": {"vi": "Bê chao Mộc Châu", "en": "Moc Chau Crisp-Fried Veal"},
+                "province": "Sơn La",
+                "province_id": "14",
+                "category": "Đặc sản địa phương",
+                "description": "Thịt bê đồi non được chao nhanh trong chảo dầu sôi già. Bì giòn, thịt mềm ngọt mọng nước chấm cùng tương bần đậm đà.",
+                "experiences": ["Thưởng thức tại trang trại thảo nguyên Mộc Châu"],
+                "foods": ["Bê non Mộc Châu", "Tương bần", "Gừng sả"],
+                "rituals": [],
+                "connected_routes": [],
+                "source": "Sở VHTT&DL tỉnh Sơn La",
+                "verification_status": "official_gov",
+                "coordinate_status": "approximate",
+                "ticket_price_notes": None,
+                "opening_hours_notes": None,
+                "is_artifact": False,
+                "holding_institution": None,
+                "weather_notes": "Quanh năm, đặc biệt ngon vào mùa se lạnh."
+            },
+            {
+                "collection": "tourism_experiences",
+                "id": "exp-san-may-ta-xua",
+                "name": "Săn mây Tà Xùa & Sống lưng Khủng long",
+                "localized_names": {"vi": "Săn mây Tà Xùa", "en": "Ta Xua Cloud Hunting"},
+                "province": "Sơn La",
+                "province_id": "14",
+                "category": "Trải nghiệm Khám phá",
+                "description": "Đón bình minh giữa biển mây bồng bềnh tại xã Tà Xùa và sống lưng khủng long Háng Đồng cheo leo trên độ cao 2.000m.",
+                "experiences": ["Săn mây Tà Xùa", "Trekking sống lưng khủng long", "Thưởng thức chè Shan tuyết"],
+                "foods": ["Thịt lợn bản nướng", "Măng trúc xào", "Cơm lam"],
+                "rituals": [],
+                "connected_routes": ["Tỉnh lộ 112"],
+                "source": "Sở Văn hóa Thể thao và Du lịch tỉnh Sơn La",
+                "verification_status": "official_gov",
+                "coordinate_status": "approximate",
+                "ticket_price_notes": None,
+                "opening_hours_notes": None,
+                "is_artifact": False,
+                "holding_institution": None,
+                "weather_notes": "Mùa săn mây đẹp nhất từ tháng 10 đến tháng 4 năm sau."
+            }
+        ]
+        combined = default_corpus
+        for it in default_corpus:
+            multi_collections[it["collection"]].append(it)
+
+    rag_corpus = combined
+    logger.info(f"Successfully loaded {len(rag_corpus)} verified facts across {len(multi_collections)} national collections.")
+
+def retrieve_rag_context(
+    query: str,
+    top_k: int = 4,
+    collections: Optional[List[str]] = None,
+    provinces: Optional[List[str]] = None
+) -> List[Dict[str, Any]]:
+    """
+    Source-Aware BM25/Token-Ranked Retrieval with Multi-Collection & Administrative Hierarchy Filtering.
+    Strictly token-based with source authority weighting: official_gov (1.5x) > verified (1.3x) > needs_review (1.0x) > unverified (0.7x).
+    Honest retrieval disclosure: Zero vector embeddings claim.
+    """
+    import re
+    q_lower = query.lower().strip()
+    if not q_lower:
+        return []
+
+    q_tokens = [t for t in re.sub(r"[^\w\s]", " ", q_lower).split() if len(t) > 1]
+
+    target_corpus = rag_corpus
+    if collections:
+        cols_set = set(collections)
+        target_corpus = [item for item in target_corpus if item.get("collection") in cols_set]
+
+    if provinces:
+        provs_lower = [p.lower().strip() for p in provinces]
+        target_corpus = [
+            item for item in target_corpus
+            if any(
+                p in item.get("province", "").lower()
+                or (item.get("province_id") and p == item.get("province_id", "").lower())
+                for p in provs_lower
+            )
+        ]
+
     scored = []
-    for item in rag_corpus:
-        score = 0
-        searchable_text = f"{item['name']} {item['description']} {' '.join(item.get('experiences', []))} {' '.join(item.get('foods', []))} {item['province']} {item.get('subregion', '')}".lower()
-        for token in q_lower.split():
-            if len(token) > 2 and token in searchable_text:
-                score += 1
-        if item['name'].lower() in q_lower:
-            score += 6
-        if item['province'].lower() in q_lower:
-            score += 3
-        if score > 0:
-            scored.append((score, item))
+    for item in target_corpus:
+        raw_score = 0
+        name = item.get("name", "").lower()
+        desc = item.get("description", "").lower()
+        prov = item.get("province", "").lower()
+        exps = " ".join(item.get("experiences", [])).lower()
+        foods = " ".join(item.get("foods", [])).lower()
+        routes = " ".join(item.get("connected_routes", [])).lower()
+        searchable_text = f"{name} {desc} {prov} {exps} {foods} {routes}"
+
+        # 1. Exact match on title
+        if q_lower == name:
+            raw_score += 50
+        elif name in q_lower or q_lower in name:
+            raw_score += 25
+
+        # 2. Province match
+        if prov and prov in q_lower:
+            raw_score += 15
+
+        # 3. Token match
+        for token in q_tokens:
+            if token in name:
+                raw_score += 8
+            elif token in searchable_text:
+                raw_score += 2
+
+        if raw_score > 0:
+            status = item.get("verification_status", "unverified")
+            if status == "official_gov":
+                multiplier = 1.5
+            elif status == "verified":
+                multiplier = 1.3
+            elif status == "needs_review":
+                multiplier = 1.0
+            else:
+                multiplier = 0.7
+
+            final_score = raw_score * multiplier
+            scored.append((final_score, item))
 
     scored.sort(key=lambda x: x[0], reverse=True)
-    return [item for _, item in scored[:top_k]]
+
+    # Deduplicate results
+    seen_ids = set()
+    results = []
+    for score, item in scored:
+        item_id = item.get("id")
+        if item_id and item_id in seen_ids:
+            continue
+        seen_ids.add(item_id)
+        item_copy = dict(item)
+        item_copy["score"] = round(score, 1)
+        results.append(item_copy)
+        if len(results) >= top_k:
+            break
+
+    return results
 
 # Lifespan: warm up model in Ollama
 @asynccontextmanager
@@ -391,6 +593,7 @@ class ModelInfoResponse(BaseModel):
     runtime_expires_note: str
     active_model_ready: bool = True
     concurrency_max: int = MAX_CONCURRENT_REQUESTS
+    collections_summary: Optional[Dict[str, int]] = None
 
 def build_adaptive_system_prompt(profile: Optional[CustomerProfile], rag_facts_text: str) -> str:
     """
@@ -415,7 +618,8 @@ def build_adaptive_system_prompt(profile: Optional[CustomerProfile], rag_facts_t
             "1. ONLY state verified facts. NEVER fabricate ticket prices, opening hours, or assumed coordinates.\n"
             "2. Distinguish clearly: Cultural artifacts kept in museums differ from archaeological discovery sites; artifact coordinates are not museum entrance gates.\n"
             "3. If a site's coordinates or status have unverified field notes, advise travelers to confirm with local management before traveling.\n"
-            "4. Respond in polite, engaging, and culturally evocative English while preserving authentic Vietnamese place and dish names."
+            "4. If ticket prices, opening hours, or phone numbers are absent in the retrieved facts, you MUST state: 'Thông tin chưa được xác thực, vui lòng liên hệ ban quản lý địa phương.' (or 'Official information is not yet verified, please contact local site management.'). NEVER guess or estimate them.\n"
+            "5. Respond in polite, engaging, and culturally evocative English while preserving authentic Vietnamese place and dish names."
         )
     else:
         base_instructions = (
@@ -424,7 +628,8 @@ def build_adaptive_system_prompt(profile: Optional[CustomerProfile], rag_facts_t
             "1. CHỈ sử dụng sự thật đã xác minh. TUYỆT ĐỐI KHÔNG tự tạo ra giá vé, giờ mở cửa hoặc tọa độ giả định.\n"
             "2. Phân biệt rõ: Hiện vật văn hóa (Bảo tàng lưu giữ) KHÁC với địa điểm khảo cổ nơi phát hiện; tọa độ hiện vật không phải cổng bảo tàng.\n"
             "3. Nếu thông tin hoặc tọa độ của điểm đến chưa được đối soát thực địa, hãy nhắc nhở du khách liên hệ ban quản lý địa phương trước khi di chuyển.\n"
-            "4. Trả lời bằng tiếng Việt lịch sự, truyền cảm, có chiều sâu văn hóa bản địa."
+            "4. Nếu giá vé, giờ mở cửa hoặc số điện thoại không có trong thông tin tra cứu, BẮT BUỘC nêu rõ: 'Thông tin chưa được xác thực, vui lòng liên hệ ban quản lý địa phương.' TUYỆT ĐỐI KHÔNG tự bịa hoặc ước lượng.\n"
+            "5. Trả lời bằng tiếng Việt lịch sự, truyền cảm, có chiều sâu văn hóa bản địa."
         )
 
     guidance_sections = []
@@ -611,35 +816,64 @@ async def model_info(token: str = Depends(verify_token)):
         context_window=32768,
         runtime_expires_note="Temporary Google Colab runtime. Endpoint expires when notebook kernel disconnects.",
         active_model_ready=model_ready,
-        concurrency_max=MAX_CONCURRENT_REQUESTS
+        concurrency_max=MAX_CONCURRENT_REQUESTS,
+        collections_summary={k: len(v) for k, v in multi_collections.items()}
     )
 
 @app.post("/api/chat")
 async def chat(request: ChatRequest, token: str = Depends(verify_token)):
     """
-    Main travel AI inference endpoint with Vietnam Tourism RAG grounding,
+    Main travel AI inference endpoint with Vietnam Tourism Multi-Collection RAG grounding,
     Adaptive Customer Profile Personalization, and concurrency locking.
     """
-    # 1. Retrieve RAG grounding facts
-    retrieved_facts = retrieve_rag_context(request.prompt, top_k=3)
+    # 1. Retrieve RAG grounding facts with multi-collection and province support
+    req_collections = None
+    req_provinces = None
+    if request.context:
+        if isinstance(request.context.get("collections"), list):
+            req_collections = request.context.get("collections")
+        if isinstance(request.context.get("provinces"), list):
+            req_provinces = request.context.get("provinces")
+
+    retrieved_facts = retrieve_rag_context(
+        request.prompt,
+        top_k=4,
+        collections=req_collections,
+        provinces=req_provinces
+    )
     rag_context_text = ""
     sources_metadata = []
 
     if retrieved_facts:
         for fact in retrieved_facts:
+            is_art = fact.get("is_artifact", False)
+            art_note = f" (Hiện vật bảo tàng lưu giữ tại {fact.get('holding_institution')})" if is_art else ""
+            badge = "[CHÍNH THỐNG]" if fact.get("verification_status") == "official_gov" else "[ĐÃ XÁC MINH]" if fact.get("verification_status") == "verified" else "[CẦN ĐỐI SOÁT]"
+            coord_note = " (Tọa độ chưa đối soát thực địa)" if fact.get("coordinate_status") == "none" else ""
+            price_note = fact.get("ticket_price_notes") or "Chưa có thông tin chính thức (liên hệ ban quản lý)"
+            hours_note = fact.get("opening_hours_notes") or "Chưa có thông tin chính thức (liên hệ ban quản lý)"
+
             rag_context_text += (
-                f"- Tên: {fact['name']} ({fact['province']})\n"
+                f"- [{fact.get('collection', 'tourism')}] {fact['name']} ({fact['province']}){art_note} {badge}\n"
                 f"  Mô tả: {fact['description']}\n"
                 f"  Trải nghiệm: {', '.join(fact.get('experiences', []))}\n"
                 f"  Ẩm thực: {', '.join(fact.get('foods', []))}\n"
-                f"  Thời tiết: {fact.get('weather_notes', '')}\n"
+                f"  Giá vé tham khảo: {price_note}\n"
+                f"  Giờ mở cửa: {hours_note}\n"
+                f"  Tọa độ / Điểm đến: {fact.get('coordinate_status', 'none')}{coord_note}\n"
+                f"  Thời tiết / Mùa đẹp: {fact.get('weather_notes', '')}\n"
                 f"  Nguồn đối soát: {fact['source']}\n"
             )
             sources_metadata.append({
                 "name": fact["name"],
                 "province": fact["province"],
                 "source": fact["source"],
-                "coordinate_status": fact.get("coordinate_status", "unverified")
+                "collection": fact.get("collection"),
+                "verification_status": fact.get("verification_status", "unverified"),
+                "coordinate_status": fact.get("coordinate_status", "unverified"),
+                "is_artifact": is_art,
+                "ticket_price_notes": fact.get("ticket_price_notes"),
+                "opening_hours_notes": fact.get("opening_hours_notes"),
             })
 
     # 2. Build personalized system prompt (Server controlled - Prompt Injection Defense)

@@ -1,0 +1,1640 @@
+[
+  {
+    "review_id": "rev-1794579555817-1",
+    "incoming_record": {
+      "id": "poi-son-la-064",
+      "name": "Chợ phiên Chiềng Đi 2",
+      "localized_names": {
+        "vi": "Chợ phiên Chiềng Đi 2"
+      },
+      "slug": "son-la-cho-phien-chieng-di-2",
+      "description": "Du khách có thể thưởng thức ẩm thực dân tộc, mua sắm nông sản, sản phẩm thủ công, giao lưu văn hóa, văn nghệ\n\nTrải nghiệm chợ phiên,ẩm thực, mua sắm nôngsản, văn hóa, văn nghệ",
+      "short_description": "Du khách có thể thưởng thức ẩm thực dân tộc, mua sắm nông sản, sản phẩm thủ công, giao lưu văn hóa, văn nghệ",
+      "province_id": "14",
+      "province_name_canonical": "Sơn La",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Du lịch cộng đồng",
+      "entity_type": "tourism_poi",
+      "poi_category": "community_tourism",
+      "latitude": null,
+      "longitude": null,
+      "address": "Bản Chiềng Đi 2, xã Vân Hồ",
+      "coordinate_validity": "missing",
+      "coordinate_confidence": "none",
+      "verification_status": "official_gov",
+      "verification_reason": "Dữ liệu hồ sơ quản lý du lịch chính thức từ Sở VHTT&DL tỉnh Sơn La.",
+      "experiences": [
+        "Du lịch cộng đồng"
+      ],
+      "local_food": [
+        "Thịt trâu gác bếp",
+        "Cá suối nướng Pa Pỉnh Tộp",
+        "Bê chao Mộc Châu",
+        "Nậm pịa",
+        "Xôi ngũ sắc"
+      ],
+      "cultural_highlights": [
+        "Bản sắc văn hóa đồng bào Thái, Mông, Mường",
+        "Nghệ thuật Xòe Thái (Di sản UNESCO)",
+        "Lễ hội Hết Chá"
+      ],
+      "official_recognition": "Điểm du lịch",
+      "managing_entity": "Ban quản lý bản Chiềng Đi 2",
+      "operating_status": "active",
+      "best_season": "Tháng 10 - Tháng 4 (Mùa hoa cải, hoa mơ mận và lễ hội vùng cao)",
+      "recommended_duration": "Nửa ngày đến 1 ngày",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [],
+      "provenance": {
+        "source_id": "src-sonla-dovst",
+        "source_name": "Sở Văn hóa, Thể thao và Du lịch tỉnh Sơn La",
+        "source_url": "https://dulichsonla.gov.vn",
+        "source_date": "2026-11-10",
+        "source_type": "provincial_portal",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "poi-son-la-064",
+        "attribution_notes": "Dữ liệu hồ sơ quản lý du lịch Sơn La. Đã gỡ bỏ toàn bộ CCCD/CMND và số điện thoại cá nhân. Tọa độ GPS chưa xác minh trên thực địa; không hiển thị ghim tọa độ sai lệch."
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.744Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested raw record from official Sơn La POI register. PII scrubbed."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.744Z",
+      "updated_at": "2026-11-13T14:19:15.744Z",
+      "last_verified_at": "2026-11-10"
+    },
+    "existing_record": {
+      "id": "poi-son-la-063",
+      "name": "Chợ phiên đêm Chiềng Đi 1",
+      "localized_names": {
+        "vi": "Chợ phiên đêm Chiềng Đi 1"
+      },
+      "slug": "son-la-cho-phien-dem-chieng-di-1",
+      "description": "Nơi tái hiện không gian chợ vùng cao về đêm. Du khách có thể thưởng thức ẩm thực dân tộc, mua sắm nông sản, sản phẩm thủ công và giao lưu văn nghệ truyền thống. Đây là điểm nhấn thu hút khách du lịch, góp phần quảng bá bản sắc văn hóa các dân tộc địa phương.\n\nTrải nghiệm chợ phiên,ẩm thực, mua sắm nôngsản, văn hóa, văn nghệ",
+      "short_description": "Nơi tái hiện không gian chợ vùng cao về đêm. Du khách có thể thưởng thức ẩm thực dân tộc, mua sắm nông sản, sản phẩm thủ công và giao lưu văn nghệ truyền thống. Đây là điểm nhấn thu hút khách du lịch, góp phần quảng b...",
+      "province_id": "14",
+      "province_name_canonical": "Sơn La",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Du lịch cộng đồng",
+      "entity_type": "tourism_poi",
+      "poi_category": "community_tourism",
+      "latitude": null,
+      "longitude": null,
+      "address": "Bản Chiềng Đi 1, xã Vân Hồ",
+      "coordinate_validity": "missing",
+      "coordinate_confidence": "none",
+      "verification_status": "official_gov",
+      "verification_reason": "Dữ liệu hồ sơ quản lý du lịch chính thức từ Sở VHTT&DL tỉnh Sơn La.",
+      "experiences": [
+        "Du lịch cộng đồng"
+      ],
+      "local_food": [
+        "Thịt trâu gác bếp",
+        "Cá suối nướng Pa Pỉnh Tộp",
+        "Bê chao Mộc Châu",
+        "Nậm pịa",
+        "Xôi ngũ sắc"
+      ],
+      "cultural_highlights": [
+        "Bản sắc văn hóa đồng bào Thái, Mông, Mường",
+        "Nghệ thuật Xòe Thái (Di sản UNESCO)",
+        "Lễ hội Hết Chá"
+      ],
+      "official_recognition": "Điểm du lịch",
+      "managing_entity": "Ban quản lý bản Chiềng Đi 1",
+      "operating_status": "active",
+      "best_season": "Tháng 10 - Tháng 4 (Mùa hoa cải, hoa mơ mận và lễ hội vùng cao)",
+      "recommended_duration": "Nửa ngày đến 1 ngày",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [],
+      "provenance": {
+        "source_id": "src-sonla-dovst",
+        "source_name": "Sở Văn hóa, Thể thao và Du lịch tỉnh Sơn La",
+        "source_url": "https://dulichsonla.gov.vn",
+        "source_date": "2026-11-10",
+        "source_type": "provincial_portal",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "poi-son-la-063",
+        "attribution_notes": "Dữ liệu hồ sơ quản lý du lịch Sơn La. Đã gỡ bỏ toàn bộ CCCD/CMND và số điện thoại cá nhân. Tọa độ GPS chưa xác minh trên thực địa; không hiển thị ghim tọa độ sai lệch."
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.744Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested raw record from official Sơn La POI register. PII scrubbed."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.744Z",
+      "updated_at": "2026-11-13T14:19:15.744Z",
+      "last_verified_at": "2026-11-10"
+    },
+    "similarity_score": 0.8,
+    "match_reasons": [
+      "High name similarity (80.0%) in Sơn La"
+    ],
+    "flagged_at": "2026-11-13T14:19:15.817Z",
+    "status": "pending_review"
+  },
+  {
+    "review_id": "rev-1794579555892-2",
+    "incoming_record": {
+      "id": "poi-north-cho-phien-bac-ha",
+      "name": "Bac Ha Sunday Market",
+      "localized_names": {
+        "vi": "Chợ phiên Bắc Hà"
+      },
+      "slug": "cho-phien-bac-ha",
+      "description": "Chợ phiên Bắc Hà họp định kỳ vào sáng Chủ nhật hàng tuần tại trung tâm thị trấn Bắc Hà, tỉnh Lào Cai. Đây là nơi hội tụ giao lưu thương mại và văn hóa của 14 dân tộc anh em vùng cao như H'Mông hoa, Tày, Nùng, Dao đỏ, Phù Lá. Chợ rực rỡ như một vườn hoa di động với váy áo sặc sỡ của các cô gái Mông Hoa. Chợ được chia thành nhiều khu vực chuyên biệt: chợ thổ cẩm, chợ ẩm thực thắng cố rượu ngô, chợ ngựa, chợ trâu và chợ chó cộc đuôi H'Mông nức tiếng.",
+      "short_description": "Chợ phiên dân tộc vùng cao lớn nhất và rực rỡ sắc màu nhất miền Bắc họp vào mỗi sáng Chủ nhật tại 'cao nguyên trắng'.",
+      "province_id": "15",
+      "province_name_canonical": "Lào Cai",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Văn hóa & Di sản",
+      "entity_type": "tourism_poi",
+      "poi_category": "tourism_spot",
+      "latitude": 22.5367,
+      "longitude": 104.2883,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "approximate",
+      "verification_status": "verified",
+      "verification_reason": "Editorial curated destination",
+      "experiences": [
+        "Thưởng thức bát thắng cố ngựa sôi sùng sục bên chén rượu ngô Bản Phố",
+        "Chọn mua trang sức bạc và thổ cẩm thủ công nguyên bản",
+        "Xem đồng bào vùng cao ngã giá mua bán ngựa thồ và trâu cày",
+        "Hòa mình vào không khí ngày hội tưng bừng tràn ngập tiếng cười"
+      ],
+      "local_food": [
+        "Thắng cố ngựa Bắc Hà",
+        "Phở chua Bắc Hà bánh phở hồng",
+        "Rượu ngô Bản Phố men lá",
+        "Thịt lợn đen nướng mật ong"
+      ],
+      "cultural_highlights": [
+        "Chợ phiên vùng cao đặc sắc nhất Đông Nam Á do du khách quốc tế bình chọn",
+        "Không gian bảo tồn trang phục truyền thống rực rỡ của người H'Mông Hoa",
+        "Tập tục giao lưu gặp gỡ hẹn hò của nam thanh nữ tú vùng cao"
+      ],
+      "official_recognition": null,
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Quanh năm vào mỗi sáng Chủ nhật, đẹp nhất vào mùa hoa mận trắng (tháng 1 - 2)",
+      "recommended_duration": "3 - 4 giờ (Tham khảo)",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Chợ Chủ nhật Bắc Hà",
+        "Chợ phiên vùng cao Lào Cai"
+      ],
+      "provenance": {
+        "source_id": "src-north-editorial",
+        "source_name": "UBND Huyện Bắc Hà — Cổng Thông tin Du lịch Bắc Hà",
+        "source_url": "https://bacha.laocai.gov.vn",
+        "source_date": "2026-10-31",
+        "source_type": "editorial_curated",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "cho-phien-bac-ha"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.757Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested Northern destination. Admin mapped: Lào Cai."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.757Z",
+      "updated_at": "2026-11-13T14:19:15.757Z",
+      "last_verified_at": "2026-10-31"
+    },
+    "existing_record": {
+      "id": "poi-north-bac-ha",
+      "name": "Bac Ha",
+      "localized_names": {
+        "vi": "Bắc Hà"
+      },
+      "slug": "bac-ha",
+      "description": "Được mệnh danh là Cao nguyên Trắng của tỉnh Lào Cai, Bắc Hà nổi tiếng với những vườn mận Tam Hoa nở hoa trắng muốt mỗi độ xuân về. Chợ phiên Bắc Hà họp vào sáng Chủ nhật hàng tuần là phiên chợ vùng cao lớn nhất và rực rỡ sắc màu thổ cẩm nhất vùng Tây Bắc, nơi lưu giữ nguyên vẹn nếp sinh hoạt trao đổi cổ truyền.",
+      "short_description": "Cao nguyên trắng hoa mận nổi tiếng với Chợ phiên Bắc Hà rực rỡ sắc áo váy thổ cẩm và Dinh thự Hoàng A Tưởng tráng lệ.",
+      "province_id": "15",
+      "province_name_canonical": "Lào Cai",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Văn hóa & Di sản",
+      "entity_type": "tourism_poi",
+      "poi_category": "tourism_spot",
+      "latitude": 22.5372,
+      "longitude": 104.2882,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "approximate",
+      "verification_status": "verified",
+      "verification_reason": "Editorial curated destination",
+      "experiences": [
+        "Dạo chợ phiên Bắc Hà sáng Chủ Nhật lớn nhất Tây Bắc",
+        "Thăm Dinh thự Vua Mèo Hoàng A Tưởng kiến trúc Á-Âu",
+        "Xem đua ngựa truyền thống Bắc Hà không yên cương"
+      ],
+      "local_food": [
+        "Phở chua Bắc Hà bánh đỏ",
+        "Thắng cố ngựa chợ phiên chuẩn vị",
+        "Rượu ngô Bản Phố ủ men hồng mi",
+        "Mận tam hoa Bắc Hà"
+      ],
+      "cultural_highlights": [
+        "Nghệ thuật thêu váy xòe hoa người Mông Hoa",
+        "Đua ngựa truyền thống Bắc Hà di sản quốc gia"
+      ],
+      "official_recognition": null,
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Tháng 1 - tháng 3 (Mùa hoa mận Tam Hoa), Tháng 5 - tháng 6 (Mùa mận chín & Lễ hội Đua ngựa)",
+      "recommended_duration": "2 ngày 1 đêm (Bao gồm sáng Chủ nhật đi chợ phiên)",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Cao nguyên trắng Bắc Hà"
+      ],
+      "provenance": {
+        "source_id": "src-north-editorial",
+        "source_name": "Sở VHTT&DL Lào Cai",
+        "source_url": "https://laocai.gov.vn",
+        "source_date": "2026-10-31",
+        "source_type": "editorial_curated",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "bac-ha"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.749Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested Northern destination. Admin mapped: Lào Cai."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.749Z",
+      "updated_at": "2026-11-13T14:19:15.749Z",
+      "last_verified_at": "2026-10-31"
+    },
+    "similarity_score": 0.7,
+    "match_reasons": [
+      "Close proximity (~57m) with overlapping vocabulary (50%)"
+    ],
+    "flagged_at": "2026-11-13T14:19:15.892Z",
+    "status": "pending_review"
+  },
+  {
+    "review_id": "rev-1794579555910-3",
+    "incoming_record": {
+      "id": "poi-north-nha-tho-lon-ha-noi",
+      "name": "St. Joseph's Cathedral Hanoi",
+      "localized_names": {
+        "vi": "Nhà thờ Lớn Hà Nội"
+      },
+      "slug": "nha-tho-lon-ha-noi",
+      "description": "Nhà thờ Lớn Hà Nội (Nhà thờ Chính tòa Thánh Giuse) tọa lạc tại số 40 phố Nhà Chung, quận Hoàn Kiếm, được khánh thành vào ngày Lễ Giáng sinh năm 1887. Công trình được thiết kế theo phong cách Tân Gothic (Gothic Revival) mô phỏng Nhà thờ Đức Bà Paris với hai tháp chuông vuông cao 31,5m, tường gạch nung trát vôi bổi mộc mạc và hệ thống cửa sổ kính màu lung linh. Đây không chỉ là trung tâm tôn giáo quan trọng của Tổng giáo phận Hà Nội mà còn là điểm hẹn văn hóa, cà phê vỉa hè quen thuộc của giới trẻ và du khách bốn phương.",
+      "short_description": "Nhà thờ Công giáo cổ kính nhất thủ đô với phong cách kiến trúc Gothic Revival đặc trưng thời Pháp thuộc.",
+      "province_id": "01",
+      "province_name_canonical": "Hà Nội",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Di tích lịch sử",
+      "entity_type": "tourism_poi",
+      "poi_category": "cultural_historical_relic",
+      "latitude": 21.0288,
+      "longitude": 105.8495,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "approximate",
+      "verification_status": "verified",
+      "verification_reason": "Editorial curated destination",
+      "experiences": [
+        "Chiêm ngưỡng kiến trúc Gothic cổ kính giữa lòng phố cổ",
+        "Thưởng thức trà chanh chém gió và nem chua nướng ngõ Ấu Triệu",
+        "Lắng nghe tiếng chuông nhà thờ ngân vang lúc hoàng hôn",
+        "Chụp ảnh lưu niệm tại quảng trường Nhà Thờ"
+      ],
+      "local_food": [
+        "Trà chanh Nhà Thờ",
+        "Nem chua nướng Ấu Triệu",
+        "Bánh gối Lý Quốc Sư",
+        "Phở bò truyền thống Ấu Triệu"
+      ],
+      "cultural_highlights": [
+        "Công trình tôn giáo mang kiến trúc Tân Gothic tiêu biểu thời Pháp",
+        "Biểu tượng giao lưu văn hóa Đông - Tây của đất Hà Thành",
+        "Trung tâm sinh hoạt Công giáo lâu đời nhất thủ đô"
+      ],
+      "official_recognition": null,
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Quanh năm, đẹp nhất mùa thu se lạnh (tháng 9 - 11) và mùa Giáng sinh lung linh đèn hoa",
+      "recommended_duration": "1 - 2 giờ",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Nhà thờ Chính tòa Thánh Giuse",
+        "Nhà thờ Lớn Nhà Chung"
+      ],
+      "provenance": {
+        "source_id": "src-north-editorial",
+        "source_name": "Sở Du lịch Hà Nội — Tổng giáo phận Hà Nội",
+        "source_url": "https://sodulich.hanoi.gov.vn",
+        "source_date": "2026-10-31",
+        "source_type": "editorial_curated",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "nha-tho-lon-ha-noi"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.763Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested Northern destination. Admin mapped: Hà Nội."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.763Z",
+      "updated_at": "2026-11-13T14:19:15.763Z",
+      "last_verified_at": "2026-10-31"
+    },
+    "existing_record": {
+      "id": "poi-north-ha-noi",
+      "name": "Hanoi Capital",
+      "localized_names": {
+        "vi": "Hà Nội"
+      },
+      "slug": "ha-noi",
+      "description": "Trái tim ngàn năm văn hiến của Việt Nam, kinh thành Thăng Long xưa với 36 phố phường rêu phong, những hồ nước xanh biếc và di sản kiến trúc giao thoa Đông - Tây. Hà Nội là kinh đô ẩm thực và bảo tàng sống về đời sống tinh thần người Việt.",
+      "short_description": "Thủ đô nghìn năm văn hiến với 36 phố phường rêu phong, Hồ Gươm cổ kính và chiều sâu di sản văn hóa ẩm thực độc đáo.",
+      "province_id": "01",
+      "province_name_canonical": "Hà Nội",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Văn hóa & Di sản",
+      "entity_type": "tourism_poi",
+      "poi_category": "tourism_spot",
+      "latitude": 21.0285,
+      "longitude": 105.8542,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "approximate",
+      "verification_status": "verified",
+      "verification_reason": "Editorial curated destination",
+      "experiences": [
+        "Dạo bước quanh Hồ Hoàn Kiếm và viếng Đền Ngọc Sơn",
+        "Khám phá 36 phố phường phố cổ bằng xích lô",
+        "Viếng Văn Miếu - Quốc Tử Giám trường đại học đầu tiên",
+        "Uống cà phê trứng Giảng tại ngõ cổ"
+      ],
+      "local_food": [
+        "Phở bò Bát Đàn truyền thống",
+        "Bún chả que tre Hàng Mành",
+        "Chả cá Lã Vọng thơm thì là",
+        "Cà phê trứng phố cổ"
+      ],
+      "cultural_highlights": [
+        "Di sản Hoàng thành Thăng Long UNESCO",
+        "Múa rối nước Thăng Long",
+        "Nếp sống thanh lịch Tràng An"
+      ],
+      "official_recognition": null,
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Tháng 9 - tháng 11 (Mùa thu Hà Nội se lạnh, hoa sữa và nắng vàng)",
+      "recommended_duration": "3 - 4 ngày",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Thăng Long",
+        "Đông Kinh",
+        "Kẻ Chợ",
+        "Tràng An"
+      ],
+      "provenance": {
+        "source_id": "src-north-editorial",
+        "source_name": "Sở Du lịch Hà Nội / UNESCO",
+        "source_url": "https://hanoi.gov.vn",
+        "source_date": "2026-10-31",
+        "source_type": "editorial_curated",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "ha-noi"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.751Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested Northern destination. Admin mapped: Hà Nội."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.751Z",
+      "updated_at": "2026-11-13T14:19:15.751Z",
+      "last_verified_at": "2026-10-31"
+    },
+    "similarity_score": 0.7,
+    "match_reasons": [
+      "Close proximity (~489m) with overlapping vocabulary (20%)"
+    ],
+    "flagged_at": "2026-11-13T14:19:15.910Z",
+    "status": "pending_review"
+  },
+  {
+    "review_id": "rev-1794579555930-4",
+    "incoming_record": {
+      "id": "poi-nat-ha-noi",
+      "name": "Hanoi",
+      "localized_names": {
+        "vi": "Hà Nội",
+        "en": "Hanoi"
+      },
+      "slug": "national-ha-noi",
+      "description": "Hanoi is an evocative sensory tapestry where 1,000-year-old temple bells mingle with buzzing motorbike rhythms. Walk through the 36 guild streets of the Old Quarter, savor world-famous egg coffee beside Hoàn Kiếm Lake, and uncover the tranquil courtyards of the Temple of Literature.",
+      "short_description": "A thousand years of literature, guild alleys, and morning pho steam.",
+      "province_id": "01",
+      "province_name_canonical": "Hà Nội",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Khu du lịch cấp tỉnh",
+      "entity_type": "tourism_poi",
+      "poi_category": "provincial_tourism_area",
+      "latitude": 21.0285,
+      "longitude": 105.8542,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "province_level",
+      "verification_status": "verified",
+      "verification_reason": "National administrative cluster destination verified per Resolution 202/2025/QH15.",
+      "experiences": [
+        {
+          "id": "exp-hanoi-battrang",
+          "title": "Bát Tràng Ceramic Wheel Atelier Session",
+          "vietnameseTitle": "Trải Nghiệm Làm Gốm Thủ Công Làng Bát Tràng",
+          "category": "Craft Village",
+          "location": "Gia Lâm, Hà Nội",
+          "destinationId": "ha-noi",
+          "description": "Cross the Red River to an 800-year-old pottery village. Throw clay on a manual potter wheel with 5th-generation masters.",
+          "bestTimeOfDay": "Morning",
+          "estimatedCostVND": "150,000 — 300,000 VND",
+          "highlights": [
+            "Throw raw clay",
+            "Custom hand-glaze",
+            "Visit ancient brick kilns"
+          ],
+          "image": "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=800&auto=format&fit=crop",
+          "hostOrCraftsman": "Bát Tràng Pottery Collective"
+        },
+        {
+          "id": "exp-hanoi-market",
+          "title": "Dawn Produce & Street Food Walk at Đồng Xuân",
+          "vietnameseTitle": "Khám Phá Ẩm Thực Chợ Sớm Đồng Xuân",
+          "category": "Local Market",
+          "location": "Hoàn Kiếm, Hà Nội",
+          "destinationId": "ha-noi",
+          "description": "Explore the wholesale produce arrivals at dawn, sampling piping hot bánh cuốn (steamed rice rolls) and chè long nhãn.",
+          "bestTimeOfDay": "Morning",
+          "estimatedCostVND": "80,000 — 150,000 VND",
+          "highlights": [
+            "Fresh herbs tasting",
+            "Rice batter steamers",
+            "Morning street rhythm"
+          ],
+          "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop"
+        }
+      ],
+      "local_food": [
+        {
+          "name": "Traditional Beef Pho",
+          "vietnameseName": "Phở Bò Gia Truyền",
+          "description": "Simmered beef marrow bone broth infused with star anise, cinnamon, ginger, and fresh rice noodles.",
+          "estimatedPriceVND": "50,000 — 75,000 VND (~$2.00 - $3.00 USD)",
+          "recommendedVenues": [
+            "Phở Gia Truyền Bát Đàn",
+            "Phở Thìn Lò Đúc"
+          ]
+        },
+        {
+          "name": "Charcoal Grilled Pork Patties with Rice Vermicelli",
+          "vietnameseName": "Bún Chả Hà Nội",
+          "description": "Pork patties and belly grilled over hot charcoal, served in tangy warm fish sauce with herbs and garlic.",
+          "estimatedPriceVND": "45,000 — 65,000 VND (~$1.80 - $2.60 USD)",
+          "recommendedVenues": [
+            "Bún Chả Đắc Kim",
+            "Bún Chả Hương Liên"
+          ]
+        },
+        {
+          "name": "Hanoi Egg Coffee",
+          "vietnameseName": "Cà Phê Trứng",
+          "description": "Robusta drip coffee topped with a whipped, sweetened egg yolk meringue foam invented in 1946.",
+          "estimatedPriceVND": "35,000 — 45,000 VND (~$1.40 - $1.80 USD)",
+          "recommendedVenues": [
+            "Café Giảng (Nguyễn Hữu Huân)",
+            "Café Đinh"
+          ]
+        }
+      ],
+      "cultural_highlights": [
+        {
+          "id": "att-hanoi-oldquarter",
+          "name": "Hanoi Old Quarter & Hoan Kiem Lake",
+          "vietnameseName": "Phố Cổ Hà Nội & Hồ Hoàn Kiếm",
+          "category": "Heritage & History",
+          "description": "36 ancient commercial guild streets surrounding the sacred lake where legendary King Lê Lợi returned the magic sword.",
+          "coordinates": {
+            "lat": 21.0307,
+            "lng": 105.8524
+          },
+          "estimatedDuration": "Half Day",
+          "ticketPriceNote": "Free to stroll; Ngoc Son Temple is ~30,000 VND",
+          "highlights": [
+            "Guild architecture",
+            "Tháp Rùa (Turtle Tower)",
+            "Street food labyrinths"
+          ],
+          "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop"
+        },
+        {
+          "id": "att-hanoi-templelit",
+          "name": "Temple of Literature & National University",
+          "vietnameseName": "Văn Miếu — Quốc Tử Giám",
+          "category": "Heritage & History",
+          "description": "Built in 1070 and home to Vietnam’s first university, featuring 82 stone doctor turtle steles honoring Confucian scholars.",
+          "coordinates": {
+            "lat": 21.0293,
+            "lng": 105.8358
+          },
+          "estimatedDuration": "2 Hours",
+          "ticketPriceEstimateVND": 30000,
+          "ticketPriceNote": "~30,000 VND (~$1.20 USD)",
+          "highlights": [
+            "Khue Van Pavilion",
+            "Doctor stelae on turtle backs",
+            "Ancient courtyard gardens"
+          ],
+          "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop"
+        }
+      ],
+      "official_recognition": "Thành phố Hà Nội",
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Oct — Dec & Mar — Apr",
+      "recommended_duration": "3 ngày",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Thăng Long (Ascending Dragon)",
+        "Đông Kinh (Eastern Capital)",
+        "Kẻ Chợ",
+        "Tràng An"
+      ],
+      "provenance": {
+        "source_id": "src-vnat-national",
+        "source_name": "Cục Du lịch Quốc gia Việt Nam & Niên giám Địa lý 2025",
+        "source_url": "https://vietnamtourism.gov.vn",
+        "source_date": "2026-10-30",
+        "source_type": "national_authority",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "ha-noi"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.764Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested national provincial cluster. Canonical ID: 01."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.764Z",
+      "updated_at": "2026-11-13T14:19:15.764Z",
+      "last_verified_at": "2026-10-30"
+    },
+    "existing_record": {
+      "id": "poi-north-nha-tho-lon-ha-noi",
+      "name": "St. Joseph's Cathedral Hanoi",
+      "localized_names": {
+        "vi": "Nhà thờ Lớn Hà Nội"
+      },
+      "slug": "nha-tho-lon-ha-noi",
+      "description": "Nhà thờ Lớn Hà Nội (Nhà thờ Chính tòa Thánh Giuse) tọa lạc tại số 40 phố Nhà Chung, quận Hoàn Kiếm, được khánh thành vào ngày Lễ Giáng sinh năm 1887. Công trình được thiết kế theo phong cách Tân Gothic (Gothic Revival) mô phỏng Nhà thờ Đức Bà Paris với hai tháp chuông vuông cao 31,5m, tường gạch nung trát vôi bổi mộc mạc và hệ thống cửa sổ kính màu lung linh. Đây không chỉ là trung tâm tôn giáo quan trọng của Tổng giáo phận Hà Nội mà còn là điểm hẹn văn hóa, cà phê vỉa hè quen thuộc của giới trẻ và du khách bốn phương.",
+      "short_description": "Nhà thờ Công giáo cổ kính nhất thủ đô với phong cách kiến trúc Gothic Revival đặc trưng thời Pháp thuộc.",
+      "province_id": "01",
+      "province_name_canonical": "Hà Nội",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Di tích lịch sử",
+      "entity_type": "tourism_poi",
+      "poi_category": "cultural_historical_relic",
+      "latitude": 21.0288,
+      "longitude": 105.8495,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "approximate",
+      "verification_status": "verified",
+      "verification_reason": "Editorial curated destination",
+      "experiences": [
+        "Chiêm ngưỡng kiến trúc Gothic cổ kính giữa lòng phố cổ",
+        "Thưởng thức trà chanh chém gió và nem chua nướng ngõ Ấu Triệu",
+        "Lắng nghe tiếng chuông nhà thờ ngân vang lúc hoàng hôn",
+        "Chụp ảnh lưu niệm tại quảng trường Nhà Thờ"
+      ],
+      "local_food": [
+        "Trà chanh Nhà Thờ",
+        "Nem chua nướng Ấu Triệu",
+        "Bánh gối Lý Quốc Sư",
+        "Phở bò truyền thống Ấu Triệu"
+      ],
+      "cultural_highlights": [
+        "Công trình tôn giáo mang kiến trúc Tân Gothic tiêu biểu thời Pháp",
+        "Biểu tượng giao lưu văn hóa Đông - Tây của đất Hà Thành",
+        "Trung tâm sinh hoạt Công giáo lâu đời nhất thủ đô"
+      ],
+      "official_recognition": null,
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Quanh năm, đẹp nhất mùa thu se lạnh (tháng 9 - 11) và mùa Giáng sinh lung linh đèn hoa",
+      "recommended_duration": "1 - 2 giờ",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Nhà thờ Chính tòa Thánh Giuse",
+        "Nhà thờ Lớn Nhà Chung"
+      ],
+      "provenance": {
+        "source_id": "src-north-editorial",
+        "source_name": "Sở Du lịch Hà Nội — Tổng giáo phận Hà Nội",
+        "source_url": "https://sodulich.hanoi.gov.vn",
+        "source_date": "2026-10-31",
+        "source_type": "editorial_curated",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "nha-tho-lon-ha-noi"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.763Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested Northern destination. Admin mapped: Hà Nội."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.763Z",
+      "updated_at": "2026-11-13T14:19:15.763Z",
+      "last_verified_at": "2026-10-31"
+    },
+    "similarity_score": 0.7,
+    "match_reasons": [
+      "Close proximity (~489m) with overlapping vocabulary (25%)"
+    ],
+    "flagged_at": "2026-11-13T14:19:15.930Z",
+    "status": "pending_review"
+  },
+  {
+    "review_id": "rev-1794579555930-5",
+    "incoming_record": {
+      "id": "poi-nat-ha-giang",
+      "name": "Ha Giang",
+      "localized_names": {
+        "vi": "Hà Giang",
+        "en": "Ha Giang"
+      },
+      "slug": "national-ha-giang",
+      "description": "Ha Giang is Vietnam’s final adventure frontier. Traverse the winding switchbacks of Mã Pí Lèng Pass suspended over the jade waters of the Nho Quế river, stand atop the Lũng Cú Flag Tower, and share corn wine around hearth fires in remote stone hamlets.",
+      "short_description": "Towering karst canyons, winding passes, and living ethnic traditions.",
+      "province_id": "08",
+      "province_name_canonical": "Tuyên Quang",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Khu du lịch cấp tỉnh",
+      "entity_type": "tourism_poi",
+      "poi_category": "provincial_tourism_area",
+      "latitude": 22.8233,
+      "longitude": 104.9839,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "province_level",
+      "verification_status": "verified",
+      "verification_reason": "National administrative cluster destination verified per Resolution 202/2025/QH15.",
+      "experiences": [
+        {
+          "id": "exp-hagiang-weaving",
+          "title": "H’mong Hemp Weaving & Indigo Atelier",
+          "vietnameseTitle": "Dệt Lanh & Nhuộm Chàm Lùng Tám",
+          "category": "Craft Village",
+          "location": "Quản Bạ, Hà Giang",
+          "destinationId": "ha-giang",
+          "description": "Learn ancient hemp peeling, manual thread spinning, and botanical indigo fermentation vat techniques.",
+          "bestTimeOfDay": "Afternoon",
+          "estimatedCostVND": "100,000 — 200,000 VND",
+          "highlights": [
+            "Raw hemp spinning",
+            "Beeswax batik stamping",
+            "Cold indigo dyeing"
+          ],
+          "image": "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop"
+        }
+      ],
+      "local_food": [
+        {
+          "name": "Highland Five-Color Sticky Rice",
+          "vietnameseName": "Xôi Ngũ Sắc",
+          "description": "Glutinous highland rice dyed naturally using forest leaves and roots representing the five elements.",
+          "estimatedPriceVND": "25,000 — 40,000 VND (~$1.00 - $1.60 USD)"
+        },
+        {
+          "name": "Buckwheat Seed Cakes",
+          "vietnameseName": "Bánh Tam Giác Mạch",
+          "description": "Freshly steamed and grilled patties made from ground buckwheat flour, fragrant and earthy.",
+          "estimatedPriceVND": "15,000 — 25,000 VND (~$0.60 - $1.00 USD)"
+        },
+        {
+          "name": "Smoked Buffalo Meat & Shan Tuyet Tea",
+          "vietnameseName": "Thịt Trâu Gác Bếp & Trà Shan Tuyết Cổ Thụ",
+          "description": "Cured over kitchen hearth fires and served with wild mắc khén pepper alongside wild centuries-old tea.",
+          "estimatedPriceVND": "120,000 — 200,000 VND / portion"
+        }
+      ],
+      "cultural_highlights": [
+        {
+          "id": "att-mapileng",
+          "name": "Ma Pi Leng Pass & Tu San Canyon",
+          "vietnameseName": "Đèo Mã Pí Lèng & Hẻm Vực Tu Sản",
+          "category": "Nature & Mountains",
+          "description": "One of Vietnam’s \"Four Great Mountain Passes\", cut into cliffs 1,500m above sea level with views of Tu San canyon.",
+          "coordinates": {
+            "lat": 23.2386,
+            "lng": 105.4192
+          },
+          "estimatedDuration": "Full Day",
+          "ticketPriceNote": "Pass is free; Nho Que river boat ride is ~120,000 VND / person",
+          "highlights": [
+            "Happiness Road history",
+            "Sky path walk",
+            "Emerald boat cruise"
+          ],
+          "image": "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=800&auto=format&fit=crop"
+        },
+        {
+          "id": "att-lungcu",
+          "name": "Lung Cu Flag Point",
+          "vietnameseName": "Cột Cờ Quốc Gia Lũng Cú",
+          "category": "Heritage & History",
+          "description": "Vietnam’s northernmost sovereign point, perched atop Dragon Mountain flying a 54m² national flag.",
+          "coordinates": {
+            "lat": 23.3644,
+            "lng": 105.3197
+          },
+          "estimatedDuration": "2 Hours",
+          "ticketPriceEstimateVND": 25000,
+          "ticketPriceNote": "~25,000 VND admission",
+          "highlights": [
+            "54-square-meter flag representing 54 ethnic groups",
+            "Panoramic border vistas"
+          ],
+          "image": "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=800&auto=format&fit=crop"
+        }
+      ],
+      "official_recognition": "Tỉnh Tuyên Quang",
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Sep — Nov & Mar — May",
+      "recommended_duration": "4 ngày",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Vị Xuyên",
+        "Bình Nguyên Frontier"
+      ],
+      "provenance": {
+        "source_id": "src-vnat-national",
+        "source_name": "Cục Du lịch Quốc gia Việt Nam & Niên giám Địa lý 2025",
+        "source_url": "https://vietnamtourism.gov.vn",
+        "source_date": "2026-10-30",
+        "source_type": "national_authority",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "ha-giang"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.764Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested national provincial cluster. Canonical ID: 08."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.764Z",
+      "updated_at": "2026-11-13T14:19:15.764Z",
+      "last_verified_at": "2026-10-30"
+    },
+    "existing_record": {
+      "id": "poi-north-ha-giang-city",
+      "name": "Ha Giang City",
+      "localized_names": {
+        "vi": "Thành phố Hà Giang"
+      },
+      "slug": "thanh-pho-ha-giang",
+      "description": "Cửa ngõ biên cương cực Bắc Tổ quốc bên bờ sông Lô êm đềm, điểm xuất phát của Con Đường Hạnh Phúc huyền thoại dẫn lên Công viên Địa chất Toàn cầu UNESCO Cao nguyên đá Đồng Văn. Cột mốc Km0 thành phố là điểm check-in thiêng liêng mở đầu hành trình khám phá địa đầu non sông.",
+      "short_description": "Cửa ngõ dẫn lối vào Công viên Địa chất Toàn cầu Cao nguyên đá Đồng Văn, điểm khởi đầu cung đường huyền thoại Cột Mốc Km 0.",
+      "province_id": "08",
+      "province_name_canonical": "Tuyên Quang",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Đô thị & Cửa ngõ",
+      "entity_type": "tourism_poi",
+      "poi_category": "tourism_spot",
+      "latitude": 22.8233,
+      "longitude": 104.9839,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "approximate",
+      "verification_status": "verified",
+      "verification_reason": "Mapped under post-2025 boundary: Locality 'Hà Giang' was integrated into 'Tuyên Quang' under Resolution 202/2025/QH15.",
+      "experiences": [
+        "Chụp ảnh tại Cột mốc Km 0 Hà Giang",
+        "Ngắm toàn cảnh thành phố từ Núi Cấm Sơn",
+        "Thưởng thức ẩm thực đêm phố cổ Hà Giang"
+      ],
+      "local_food": [
+        "Bánh cuốn trứng nóng chan nước xương hầm",
+        "Cháo ấu tẩu bổ dưỡng mùa đông",
+        "Phở chua Hà Giang"
+      ],
+      "cultural_highlights": [
+        "Bảo tàng tỉnh Hà Giang",
+        "Bản du lịch cộng đồng người Tày thôn Hạ Thành"
+      ],
+      "official_recognition": null,
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Tháng 9 - tháng 12 (Mùa lúa chín và tam giác mạch), Tháng 3 - tháng 4 (Mùa hoa ban, hoa gạo đỏ rực sông Gâm)",
+      "recommended_duration": "1 ngày (Điểm dừng chân khởi hành)",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Cửa ngõ Cao nguyên đá",
+        "Km 0"
+      ],
+      "provenance": {
+        "source_id": "src-north-editorial",
+        "source_name": "Cổng TTĐT Tỉnh Hà Giang",
+        "source_url": "https://hagiang.gov.vn",
+        "source_date": "2026-10-31",
+        "source_type": "editorial_curated",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "ha-giang-city"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.749Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested Northern destination. Admin mapped: Tuyên Quang."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.749Z",
+      "updated_at": "2026-11-13T14:19:15.749Z",
+      "last_verified_at": "2026-10-31"
+    },
+    "similarity_score": 0.7,
+    "match_reasons": [
+      "Close proximity (~0m) with overlapping vocabulary (67%)"
+    ],
+    "flagged_at": "2026-11-13T14:19:15.930Z",
+    "status": "pending_review"
+  },
+  {
+    "review_id": "rev-1794579555930-6",
+    "incoming_record": {
+      "id": "poi-nat-ninh-binh",
+      "name": "Ninh Binh & Trang An",
+      "localized_names": {
+        "vi": "Ninh Bình",
+        "en": "Ninh Binh & Trang An"
+      },
+      "slug": "national-ninh-binh",
+      "description": "Ninh Binh enchants visitors with its UNESCO World Heritage landscape where traditional wooden sampans glide through flooded karst caves beneath sheer jungle-clad limestone cliffs.",
+      "short_description": "Ancient imperial caves, emerald waterways, and towering limestone towers.",
+      "province_id": "37",
+      "province_name_canonical": "Ninh Bình",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Khu du lịch cấp tỉnh",
+      "entity_type": "tourism_poi",
+      "poi_category": "provincial_tourism_area",
+      "latitude": 20.2506,
+      "longitude": 105.9745,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "province_level",
+      "verification_status": "verified",
+      "verification_reason": "National administrative cluster destination verified per Resolution 202/2025/QH15.",
+      "experiences": [
+        {
+          "id": "exp-hang-mua-dawn",
+          "title": "Hang Mua Dragon Peak Sunrise Climb",
+          "vietnameseTitle": "Chinh Phục Đỉnh Ngọa Long Hang Múa Lúc Bình Minh",
+          "category": "Outdoor",
+          "location": "Hoa Lư, Ninh Bình",
+          "destinationId": "ninh-binh",
+          "description": "Climb 500 stone stairs carved into limestone to greet dawn over the twisting river of Tam Cốc.",
+          "bestTimeOfDay": "Morning",
+          "estimatedCostVND": "100,000 VND admission",
+          "highlights": [
+            "500 carved steps",
+            "Stone dragon ridge",
+            "Panoramic 360-degree vista"
+          ],
+          "image": "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=800&auto=format&fit=crop"
+        }
+      ],
+      "local_food": [
+        {
+          "name": "Crispy Rice with Savory Goat Dip",
+          "vietnameseName": "Cơm Cháy Chà Bông & Dê Núi Ninh Bình",
+          "description": "Sun-dried puffed crispy rice crackers dipped into a rich simmered mountain goat broth with lemongrass.",
+          "estimatedPriceVND": "120,000 — 180,000 VND / platter"
+        }
+      ],
+      "cultural_highlights": [
+        {
+          "id": "att-trangan-complex",
+          "name": "Trang An Scenic Landscape Complex",
+          "vietnameseName": "Quần Thể Danh Thắng Tràng An",
+          "category": "Heritage & History",
+          "description": "UNESCO World Heritage mixed cultural and natural site explored via peaceful rowboats through 9 caves.",
+          "coordinates": {
+            "lat": 20.2558,
+            "lng": 105.9189
+          },
+          "estimatedDuration": "3.5 Hours",
+          "ticketPriceEstimateVND": 250000,
+          "ticketPriceNote": "~250,000 VND / person including sampan rower",
+          "highlights": [
+            "Cave navigation by foot-oar boat",
+            "Suối Tiên temple",
+            "Film location scenery"
+          ],
+          "image": "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=800&auto=format&fit=crop"
+        }
+      ],
+      "official_recognition": "Tỉnh Ninh Bình",
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Jan — Apr & May — Jun (Lotus & Harvest)",
+      "recommended_duration": "2 ngày",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Cố Đô Hoa Lư (Ancient Capital of Hoa Lư)"
+      ],
+      "provenance": {
+        "source_id": "src-vnat-national",
+        "source_name": "Cục Du lịch Quốc gia Việt Nam & Niên giám Địa lý 2025",
+        "source_url": "https://vietnamtourism.gov.vn",
+        "source_date": "2026-10-30",
+        "source_type": "national_authority",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "ninh-binh"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.765Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested national provincial cluster. Canonical ID: 37."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.765Z",
+      "updated_at": "2026-11-13T14:19:15.765Z",
+      "last_verified_at": "2026-10-30"
+    },
+    "existing_record": {
+      "id": "poi-north-ninh-binh-city",
+      "name": "Ninh Binh City",
+      "localized_names": {
+        "vi": "Thành phố Ninh Bình"
+      },
+      "slug": "thanh-pho-ninh-binh",
+      "description": "Thành phố cửa ngõ cực Nam Đồng bằng Bắc Bộ, điểm hội tụ của các tuyến giao thông huyết mạch và trung tâm lưu trú tiện nghi kết nối Quần thể Di sản Kép Tràng An, Tam Cốc, Hang Múa và Cố đô Hoa Lư.",
+      "short_description": "Cửa ngõ miền di sản Cố đô Hoa Lư, trung tâm lưu trú hiện đại kết nối các tuyệt tác thiên nhiên Tràng An, Tam Cốc, Hang Múa.",
+      "province_id": "37",
+      "province_name_canonical": "Ninh Bình",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Đô thị & Cửa ngõ",
+      "entity_type": "tourism_poi",
+      "poi_category": "tourism_spot",
+      "latitude": 20.2506,
+      "longitude": 105.9745,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "approximate",
+      "verification_status": "verified",
+      "verification_reason": "Editorial curated destination",
+      "experiences": [
+        "Check-in phố cổ Hoa Lư bên hồ Kỳ Lân lung linh về đêm",
+        "Thưởng ngoạn núi Non Nước và chùa Non Nước",
+        "Khởi hành các tour khám phá vùng di sản UNESCO"
+      ],
+      "local_food": [
+        "Cơm cháy Ninh Bình sốt tim cật dê",
+        "Thịt dê núi tái chanh giòn ngọt",
+        "Rượu cần Nho Quan",
+        "Ốc núi đá Ninh Bình"
+      ],
+      "cultural_highlights": [
+        "Cố đô của ba triều đại Đinh - Tiền Lê - Lý",
+        "Cầu nối giữa Đồng bằng Bắc Bộ và Bắc Trung Bộ"
+      ],
+      "official_recognition": null,
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Tháng 1 - tháng 5 (Mùa xuân trẩy hội và mùa lúa Tam Cốc)",
+      "recommended_duration": "2 - 3 ngày (Cho toàn cụm di sản Ninh Bình)",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Cố đô Hoa Lư",
+        "Đô thị di sản"
+      ],
+      "provenance": {
+        "source_id": "src-north-editorial",
+        "source_name": "Sở Du lịch Ninh Bình",
+        "source_url": "https://ninhbinh.gov.vn",
+        "source_date": "2026-10-31",
+        "source_type": "editorial_curated",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "ninh-binh-city"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.752Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested Northern destination. Admin mapped: Ninh Bình."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.752Z",
+      "updated_at": "2026-11-13T14:19:15.752Z",
+      "last_verified_at": "2026-10-31"
+    },
+    "similarity_score": 0.7,
+    "match_reasons": [
+      "Close proximity (~0m) with overlapping vocabulary (40%)"
+    ],
+    "flagged_at": "2026-11-13T14:19:15.930Z",
+    "status": "pending_review"
+  },
+  {
+    "review_id": "rev-1794579555931-7",
+    "incoming_record": {
+      "id": "poi-nat-quang-ninh-halong",
+      "name": "Ha Long Bay & Cat Ba Archipelago",
+      "localized_names": {
+        "vi": "Quảng Ninh — Vịnh Hạ Long",
+        "en": "Ha Long Bay & Cat Ba Archipelago"
+      },
+      "slug": "national-quang-ninh-halong",
+      "description": "One of the world’s seven natural wonders, Ha Long Bay features over 1,600 limestone karst islands and islets emerging from turquoise waters, conceal hidden lagoons, sea caves, and secluded white beaches.",
+      "short_description": "Emerald waters, ethereal limestone sea towers, and floating fishing hamlets.",
+      "province_id": "22",
+      "province_name_canonical": "Quảng Ninh",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Khu du lịch cấp tỉnh",
+      "entity_type": "tourism_poi",
+      "poi_category": "provincial_tourism_area",
+      "latitude": 20.9505,
+      "longitude": 107.0734,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "province_level",
+      "verification_status": "verified",
+      "verification_reason": "National administrative cluster destination verified per Resolution 202/2025/QH15.",
+      "experiences": [
+        {
+          "id": "exp-halong-kayak",
+          "title": "Sunset Kayaking into Secluded Grottoes",
+          "vietnameseTitle": "Chèo Thuyền Kayak Khám Phá Vịnh Hoàng Hôn",
+          "category": "Outdoor",
+          "location": "Vịnh Bái Tử Long / Hạ Long",
+          "destinationId": "quang-ninh-halong",
+          "description": "Paddle lightweight sea kayaks through narrow archways into silent lagoons surrounded by vertical jungle cliffs.",
+          "bestTimeOfDay": "Afternoon",
+          "estimatedCostVND": "Included with overnight boutique cruises",
+          "highlights": [
+            "Zero motor noise",
+            "Sea eagle sightings",
+            "Phosphorescent plankton at night"
+          ],
+          "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop"
+        }
+      ],
+      "local_food": [
+        {
+          "name": "Hand-Pounded Squid Cakes",
+          "vietnameseName": "Chả Mực Giã Tay Hạ Long",
+          "description": "Fresh Gulf of Tonkin cuttlefish pounded manually in stone mortars to preserve crunchy, sweet texture, deep-fried golden.",
+          "estimatedPriceVND": "100,000 — 150,000 VND / portion with sticky rice or steamed rolls"
+        }
+      ],
+      "cultural_highlights": [
+        {
+          "id": "att-sung-sot-cave",
+          "name": "Sung Sot (Surprise) Cave & Luon Lagoon",
+          "vietnameseName": "Hang Sửng Sốt & Hang Luồn",
+          "category": "Nature & Mountains",
+          "description": "Expansive limestone cavern featuring stalactite chambers and tidal tunnel leading to hidden monkey lagoons.",
+          "coordinates": {
+            "lat": 20.8427,
+            "lng": 107.0877
+          },
+          "estimatedDuration": "Half Day",
+          "ticketPriceNote": "Included in bay sightseeing route pass",
+          "highlights": [
+            "Colossal limestone chambers",
+            "Secluded lagoon kayaking",
+            "Panoramic bay overlook"
+          ],
+          "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop"
+        }
+      ],
+      "official_recognition": "Tỉnh Quảng Ninh",
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Mar — May & Sep — Nov",
+      "recommended_duration": "2 ngày",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Hạ Long (Descending Dragon)",
+        "An Bang",
+        "Yên Tử Sacred Ridge"
+      ],
+      "provenance": {
+        "source_id": "src-vnat-national",
+        "source_name": "Cục Du lịch Quốc gia Việt Nam & Niên giám Địa lý 2025",
+        "source_url": "https://vietnamtourism.gov.vn",
+        "source_date": "2026-10-30",
+        "source_type": "national_authority",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "quang-ninh-halong"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.765Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested national provincial cluster. Canonical ID: 22."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.765Z",
+      "updated_at": "2026-11-13T14:19:15.765Z",
+      "last_verified_at": "2026-10-30"
+    },
+    "existing_record": {
+      "id": "poi-north-ha-long-bay",
+      "name": "Ha Long Bay",
+      "localized_names": {
+        "vi": "Vịnh Hạ Long"
+      },
+      "slug": "vinh-ha-long",
+      "description": "Kỳ quan Thiên nhiên Thế giới ba lần được UNESCO vinh danh (về cảnh quan, địa chất địa mạo và đa dạng sinh học). Vịnh Hạ Long sở hữu gần 2.000 hòn đảo đá vôi nhô lên từ làn nước biển xanh ngọc bích của Vịnh Bắc Bộ, chứa đựng những hang động kỳ vĩ như Động Sửng Sốt, Hang Đầu Gỗ, Đảo Ti Tốp.",
+      "short_description": "Kỳ quan thiên nhiên thế giới UNESCO với gần 2.000 hòn đảo đá vôi nhấp nhô muôn hình vạn trạng trên làn nước xanh ngọc bích.",
+      "province_id": "22",
+      "province_name_canonical": "Quảng Ninh",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Cảnh quan thiên nhiên",
+      "entity_type": "tourism_poi",
+      "poi_category": "tourism_spot",
+      "latitude": 20.9505,
+      "longitude": 107.0734,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "approximate",
+      "verification_status": "verified",
+      "verification_reason": "Editorial curated destination",
+      "experiences": [
+        "Du thuyền ngủ đêm ngắm hoàng hôn và bình minh trên vịnh",
+        "Chèo thuyền kayak luồn qua Hang Luồn tĩnh mịch",
+        "Thám hiểm Hang Sửng Sốt và Động Thiên Cung tráng lệ",
+        "Tắm biển đảo Ti Tốp ngắm toàn cảnh vịnh từ đỉnh cao"
+      ],
+      "local_food": [
+        "Chả mực giã tay Hạ Long giòn ngọt sần sật",
+        "Sá sùng xào tỏi hoặc rang giòn",
+        "Bún bề bề tươi ngọt nước dùng",
+        "Rượu mơ Yên Tử"
+      ],
+      "cultural_highlights": [
+        "Di sản Thiên nhiên Thế giới UNESCO hai lần vinh danh",
+        "Huyền thoại Rồng Mẹ hạ đàn con nhả châu ngọc hóa đảo đá"
+      ],
+      "official_recognition": null,
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Tháng 3 - tháng 5 & Tháng 9 - tháng 11 (Tiết trời khô ráo, nắng dịu, sóng êm)",
+      "recommended_duration": "2 ngày 1 đêm (Trên du thuyền thưởng ngoạn)",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Vịnh Rồng Hạ",
+        "Kỳ quan Hạ Long"
+      ],
+      "provenance": {
+        "source_id": "src-north-editorial",
+        "source_name": "BQL Vịnh Hạ Long / UNESCO",
+        "source_url": "https://halongbay.com.vn",
+        "source_date": "2026-10-31",
+        "source_type": "editorial_curated",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "ha-long-bay"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.753Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested Northern destination. Admin mapped: Quảng Ninh."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.753Z",
+      "updated_at": "2026-11-13T14:19:15.753Z",
+      "last_verified_at": "2026-10-31"
+    },
+    "similarity_score": 0.7,
+    "match_reasons": [
+      "Close proximity (~0m) with overlapping vocabulary (50%)"
+    ],
+    "flagged_at": "2026-11-13T14:19:15.931Z",
+    "status": "pending_review"
+  },
+  {
+    "review_id": "rev-1794579555932-8",
+    "incoming_record": {
+      "id": "poi-nat-bac-kan-babe",
+      "name": "Bắc Kạn — Ba Bể Lake",
+      "localized_names": {
+        "vi": "Bắc Kạn — Hồ Ba Bể",
+        "en": "Bắc Kạn — Ba Bể Lake"
+      },
+      "slug": "national-bac-kan-babe",
+      "description": "Vietnam’s largest natural freshwater karst lake nestled deep in the limestone peaks of northeast Tonkin.",
+      "short_description": "Emerald Freshwater Lake & Limestone Primary Forest",
+      "province_id": "19",
+      "province_name_canonical": "Thái Nguyên",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Khu du lịch cấp tỉnh",
+      "entity_type": "tourism_poi",
+      "poi_category": "provincial_tourism_area",
+      "latitude": 22.4167,
+      "longitude": 105.6167,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "province_level",
+      "verification_status": "verified",
+      "verification_reason": "National administrative cluster destination verified per Resolution 202/2025/QH15.",
+      "experiences": [
+        {
+          "id": "exp-tay-homestay",
+          "title": "Pác Ngòi Tay Stilt Village Hospitality",
+          "vietnameseTitle": "Trải Nghiệm Nhà Sàn Pác Ngòi",
+          "category": "Heritage",
+          "location": "Ba Bể, Bắc Kạn",
+          "destinationId": "bac-kan-babe",
+          "description": "Overnight in a 100-year-old wooden stilt house on the lake shore with homemade herbal rice wine.",
+          "highlights": [
+            "Tay folk songs",
+            "Fireplace dining"
+          ],
+          "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop"
+        }
+      ],
+      "local_food": [
+        {
+          "name": "Ba Bể Lake Grilled Fish",
+          "vietnameseName": "Cá Nướng Pắc Ngòi",
+          "description": "Small freshwater fish marinated with turmeric and grilled on charcoal.",
+          "estimatedPriceVND": "60,000 VND / skewer"
+        }
+      ],
+      "cultural_highlights": [
+        {
+          "id": "att-puong-cave",
+          "name": "Puông Cave & Năng River",
+          "vietnameseName": "Động Puông",
+          "category": "Nature & Mountains",
+          "description": "Colossal 30-meter-high river tunnel carved through a karst peak with thousands of bats.",
+          "coordinates": {
+            "lat": 22.421,
+            "lng": 105.62
+          },
+          "estimatedDuration": "2 Hours",
+          "highlights": [
+            "Limestone stalactites",
+            "Quiet river boat entry"
+          ],
+          "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop"
+        }
+      ],
+      "official_recognition": "Tỉnh Thái Nguyên",
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "September to April",
+      "recommended_duration": "2 ngày",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Chợ Rã",
+        "Vùng Lạc Lối"
+      ],
+      "provenance": {
+        "source_id": "src-vnat-national",
+        "source_name": "Cục Du lịch Quốc gia Việt Nam & Niên giám Địa lý 2025",
+        "source_url": "https://vietnamtourism.gov.vn",
+        "source_date": "2026-10-30",
+        "source_type": "national_authority",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "bac-kan-babe"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.766Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested national provincial cluster. Canonical ID: 19."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.766Z",
+      "updated_at": "2026-11-13T14:19:15.766Z",
+      "last_verified_at": "2026-10-30"
+    },
+    "existing_record": {
+      "id": "poi-north-ba-be-lake",
+      "name": "Ba Be Lake",
+      "localized_names": {
+        "vi": "Hồ Ba Bể"
+      },
+      "slug": "ho-ba-be",
+      "description": "Một trong 20 hồ nước ngọt tự nhiên trên núi đá vôi lớn và đẹp nhất thế giới, viên ngọc bích của Vườn Quốc gia Ba Bể (Khu Ramsar thế giới). Hồ gồm ba nhánh hồ thông nhau Pé Lầm, Pé Lù, Pé Lèng, bao bọc bởi những dãy núi đá vôi cổ thụ và những bản làng người Tày Pac Ngòi thơ mộng soi bóng nước.",
+      "short_description": "Hồ nước ngọt tự nhiên trên núi đá vôi lớn nhất Việt Nam, được bao bọc bởi Vườn Quốc gia Ba Bể nguyên sinh rợp bóng cây cổ thụ.",
+      "province_id": "19",
+      "province_name_canonical": "Thái Nguyên",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Thác nước & Sông hồ",
+      "entity_type": "tourism_poi",
+      "poi_category": "tourism_spot",
+      "latitude": 22.4172,
+      "longitude": 105.6214,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "approximate",
+      "verification_status": "verified",
+      "verification_reason": "Mapped under post-2025 boundary: Locality 'Bắc Kạn' was integrated into 'Thái Nguyên' under Resolution 202/2025/QH15.",
+      "experiences": [
+        "Đi thuyền độc mộc hoặc xuồng máy qua Pé Lầm, Pé Lù, Pé Lèng",
+        "Thăm Động Puông xuyên lòng núi đá vôi cao 30m",
+        "Khám phá Thác Đầu Đẳng và Ao Tiên tĩnh lặng",
+        "Nghỉ dưỡng homestay bản Pác Ngòi"
+      ],
+      "local_food": [
+        "Cá mương hồ Ba Bể nướng kẹp thanh tre",
+        "Tôm chua Ba Bể cuốn thịt luộc",
+        "Thịt lợn gác bếp người Tày",
+        "Rau ngót rừng Ba Bể"
+      ],
+      "cultural_highlights": [
+        "Huyền thoại Sự tích Hồ Ba Bể bà góa và con thuyền gỗ",
+        "Điệu hát then đàn tính của người Tày"
+      ],
+      "official_recognition": null,
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Tháng 9 - tháng 4 (Mặt hồ tĩnh lặng, sương sớm mờ ảo và thời tiết mát mẻ)",
+      "recommended_duration": "2 ngày 1 đêm",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Tam Hải",
+        "Pé Lầm Pé Lù Pé Lèng"
+      ],
+      "provenance": {
+        "source_id": "src-north-editorial",
+        "source_name": "Vườn Quốc gia Ba Bể / Khu Ramsar Thế giới",
+        "source_url": "https://backan.gov.vn",
+        "source_date": "2026-10-31",
+        "source_type": "editorial_curated",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "ba-be-lake"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.750Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested Northern destination. Admin mapped: Thái Nguyên."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.750Z",
+      "updated_at": "2026-11-13T14:19:15.750Z",
+      "last_verified_at": "2026-10-31"
+    },
+    "similarity_score": 0.7,
+    "match_reasons": [
+      "Close proximity (~486m) with overlapping vocabulary (60%)"
+    ],
+    "flagged_at": "2026-11-13T14:19:15.932Z",
+    "status": "pending_review"
+  },
+  {
+    "review_id": "rev-1794579555932-9",
+    "incoming_record": {
+      "id": "poi-nat-lang-son-mauson",
+      "name": "Lạng Sơn — Mẫu Sơn Highland",
+      "localized_names": {
+        "vi": "Lạng Sơn — Núi Mẫu Sơn",
+        "en": "Lạng Sơn — Mẫu Sơn Highland"
+      },
+      "slug": "national-lang-son-mauson",
+      "description": "Rugged alpine peaks cloaked in year-round mountain mist and ancient French stone villas.",
+      "short_description": "High Frontier Passes, Stone Bastions & Dao Traditions",
+      "province_id": "20",
+      "province_name_canonical": "Lạng Sơn",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Khu du lịch cấp tỉnh",
+      "entity_type": "tourism_poi",
+      "poi_category": "provincial_tourism_area",
+      "latitude": 21.85,
+      "longitude": 106.76,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "province_level",
+      "verification_status": "verified",
+      "verification_reason": "National administrative cluster destination verified per Resolution 202/2025/QH15.",
+      "experiences": [
+        {
+          "id": "exp-dao-herbal-bath",
+          "title": "Mẫu Sơn Red Dao Medicinal Herbal Bath",
+          "vietnameseTitle": "Tắm Lá Thuốc Người Dao Đỏ Mẫu Sơn",
+          "category": "Wellness",
+          "location": "Mẫu Sơn, Lạng Sơn",
+          "destinationId": "lang-son-mauson",
+          "description": "Soak in hot wooden barrels brewed with wild forest medicinal leaves by Dao herbalists.",
+          "highlights": [
+            "30+ forest herbs",
+            "Mountain views"
+          ],
+          "image": "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop"
+        }
+      ],
+      "local_food": [
+        {
+          "name": "Lạng Sơn Roasted Duck with Mac Khen",
+          "vietnameseName": "Vịt Quay Thất Khê",
+          "description": "Crisp duck marinated with wild forest mountain berries and roasted over wood.",
+          "estimatedPriceVND": "180,000 VND / portion"
+        }
+      ],
+      "cultural_highlights": [
+        {
+          "id": "att-tam-thanh",
+          "name": "Tam Thanh & Nhị Thanh Caves",
+          "vietnameseName": "Động Tam Thanh",
+          "category": "Heritage & History",
+          "description": "Sacred grotto shrine carved inside limestone cliffs with poetic carvings by 18th-century scholars.",
+          "coordinates": {
+            "lat": 21.855,
+            "lng": 106.755
+          },
+          "estimatedDuration": "1.5 Hours",
+          "highlights": [
+            "Poetry inscriptions",
+            "Natural underground pool"
+          ],
+          "image": "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop"
+        }
+      ],
+      "official_recognition": "Tỉnh Lạng Sơn",
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "October to March",
+      "recommended_duration": "2 ngày",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Ải Chi Lăng",
+        "Trấn Lạng Sơn"
+      ],
+      "provenance": {
+        "source_id": "src-vnat-national",
+        "source_name": "Cục Du lịch Quốc gia Việt Nam & Niên giám Địa lý 2025",
+        "source_url": "https://vietnamtourism.gov.vn",
+        "source_date": "2026-10-30",
+        "source_type": "national_authority",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "lang-son-mauson"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.766Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested national provincial cluster. Canonical ID: 20."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.766Z",
+      "updated_at": "2026-11-13T14:19:15.766Z",
+      "last_verified_at": "2026-10-30"
+    },
+    "existing_record": {
+      "id": "poi-north-lang-son-city",
+      "name": "Lang Son City",
+      "localized_names": {
+        "vi": "Thành phố Lạng Sơn"
+      },
+      "slug": "thanh-pho-lang-son",
+      "description": "Thành phố biên giới xứ Lạng nổi tiếng với các di tích lịch sử - danh thắng đã đi vào thi ca Đồng Đăng có phố Kỳ Lừa / Có nàng Tô Thị, có chùa Tam Thanh. Nơi đây là trung tâm giao thương sầm uất với các cửa khẩu quốc tế Hữu Nghị, Tân Thanh và ẩm thực vịt quay xứ Lạng nức tiếng.",
+      "short_description": "Xứ Lạng địa linh nhân kiệt với dòng Kỳ Cùng chảy ngược, di tích Động Nhị Thanh, Tam Thanh và nàng Tô Thị bồng con hóa đá.",
+      "province_id": "20",
+      "province_name_canonical": "Lạng Sơn",
+      "ward_id": null,
+      "ward_name_canonical": null,
+      "category": "Văn hóa & Di sản",
+      "entity_type": "tourism_poi",
+      "poi_category": "tourism_spot",
+      "latitude": 21.8537,
+      "longitude": 106.7615,
+      "address": null,
+      "coordinate_validity": "valid",
+      "coordinate_confidence": "approximate",
+      "verification_status": "verified",
+      "verification_reason": "Editorial curated destination",
+      "experiences": [
+        "Viếng Động Tam Thanh và tượng Nàng Tô Thị",
+        "Thăm Động Nhị Thanh và văn bia Ngô Thì Sĩ",
+        "Mua sắm chợ Đông Kinh và chợ đêm Kỳ Lừa"
+      ],
+      "local_food": [
+        "Vịt quay Lạng Sơn lá móc mật",
+        "Khâu nhục chuẩn vị xứ Lạng",
+        "Phở chua Lạng Sơn",
+        "Bánh áp chao Lạng Sơn"
+      ],
+      "cultural_highlights": [
+        "Hát sli, lượn của người Nùng",
+        "Lễ hội đền Kỳ Cùng - Tà Phủ rực rỡ"
+      ],
+      "official_recognition": null,
+      "managing_entity": null,
+      "operating_status": "active",
+      "best_season": "Tháng 10 - tháng 3 (Tiết trời se lạnh, mùa lễ hội đền chùa đầu năm)",
+      "recommended_duration": "1 - 2 ngày",
+      "ticket_price_notes": null,
+      "opening_hours_notes": null,
+      "historical_aliases": [
+        "Xứ Lạng",
+        "Kỳ Lừa",
+        "Đồng Đăng"
+      ],
+      "provenance": {
+        "source_id": "src-north-editorial",
+        "source_name": "Sở VHTT&DL Lạng Sơn",
+        "source_url": "https://langson.gov.vn",
+        "source_date": "2026-10-31",
+        "source_type": "editorial_curated",
+        "ingestion_batch_id": "test-audit-batch",
+        "raw_record_id": "lang-son-city"
+      },
+      "audit_trail": [
+        {
+          "timestamp": "2026-11-13T14:19:15.750Z",
+          "action": "ingested",
+          "agent": "NationalTourismPipeline",
+          "notes": "Ingested Northern destination. Admin mapped: Lạng Sơn."
+        }
+      ],
+      "created_at": "2026-11-13T14:19:15.750Z",
+      "updated_at": "2026-11-13T14:19:15.750Z",
+      "last_verified_at": "2026-10-31"
+    },
+    "similarity_score": 0.7,
+    "match_reasons": [
+      "Close proximity (~440m) with overlapping vocabulary (40%)"
+    ],
+    "flagged_at": "2026-11-13T14:19:15.932Z",
+    "status": "pending_review"
+  }
+]

@@ -1,0 +1,251 @@
+[
+  {
+    "id": "exp-san-may-ta-xua",
+    "name": "Săn mây Tà Xùa & Chinh phục Sống lưng Khủng long",
+    "localized_names": {
+      "vi": "Săn mây Tà Xùa",
+      "en": "Ta Xua Cloud Hunting & Dinosaur Spine Trek"
+    },
+    "slug": "san-may-ta-xua-song-lung-khung-long",
+    "description": "Hành trình đón bình minh giữa biển mây cuồn cuộn trên độ cao hơn 2.000m tại xã Tà Xùa và bước chân trên sống lưng khủng long Háng Đồng cheo leo giữa mây trời.",
+    "province_id": "14",
+    "province_name_canonical": "Sơn La",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Trải nghiệm Khám phá & Săn mây",
+    "entity_type": "tourism_experience",
+    "experience_category": "cloud_hunting",
+    "difficulty_level": "moderate",
+    "suitable_personas": [
+      "BACKPACKER",
+      "EXPLORER",
+      "SOLO"
+    ],
+    "latitude": 21.32,
+    "longitude": 104.45,
+    "address": "Xã Tà Xùa và xã Háng Đồng, Huyện Bắc Yên, Sơn La",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "approximate",
+    "verification_status": "official_gov",
+    "verification_reason": "Cụm điểm du lịch trọng điểm huyện Bắc Yên - Sở VHTT&DL Sơn La",
+    "provenance": {
+      "source_id": "src-sonla-taxua",
+      "source_name": "Sở Văn hóa Thể thao và Du lịch Sơn La",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-sonla-taxua"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified cloud hunting experience."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "exp-hai-che-moc-chau",
+    "name": "Hái chè và Thưởng thức Chè Shan Tuyết cổ thụ Mộc Châu",
+    "localized_names": {
+      "vi": "Trải nghiệm Hái chè Mộc Châu",
+      "en": "Moc Chau Tea Harvesting & Shan Tuyet Tasting"
+    },
+    "slug": "hai-che-va-thuong-thuc-che-moc-chau",
+    "description": "Cùng nghệ nhân đeo gùi lên nương chè xanh ngắt vào ban sớm, tự tay ngắt từng búp chè một tôm hai lá ngậm sương mai và học cách sao chè củi truyền thống.",
+    "province_id": "14",
+    "province_name_canonical": "Sơn La",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Du lịch Nông nghiệp Sinh thái",
+    "entity_type": "tourism_experience",
+    "experience_category": "craft_village",
+    "difficulty_level": "easy",
+    "suitable_personas": [
+      "FAMILY",
+      "SOLO",
+      "EXPLORER"
+    ],
+    "latitude": 20.85,
+    "longitude": 104.65,
+    "address": "Đồi chè Trái Tim, Thị trấn Nông trường Mộc Châu, Sơn La",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "approximate",
+    "verification_status": "official_gov",
+    "verification_reason": "Hiệp hội Chè Mộc Châu & Sở VHTT&DL Sơn La",
+    "provenance": {
+      "source_id": "src-sonla-che",
+      "source_name": "Sở Văn hóa Thể thao và Du lịch Sơn La",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-sonla-che"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified tea agro-tourism."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "exp-du-thuyen-ha-long",
+    "name": "Nghỉ dưỡng Du thuyền Di sản Vịnh Hạ Long",
+    "localized_names": {
+      "vi": "Du thuyền Vịnh Hạ Long",
+      "en": "Ha Long Bay Overnight Cruise"
+    },
+    "slug": "du-thuyen-di-san-vinh-ha-long",
+    "description": "Hành trình lênh đênh ngắm hàng nghìn đảo đá vôi kỳ vĩ muôn hình vạn trạng, chèo thuyền kayak luồn qua hang Luồn và ngắm hoàng hôn buông xuống vịnh di sản.",
+    "province_id": "22",
+    "province_name_canonical": "Quảng Ninh",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Trải nghiệm Nghỉ dưỡng Cao cấp",
+    "entity_type": "tourism_experience",
+    "experience_category": "river_cruise",
+    "difficulty_level": "easy",
+    "suitable_personas": [
+      "FAMILY",
+      "SOLO",
+      "EXPLORER"
+    ],
+    "latitude": 20.9101,
+    "longitude": 107.1839,
+    "address": "Cảng tàu khách quốc tế Tuần Châu & Hạ Long, Quảng Ninh",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "Ban Quản lý Vịnh Hạ Long & UNESCO World Heritage (1994, 2000, 2023)",
+    "provenance": {
+      "source_id": "src-unesco-halong",
+      "source_name": "Ban Quản lý Vịnh Hạ Long",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "national_authority",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-unesco-halong"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified cruise experience."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "exp-kham-pha-hang-son-doong",
+    "name": "Thám hiểm Hang Sơn Đoòng - Kỳ quan Lòng đất",
+    "localized_names": {
+      "vi": "Thám hiểm Hang Sơn Đoòng",
+      "en": "Son Doong Cave Expedition"
+    },
+    "slug": "tham-hiem-hang-son-doong",
+    "description": "Chuyến thám hiểm hang động tự nhiên lớn nhất thế giới ẩn sâu trong Vườn Quốc gia Phong Nha - Kẻ Bàng, chiêm ngưỡng hố sụt khổng lồ, rừng nguyên sinh trong lòng hang và bức tường Việt Nam cao 90m.",
+    "province_id": "44",
+    "province_name_canonical": "Quảng Bình",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Thám hiểm Hang động Mạo hiểm",
+    "entity_type": "tourism_experience",
+    "experience_category": "trekking",
+    "difficulty_level": "challenging",
+    "suitable_personas": [
+      "EXPLORER",
+      "BACKPACKER"
+    ],
+    "latitude": 17.4589,
+    "longitude": 106.2872,
+    "address": "Vườn Quốc gia Phong Nha - Kẻ Bàng, Huyện Bố Trạch, Quảng Bình",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "UBND Tỉnh Quảng Bình & Oxalis Adventure độc quyền khai thác an toàn",
+    "provenance": {
+      "source_id": "src-quangbinh-sondoong",
+      "source_name": "Sở Du lịch Quảng Bình & Vườn Quốc gia Phong Nha - Kẻ Bàng",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-quangbinh-sondoong"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified world-class cave expedition."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  },
+  {
+    "id": "exp-dap-xe-hoi-an-tra-que",
+    "name": "Đạp xe khám phá Làng rau Trà Quế & Phố cổ Hội An",
+    "localized_names": {
+      "vi": "Đạp xe Làng rau Trà Quế",
+      "en": "Tra Que Herb Village Cycling"
+    },
+    "slug": "dap-xe-kham-pha-lang-rau-tra-que-hoi-an",
+    "description": "Đạp xe qua những cánh đồng lúa xanh ngát đến làng rau hữu cơ Trà Quế có tuổi đời hơn 300 năm, cùng nông dân tưới nước bằng gáo đôi truyền thống và ngâm chân thảo dược.",
+    "province_id": "49",
+    "province_name_canonical": "Quảng Nam",
+    "ward_id": null,
+    "ward_name_canonical": null,
+    "category": "Du lịch Nông nghiệp & Văn hóa",
+    "entity_type": "tourism_experience",
+    "experience_category": "craft_village",
+    "difficulty_level": "easy",
+    "suitable_personas": [
+      "FAMILY",
+      "SOLO",
+      "EXPLORER"
+    ],
+    "latitude": 15.9014,
+    "longitude": 108.3411,
+    "address": "Làng rau Trà Quế, Xã Cẩm Hà, TP Hội An, Quảng Nam",
+    "coordinate_validity": "valid",
+    "coordinate_confidence": "exact",
+    "verification_status": "official_gov",
+    "verification_reason": "Nghề trồng rau Trà Quế được công nhận Di sản Văn hóa Phi vật thể Quốc gia (2022)",
+    "provenance": {
+      "source_id": "src-hoian-traque",
+      "source_name": "Trung tâm Văn hóa Thể thao và Truyền thanh - Truyền hình TP Hội An",
+      "source_url": null,
+      "source_date": "2026-05-10",
+      "source_type": "provincial_portal",
+      "ingestion_batch_id": "phase2-collection-generation",
+      "raw_record_id": "src-hoian-traque"
+    },
+    "audit_trail": [
+      {
+        "timestamp": "2026-11-13T14:12:10.231Z",
+        "action": "ingested",
+        "agent": "MultiCollectionPartitionEngine",
+        "notes": "Verified handicraft & agro-tourism experience."
+      }
+    ],
+    "created_at": "2026-11-13T14:12:10.231Z",
+    "updated_at": "2026-11-13T14:12:10.231Z",
+    "last_verified_at": "2026-05-10"
+  }
+]
