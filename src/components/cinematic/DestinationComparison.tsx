@@ -10,6 +10,7 @@ import type { Destination } from '../../types/index.ts';
 import type { DestinationRecommendation } from '../../services/recommendations/types.ts';
 import { ImageWithFallback } from '../ui/ImageWithFallback.tsx';
 import { Button } from '../ui/Button.tsx';
+import { translateRegion } from '../../lib/i18n/index.ts';
 
 interface DestinationComparisonProps {
   shortlistDestinations: Destination[];
@@ -128,11 +129,11 @@ export const DestinationComparison: React.FC<DestinationComparisonProps> = ({
 
                   {/* Title & Location */}
                   <h3 className="font-serif text-xl font-medium text-white mb-1">
-                    {dest.name}
+                    {dest.vietnameseName || dest.name}
                   </h3>
                   <div className="flex items-center gap-1.5 text-xs text-[#3DDC97] mb-3">
                     <MapPin className="h-3 w-3 shrink-0" />
-                    <span>{dest.country} ({dest.region})</span>
+                    <span>Việt Nam ({dest.region ? translateRegion(dest.region) : 'Việt Nam'})</span>
                   </div>
 
                   <p className="text-xs text-[#9BA9C3] font-light leading-relaxed mb-4 line-clamp-2">

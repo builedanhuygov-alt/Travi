@@ -69,7 +69,7 @@ export const DestinationDiscoveryRail: React.FC<DestinationDiscoveryRailProps> =
             type="button"
             onClick={() => scroll('left')}
             className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#243049] bg-[#0E1626] text-[#C4D0E5] hover:border-[#48E3EF]/50 hover:bg-[#152338] hover:text-white transition-all cursor-pointer shadow-sm"
-            aria-label={`Scroll ${lane.title} left`}
+            aria-label={`Cuộn ${lane.title} sang trái`}
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
@@ -77,7 +77,7 @@ export const DestinationDiscoveryRail: React.FC<DestinationDiscoveryRailProps> =
             type="button"
             onClick={() => scroll('right')}
             className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#243049] bg-[#0E1626] text-[#C4D0E5] hover:border-[#48E3EF]/50 hover:bg-[#152338] hover:text-white transition-all cursor-pointer shadow-sm"
-            aria-label={`Scroll ${lane.title} right`}
+            aria-label={`Cuộn ${lane.title} sang phải`}
           >
             <ChevronRight className="h-4 w-4" />
           </button>
@@ -90,7 +90,7 @@ export const DestinationDiscoveryRail: React.FC<DestinationDiscoveryRailProps> =
         className="flex gap-6 overflow-x-auto pb-4 pt-1 scrollbar-thin scrollbar-thumb-[#243049] scrollbar-track-transparent scroll-smooth focus:outline-none"
         tabIndex={0}
         role="region"
-        aria-label={`${lane.title} destinations rail`}
+        aria-label={`Danh sách điểm đến ${lane.title}`}
       >
         {lane.recommendations.map((rec) => (
           <div

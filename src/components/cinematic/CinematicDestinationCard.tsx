@@ -159,7 +159,7 @@ export const CinematicDestinationCard: React.FC<CinematicDestinationCardProps> =
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-serif text-xl font-medium tracking-tight text-white group-hover:text-[#48E3EF] transition-colors">
-            {destination.name}
+            {destination.vietnameseName || destination.name}
           </h3>
 
           <div className="flex items-center gap-1 rounded-md bg-[#18253E] px-2 py-0.5 text-xs font-semibold text-white border border-white/5 shrink-0">
