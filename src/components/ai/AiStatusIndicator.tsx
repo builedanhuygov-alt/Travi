@@ -24,15 +24,15 @@ export const AiStatusIndicator: React.FC<AiStatusIndicatorProps> = ({
         if (isMounted) {
           setAiState(info.state);
           if (info.state === 'AI_ONLINE') {
-            setProviderLabel('AI Online • Qwen2 GPU');
+            setProviderLabel('AI Trực tuyến • Qwen2 GPU');
           } else {
-            setProviderLabel('AI Offline • Chế độ Chuyên gia xác thực');
+            setProviderLabel('AI Ngoại tuyến • Chế độ Chuyên gia Tất định');
           }
         }
       } catch {
         if (isMounted) {
           setAiState('AI_OFFLINE');
-          setProviderLabel('AI Offline • Chế độ Chuyên gia xác thực');
+          setProviderLabel('AI Ngoại tuyến • Chế độ Chuyên gia Tất định');
         }
       }
     }
@@ -50,7 +50,7 @@ export const AiStatusIndicator: React.FC<AiStatusIndicatorProps> = ({
       borderColor: 'border-[#10B981]/30',
       badgeBg: 'bg-[#10B981]/10',
       textColor: 'text-[#10B981]',
-      text: 'AI Online',
+      text: 'AI Trực tuyến',
       tooltip: 'Mô hình Qwen2-7B đang kết nối trực tiếp từ máy chủ GPU chuyên dụng.',
     },
     AI_OFFLINE: {
@@ -59,8 +59,8 @@ export const AiStatusIndicator: React.FC<AiStatusIndicatorProps> = ({
       borderColor: 'border-amber-400/30',
       badgeBg: 'bg-amber-400/10',
       textColor: 'text-amber-300',
-      text: 'AI Offline',
-      tooltip: 'Máy chủ GPU tạm dừng. Travi tự động vận hành với Bộ tri thức chuyên gia đối soát.',
+      text: 'AI Ngoại tuyến',
+      tooltip: 'Máy chủ GPU tạm dừng. Travi tự động vận hành ở Chế độ Chuyên gia Tất định.',
     },
     AI_CONNECTING: {
       dotColor: 'bg-[#48E3EF]',
@@ -68,7 +68,7 @@ export const AiStatusIndicator: React.FC<AiStatusIndicatorProps> = ({
       borderColor: 'border-[#48E3EF]/30',
       badgeBg: 'bg-[#48E3EF]/10',
       textColor: 'text-[#48E3EF]',
-      text: 'AI Connecting',
+      text: 'Đang kết nối...',
       tooltip: 'Đang kiểm tra trạng thái dịch vụ suy luận AI...',
     },
   }[aiState];

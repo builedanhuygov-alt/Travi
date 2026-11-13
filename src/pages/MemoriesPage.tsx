@@ -27,15 +27,15 @@ export const MemoriesPage: React.FC = () => {
   const [newTitle, setNewTitle] = useState('');
   const [newLocation, setNewLocation] = useState('');
   const [newNote, setNewNote] = useState('');
-  const [newBadge, setNewBadge] = useState('Spiritual Sanctuary');
+  const [newBadge, setNewBadge] = useState('Không gian Tâm linh');
 
   const badgeOptions = [
-    'Spiritual Sanctuary',
-    'Artisan Atelier',
-    'Frontier Ridge',
-    'Mediterranean Gold',
-    'Living Heritage',
-    'Gastronomic Memory',
+    'Không gian Tâm linh',
+    'Xưởng Nghệ nhân',
+    'Đỉnh trời Biên ải',
+    'Sắc vàng Miền duyên hải',
+    'Di sản Sống',
+    'Ký ức Ẩm thực',
   ];
 
   const handleAddMemory = (e: React.FormEvent) => {
@@ -45,14 +45,14 @@ export const MemoriesPage: React.FC = () => {
     const created = createMemory({
       title: newTitle.trim(),
       location: newLocation.trim(),
-      country: newLocation.includes(',') ? newLocation.split(',')[1].trim() : 'Global',
-      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      country: newLocation.includes(',') ? newLocation.split(',')[1].trim() : 'Việt Nam',
+      date: new Date().toLocaleDateString('vi-VN', { month: 'short', day: 'numeric', year: 'numeric' }),
       image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800&auto=format&fit=crop',
-      note: newNote.trim() || 'A quiet, unhurried moment etched into memory.',
+      note: newNote.trim() || 'Khoảnh khắc tĩnh lặng, thong thả khắc sâu vào ký ức.',
       badge: newBadge,
     });
 
-    triggerToast('Moment Archived', `"${created.title}" added to your sensory timeline.`, 'success');
+    triggerToast('Đã lưu khoảnh khắc', `"${created.title}" đã được thêm vào dòng thời gian cảm xúc.`, 'success');
     setNewTitle('');
     setNewLocation('');
     setNewNote('');
@@ -61,16 +61,16 @@ export const MemoriesPage: React.FC = () => {
 
   const handleDelete = (id: string, title: string) => {
     deleteMemory(id);
-    triggerToast('Moment Removed', `"${title}" was removed from your timeline.`, 'neutral');
+    triggerToast('Đã xóa khoảnh khắc', `"${title}" đã được xóa khỏi dòng thời gian.`, 'neutral');
   };
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
       <PageHeader
-        badge="Sensory Archive"
+        badge="Kho Kỷ Niệm Cảm Xúc"
         badgeVariant="violet"
-        title="Travel Timeline & Memories"
-        description="Preserve the unhurried textures of your journeys: temple bells at dawn, mist rolling over karst ridges, and conversations over charcoal tea."
+        title="Dòng Thời Gian & Kỷ Niệm Chuyến Đi"
+        description="Lưu giữ những rung cảm thong thả trong chuyến hành trình: tiếng chuông chùa sớm, màn sương giăng trên đỉnh đèo và những ấm trà than hồng."
         action={
           <Button
             variant="primary"
@@ -78,7 +78,7 @@ export const MemoriesPage: React.FC = () => {
             onClick={() => setIsModalOpen(true)}
             leftIcon={<Plus className="h-4 w-4" />}
           >
-            Log New Memory
+            Ghi Lại Kỷ Niệm Mới
           </Button>
         }
       />
@@ -88,10 +88,10 @@ export const MemoriesPage: React.FC = () => {
         <Info className="h-5 w-5 text-[#9875FF] shrink-0 mt-0.5" />
         <div>
           <span className="font-semibold text-white block mb-0.5">
-            Architecture Boundary: Local Sensory Sandbox
+            Phạm Vi Kiến Trúc: Bộ Nhớ Cục Bộ Thử Nghiệm
           </span>
           <p className="font-light leading-relaxed">
-            In Foundation v0.2, memories are persisted in your local demo store. High-resolution Cloud Storage photo uploads and live geolocation telemetry will activate in future milestones under user-isolated Firebase security rules (`storage.rules`).
+            Trong phiên bản Nền tảng v0.2, các kỷ niệm được lưu trữ trong bộ nhớ trình duyệt cục bộ của bạn. Tính năng tải ảnh độ phân giải cao lên Cloud Storage và định vị vệ tinh trực tiếp sẽ kích hoạt ở các giai đoạn tiếp theo theo quy tắc bảo mật Firebase riêng biệt (`storage.rules`).
           </p>
         </div>
       </div>
@@ -100,19 +100,19 @@ export const MemoriesPage: React.FC = () => {
       <div className="mb-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
         <Card variant="flat" className="p-4 border-[#243049] text-center">
           <span className="block font-serif text-2xl font-bold text-white">{memories.length}</span>
-          <span className="text-[10px] uppercase font-mono tracking-wider text-[#9BA9C3]">Archived Moments</span>
+          <span className="text-[10px] uppercase font-mono tracking-wider text-[#9BA9C3]">Khoảnh khắc đã lưu</span>
         </Card>
         <Card variant="flat" className="p-4 border-[#243049] text-center">
           <span className="block font-serif text-2xl font-bold text-[#3DDC97]">100%</span>
-          <span className="text-[10px] uppercase font-mono tracking-wider text-[#9BA9C3]">Presence Focused</span>
+          <span className="text-[10px] uppercase font-mono tracking-wider text-[#9BA9C3]">Trọn vẹn cảm xúc</span>
         </Card>
         <Card variant="flat" className="p-4 border-[#243049] text-center">
-          <span className="block font-serif text-2xl font-bold text-[#48E3EF]">Local</span>
-          <span className="text-[10px] uppercase font-mono tracking-wider text-[#9BA9C3]">Sandbox Storage</span>
+          <span className="block font-serif text-2xl font-bold text-[#48E3EF]">Cục bộ</span>
+          <span className="text-[10px] uppercase font-mono tracking-wider text-[#9BA9C3]">Bộ nhớ trải nghiệm</span>
         </Card>
         <Card variant="flat" className="p-4 border-[#243049] text-center">
           <span className="block font-serif text-2xl font-bold text-[#9875FF]">0ms</span>
-          <span className="text-[10px] uppercase font-mono tracking-wider text-[#9BA9C3]">Offline Latency</span>
+          <span className="text-[10px] uppercase font-mono tracking-wider text-[#9BA9C3]">Độ trễ ngoại tuyến</span>
         </Card>
       </div>
 
@@ -158,8 +158,8 @@ export const MemoriesPage: React.FC = () => {
                             type="button"
                             onClick={() => handleDelete(mem.id, mem.title)}
                             className="text-[#9BA9C3] hover:text-rose-400 p-1 rounded transition-colors"
-                            title="Delete memory"
-                            aria-label={`Delete ${mem.title}`}
+                            title="Xóa kỷ niệm"
+                            aria-label={`Xóa ${mem.title}`}
                           >
                             <Trash2 className="h-3.5 w-3.5" />
                           </button>
@@ -178,8 +178,8 @@ export const MemoriesPage: React.FC = () => {
                     </div>
 
                     <div className="mt-4 pt-3 border-t border-[#243049]/40 flex items-center justify-between text-[11px] text-[#9BA9C3]">
-                      <span>Preserved in Local Sanctuary Ledger</span>
-                      <span className="text-[#3DDC97]">Verified Entry</span>
+                      <span>Lưu giữ trong sổ hành trình cục bộ</span>
+                      <span className="text-[#3DDC97]">Bản ghi đã đối soát</span>
                     </div>
                   </div>
                 </div>
@@ -194,17 +194,17 @@ export const MemoriesPage: React.FC = () => {
             <Camera className="h-8 w-8" />
           </div>
           <h3 className="font-serif text-2xl font-medium text-white mb-2">
-            Your Sensory Timeline is Empty
+            Dòng Thời Gian Cảm Xúc Đang Trống
           </h3>
           <p className="max-w-md text-xs text-[#9BA9C3] mb-6 font-light leading-relaxed">
-            You haven't logged any travel memories yet. Capture a moment of presence, or restore the default sample archive to explore.
+            Bạn chưa ghi lại kỷ niệm chuyến đi nào. Hãy ghi lại một khoảnh khắc đáng nhớ hoặc khôi phục dữ liệu mẫu để trải nghiệm.
           </p>
           <div className="flex items-center gap-3">
             <Button variant="primary" size="md" onClick={() => setIsModalOpen(true)} leftIcon={<Plus className="h-4 w-4" />}>
-              Log First Memory
+              Ghi Kỷ Niệm Đầu Tiên
             </Button>
             <Button variant="secondary" size="md" onClick={resetToDemoDefaults} leftIcon={<RotateCcw className="h-4 w-4" />}>
-              Restore Sample Memories
+              Khôi Phục Dữ Liệu Mẫu
             </Button>
           </div>
         </Card>
@@ -223,7 +223,7 @@ export const MemoriesPage: React.FC = () => {
               <div className="flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-[#9875FF]" />
                 <h3 id="modal-memory-title" className="font-serif text-xl font-medium text-white">
-                  Log Sensory Memory
+                  Ghi Lại Kỷ Niệm Cảm Xúc
                 </h3>
               </div>
               <button
@@ -238,12 +238,12 @@ export const MemoriesPage: React.FC = () => {
             <form onSubmit={handleAddMemory} className="space-y-4 text-xs">
               <div>
                 <label className="block text-xs font-medium text-white mb-1.5">
-                  Memory Title *
+                  Tên kỷ niệm *
                 </label>
                 <Input
                   type="text"
                   required
-                  placeholder="e.g. Dawn Mist along the Nho Quế River"
+                  placeholder="Ví dụ: Sương sớm trên dòng sông Nho Quế"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
                 />
@@ -251,12 +251,12 @@ export const MemoriesPage: React.FC = () => {
 
               <div>
                 <label className="block text-xs font-medium text-white mb-1.5">
-                  Location & Region *
+                  Địa điểm & Vùng miền *
                 </label>
                 <Input
                   type="text"
                   required
-                  placeholder="e.g. Đồng Văn Plateau, Vietnam"
+                  placeholder="Ví dụ: Cao nguyên đá Đồng Văn, Hà Giang"
                   value={newLocation}
                   onChange={(e) => setNewLocation(e.target.value)}
                   leftIcon={<MapPin className="h-4 w-4" />}
@@ -265,7 +265,7 @@ export const MemoriesPage: React.FC = () => {
 
               <div>
                 <label className="block text-xs font-medium text-white mb-1.5">
-                  Sensory Classification
+                  Phân loại cảm xúc
                 </label>
                 <select
                   value={newBadge}
@@ -282,7 +282,7 @@ export const MemoriesPage: React.FC = () => {
 
               <div>
                 <label className="block text-xs font-medium text-white mb-1.5">
-                  Sensory Journal Entry (Acoustics, scents, lighting)
+                  Nhật ký cảm xúc (Âm thanh, hương vị, ánh sáng)
                 </label>
                 <textarea
                   rows={4}
@@ -290,16 +290,16 @@ export const MemoriesPage: React.FC = () => {
                   value={newNote}
                   onChange={(e) => setNewNote(e.target.value)}
                   className="w-full rounded-xl border border-[#243049] bg-[#121C30] p-3 text-xs text-white focus:outline-none focus:border-[#3DDC97]"
-                  placeholder="What sensory details captured your presence? (e.g. Incense drifting across cedar floorboards; the sound of river water echoing against 800m limestone cliffs...)"
+                  placeholder="Những chi tiết giác quan nào đã giữ trọn sự hiện diện của bạn? (Ví dụ: Mùi hương trầm thoang thoảng; tiếng nước sông vọng lại từ vách đá vôi dựng đứng...)"
                 />
               </div>
 
               <div className="pt-4 border-t border-[#243049] flex items-center justify-end gap-3">
                 <Button type="button" variant="ghost" size="md" onClick={() => setIsModalOpen(false)}>
-                  Cancel
+                  Hủy
                 </Button>
                 <Button type="submit" variant="primary" size="md">
-                  Archive Memory
+                  Lưu Kỷ Niệm
                 </Button>
               </div>
             </form>

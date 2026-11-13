@@ -1,6 +1,6 @@
 [
   {
-    "review_id": "rev-1794579555817-1",
+    "review_id": "rev-1794581088219-1",
     "incoming_record": {
       "id": "poi-son-la-064",
       "name": "Chợ phiên Chiềng Đi 2",
@@ -59,14 +59,14 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.744Z",
+          "timestamp": "2026-11-13T14:44:48.149Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested raw record from official Sơn La POI register. PII scrubbed."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.744Z",
-      "updated_at": "2026-11-13T14:19:15.744Z",
+      "created_at": "2026-11-13T14:44:48.149Z",
+      "updated_at": "2026-11-13T14:44:48.149Z",
       "last_verified_at": "2026-11-10"
     },
     "existing_record": {
@@ -127,25 +127,25 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.744Z",
+          "timestamp": "2026-11-13T14:44:48.149Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested raw record from official Sơn La POI register. PII scrubbed."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.744Z",
-      "updated_at": "2026-11-13T14:19:15.744Z",
+      "created_at": "2026-11-13T14:44:48.149Z",
+      "updated_at": "2026-11-13T14:44:48.149Z",
       "last_verified_at": "2026-11-10"
     },
     "similarity_score": 0.8,
     "match_reasons": [
       "High name similarity (80.0%) in Sơn La"
     ],
-    "flagged_at": "2026-11-13T14:19:15.817Z",
+    "flagged_at": "2026-11-13T14:44:48.219Z",
     "status": "pending_review"
   },
   {
-    "review_id": "rev-1794579555892-2",
+    "review_id": "rev-1794581088270-2",
     "incoming_record": {
       "id": "poi-north-cho-phien-bac-ha",
       "name": "Bac Ha Sunday Market",
@@ -208,14 +208,14 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.757Z",
+          "timestamp": "2026-11-13T14:44:48.162Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested Northern destination. Admin mapped: Lào Cai."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.757Z",
-      "updated_at": "2026-11-13T14:19:15.757Z",
+      "created_at": "2026-11-13T14:44:48.162Z",
+      "updated_at": "2026-11-13T14:44:48.162Z",
       "last_verified_at": "2026-10-31"
     },
     "existing_record": {
@@ -277,25 +277,25 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.749Z",
+          "timestamp": "2026-11-13T14:44:48.153Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested Northern destination. Admin mapped: Lào Cai."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.749Z",
-      "updated_at": "2026-11-13T14:19:15.749Z",
+      "created_at": "2026-11-13T14:44:48.153Z",
+      "updated_at": "2026-11-13T14:44:48.153Z",
       "last_verified_at": "2026-10-31"
     },
     "similarity_score": 0.7,
     "match_reasons": [
       "Close proximity (~57m) with overlapping vocabulary (50%)"
     ],
-    "flagged_at": "2026-11-13T14:19:15.892Z",
+    "flagged_at": "2026-11-13T14:44:48.270Z",
     "status": "pending_review"
   },
   {
-    "review_id": "rev-1794579555910-3",
+    "review_id": "rev-1794581088288-3",
     "incoming_record": {
       "id": "poi-north-nha-tho-lon-ha-noi",
       "name": "St. Joseph's Cathedral Hanoi",
@@ -358,14 +358,14 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.763Z",
+          "timestamp": "2026-11-13T14:44:48.169Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested Northern destination. Admin mapped: Hà Nội."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.763Z",
-      "updated_at": "2026-11-13T14:19:15.763Z",
+      "created_at": "2026-11-13T14:44:48.169Z",
+      "updated_at": "2026-11-13T14:44:48.169Z",
       "last_verified_at": "2026-10-31"
     },
     "existing_record": {
@@ -432,25 +432,25 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.751Z",
+          "timestamp": "2026-11-13T14:44:48.156Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested Northern destination. Admin mapped: Hà Nội."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.751Z",
-      "updated_at": "2026-11-13T14:19:15.751Z",
+      "created_at": "2026-11-13T14:44:48.156Z",
+      "updated_at": "2026-11-13T14:44:48.156Z",
       "last_verified_at": "2026-10-31"
     },
     "similarity_score": 0.7,
     "match_reasons": [
       "Close proximity (~489m) with overlapping vocabulary (20%)"
     ],
-    "flagged_at": "2026-11-13T14:19:15.910Z",
+    "flagged_at": "2026-11-13T14:44:48.288Z",
     "status": "pending_review"
   },
   {
-    "review_id": "rev-1794579555930-4",
+    "review_id": "rev-1794581088311-4",
     "incoming_record": {
       "id": "poi-nat-ha-noi",
       "name": "Hanoi",
@@ -609,14 +609,14 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.764Z",
+          "timestamp": "2026-11-13T14:44:48.171Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested national provincial cluster. Canonical ID: 01."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.764Z",
-      "updated_at": "2026-11-13T14:19:15.764Z",
+      "created_at": "2026-11-13T14:44:48.171Z",
+      "updated_at": "2026-11-13T14:44:48.171Z",
       "last_verified_at": "2026-10-30"
     },
     "existing_record": {
@@ -681,25 +681,25 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.763Z",
+          "timestamp": "2026-11-13T14:44:48.169Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested Northern destination. Admin mapped: Hà Nội."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.763Z",
-      "updated_at": "2026-11-13T14:19:15.763Z",
+      "created_at": "2026-11-13T14:44:48.169Z",
+      "updated_at": "2026-11-13T14:44:48.169Z",
       "last_verified_at": "2026-10-31"
     },
     "similarity_score": 0.7,
     "match_reasons": [
       "Close proximity (~489m) with overlapping vocabulary (25%)"
     ],
-    "flagged_at": "2026-11-13T14:19:15.930Z",
+    "flagged_at": "2026-11-13T14:44:48.311Z",
     "status": "pending_review"
   },
   {
-    "review_id": "rev-1794579555930-5",
+    "review_id": "rev-1794581088311-5",
     "incoming_record": {
       "id": "poi-nat-ha-giang",
       "name": "Ha Giang",
@@ -825,14 +825,14 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.764Z",
+          "timestamp": "2026-11-13T14:44:48.171Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested national provincial cluster. Canonical ID: 08."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.764Z",
-      "updated_at": "2026-11-13T14:19:15.764Z",
+      "created_at": "2026-11-13T14:44:48.171Z",
+      "updated_at": "2026-11-13T14:44:48.171Z",
       "last_verified_at": "2026-10-30"
     },
     "existing_record": {
@@ -894,25 +894,25 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.749Z",
+          "timestamp": "2026-11-13T14:44:48.154Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested Northern destination. Admin mapped: Tuyên Quang."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.749Z",
-      "updated_at": "2026-11-13T14:19:15.749Z",
+      "created_at": "2026-11-13T14:44:48.154Z",
+      "updated_at": "2026-11-13T14:44:48.154Z",
       "last_verified_at": "2026-10-31"
     },
     "similarity_score": 0.7,
     "match_reasons": [
       "Close proximity (~0m) with overlapping vocabulary (67%)"
     ],
-    "flagged_at": "2026-11-13T14:19:15.930Z",
+    "flagged_at": "2026-11-13T14:44:48.311Z",
     "status": "pending_review"
   },
   {
-    "review_id": "rev-1794579555930-6",
+    "review_id": "rev-1794581088312-6",
     "incoming_record": {
       "id": "poi-nat-ninh-binh",
       "name": "Ninh Binh & Trang An",
@@ -1007,14 +1007,14 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.765Z",
+          "timestamp": "2026-11-13T14:44:48.172Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested national provincial cluster. Canonical ID: 37."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.765Z",
-      "updated_at": "2026-11-13T14:19:15.765Z",
+      "created_at": "2026-11-13T14:44:48.172Z",
+      "updated_at": "2026-11-13T14:44:48.172Z",
       "last_verified_at": "2026-10-30"
     },
     "existing_record": {
@@ -1077,25 +1077,25 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.752Z",
+          "timestamp": "2026-11-13T14:44:48.158Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested Northern destination. Admin mapped: Ninh Bình."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.752Z",
-      "updated_at": "2026-11-13T14:19:15.752Z",
+      "created_at": "2026-11-13T14:44:48.158Z",
+      "updated_at": "2026-11-13T14:44:48.158Z",
       "last_verified_at": "2026-10-31"
     },
     "similarity_score": 0.7,
     "match_reasons": [
       "Close proximity (~0m) with overlapping vocabulary (40%)"
     ],
-    "flagged_at": "2026-11-13T14:19:15.930Z",
+    "flagged_at": "2026-11-13T14:44:48.312Z",
     "status": "pending_review"
   },
   {
-    "review_id": "rev-1794579555931-7",
+    "review_id": "rev-1794581088313-7",
     "incoming_record": {
       "id": "poi-nat-quang-ninh-halong",
       "name": "Ha Long Bay & Cat Ba Archipelago",
@@ -1191,14 +1191,14 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.765Z",
+          "timestamp": "2026-11-13T14:44:48.172Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested national provincial cluster. Canonical ID: 22."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.765Z",
-      "updated_at": "2026-11-13T14:19:15.765Z",
+      "created_at": "2026-11-13T14:44:48.172Z",
+      "updated_at": "2026-11-13T14:44:48.172Z",
       "last_verified_at": "2026-10-30"
     },
     "existing_record": {
@@ -1262,25 +1262,25 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.753Z",
+          "timestamp": "2026-11-13T14:44:48.159Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested Northern destination. Admin mapped: Quảng Ninh."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.753Z",
-      "updated_at": "2026-11-13T14:19:15.753Z",
+      "created_at": "2026-11-13T14:44:48.159Z",
+      "updated_at": "2026-11-13T14:44:48.159Z",
       "last_verified_at": "2026-10-31"
     },
     "similarity_score": 0.7,
     "match_reasons": [
       "Close proximity (~0m) with overlapping vocabulary (50%)"
     ],
-    "flagged_at": "2026-11-13T14:19:15.931Z",
+    "flagged_at": "2026-11-13T14:44:48.313Z",
     "status": "pending_review"
   },
   {
-    "review_id": "rev-1794579555932-8",
+    "review_id": "rev-1794581088314-8",
     "incoming_record": {
       "id": "poi-nat-bac-kan-babe",
       "name": "Bắc Kạn — Ba Bể Lake",
@@ -1370,14 +1370,14 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.766Z",
+          "timestamp": "2026-11-13T14:44:48.174Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested national provincial cluster. Canonical ID: 19."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.766Z",
-      "updated_at": "2026-11-13T14:19:15.766Z",
+      "created_at": "2026-11-13T14:44:48.174Z",
+      "updated_at": "2026-11-13T14:44:48.174Z",
       "last_verified_at": "2026-10-30"
     },
     "existing_record": {
@@ -1441,25 +1441,25 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.750Z",
+          "timestamp": "2026-11-13T14:44:48.155Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested Northern destination. Admin mapped: Thái Nguyên."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.750Z",
-      "updated_at": "2026-11-13T14:19:15.750Z",
+      "created_at": "2026-11-13T14:44:48.155Z",
+      "updated_at": "2026-11-13T14:44:48.155Z",
       "last_verified_at": "2026-10-31"
     },
     "similarity_score": 0.7,
     "match_reasons": [
       "Close proximity (~486m) with overlapping vocabulary (60%)"
     ],
-    "flagged_at": "2026-11-13T14:19:15.932Z",
+    "flagged_at": "2026-11-13T14:44:48.314Z",
     "status": "pending_review"
   },
   {
-    "review_id": "rev-1794579555932-9",
+    "review_id": "rev-1794581088314-9",
     "incoming_record": {
       "id": "poi-nat-lang-son-mauson",
       "name": "Lạng Sơn — Mẫu Sơn Highland",
@@ -1549,14 +1549,14 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.766Z",
+          "timestamp": "2026-11-13T14:44:48.174Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested national provincial cluster. Canonical ID: 20."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.766Z",
-      "updated_at": "2026-11-13T14:19:15.766Z",
+      "created_at": "2026-11-13T14:44:48.174Z",
+      "updated_at": "2026-11-13T14:44:48.174Z",
       "last_verified_at": "2026-10-30"
     },
     "existing_record": {
@@ -1620,21 +1620,21 @@
       },
       "audit_trail": [
         {
-          "timestamp": "2026-11-13T14:19:15.750Z",
+          "timestamp": "2026-11-13T14:44:48.155Z",
           "action": "ingested",
           "agent": "NationalTourismPipeline",
           "notes": "Ingested Northern destination. Admin mapped: Lạng Sơn."
         }
       ],
-      "created_at": "2026-11-13T14:19:15.750Z",
-      "updated_at": "2026-11-13T14:19:15.750Z",
+      "created_at": "2026-11-13T14:44:48.155Z",
+      "updated_at": "2026-11-13T14:44:48.155Z",
       "last_verified_at": "2026-10-31"
     },
     "similarity_score": 0.7,
     "match_reasons": [
       "Close proximity (~440m) with overlapping vocabulary (40%)"
     ],
-    "flagged_at": "2026-11-13T14:19:15.932Z",
+    "flagged_at": "2026-11-13T14:44:48.314Z",
     "status": "pending_review"
   }
 ]

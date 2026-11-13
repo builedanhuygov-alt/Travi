@@ -133,24 +133,57 @@ export const CopilotPage: React.FC = () => {
     {
       id: createMsgId('ai-init'),
       sender: 'copilot',
-      timestamp: 'Just now',
+      timestamp: 'Vừa xong',
       content:
-        'Xin chào! I am your **Travi Vietnam Travel Assistant**. Ask me about hidden destinations, regional street food secrets, cultural etiquette, or train logistics across Vietnam.',
+        'Xin chào! Tôi là **Trợ lý Du lịch Thông minh Travi**. Bạn có thể hỏi tôi về các điểm đến tiềm ẩn, nét đặc sắc ẩm thực vùng miền, văn hóa phong tục bản địa, hoặc lộ trình di chuyển xuyên Việt.',
       suggestions: [
-        'What are the key cultural etiquette rules for temples?',
-        'What are the best street food stalls in Hanoi?',
-        'How to book trains over the Hai Van Pass?',
-        'Plan a 5-day trip to Ha Giang and the North',
+        'Quy tắc văn hóa và trang phục cần biết khi viếng thăm đền chùa?',
+        'Những quán ăn đường phố truyền thống ngon nhất tại Hà Nội?',
+        'Kinh nghiệm đặt vé tàu hỏa ngắm cảnh qua đèo Hải Vân?',
+        'Gợi ý lịch trình 5 ngày khám phá Hà Giang và Đông Bắc?',
       ],
       provenance: {
-        providerName: 'Travi Vietnam Expert Knowledge Engine',
+        providerName: 'Cơ sở Tri thức Chuyên gia Du lịch Travi',
         isLiveAi: false,
-        modeDescription: 'Deterministic Expert Knowledge Base (Active & Verified)',
+        modeDescription: 'Cơ sở Tri thức Chuyên gia Tất định (Đang hoạt động & Đã đối soát)',
       },
     },
   ]);
   const [chatInput, setChatInput] = useState<string>('');
   const [isAiResponding, setIsAiResponding] = useState<boolean>(false);
+
+  // Helper translations for display
+  const companionLabels: Record<TravelCompanions, string> = {
+    Solo: 'Một mình',
+    Couple: 'Cặp đôi',
+    Family: 'Gia đình',
+    Friends: 'Bạn bè',
+    'Small Group': 'Nhóm nhỏ',
+  };
+
+  const budgetLabels: Record<BudgetRange, string> = {
+    'Budget Backpacker': 'Tiết kiệm',
+    'Comfort Explorer': 'Tiêu chuẩn',
+    'Luxury Heritage': 'Cao cấp',
+    'Mid-range': 'Tầm trung',
+    Comfort: 'Thoải mái',
+    Luxury: 'Sang trọng',
+    'Artisanal Heritage': 'Di sản tinh hoa',
+  };
+
+  const paceLabels: Record<TravelPace, string> = {
+    Unhurried: 'Thong thả',
+    Deliberate: 'Cân bằng',
+    Expedition: 'Khám phá nhanh',
+    Moderate: 'Vừa phải',
+    'Fast-paced': 'Tốc hành',
+  };
+
+  const timeOfDayLabels: Record<string, string> = {
+    Morning: 'Buổi sáng',
+    Afternoon: 'Buổi chiều',
+    Evening: 'Buổi tối',
+  };
 
   // Generate Itinerary through 8-stage Agentic Workflow
   const handleGenerateWorkflow = async () => {
@@ -178,10 +211,10 @@ export const CopilotPage: React.FC = () => {
       setWorkflowState(result);
       if (result.draft) {
         setGeneratedDraft(result.draft);
-        triggerToast('Day-by-day Vietnam itinerary synthesized successfully', 'success');
+        triggerToast('Đã tổng hợp thành công lịch trình chi tiết theo từng ngày!', 'success');
       }
     } catch {
-      triggerToast('Itinerary generation encountered an error. Please try again.', 'error');
+      triggerToast('Đã xảy ra lỗi khi tạo lịch trình. Vui lòng thử lại.', 'error');
     } finally {
       setIsGenerating(false);
     }
@@ -193,7 +226,7 @@ export const CopilotPage: React.FC = () => {
     const trip = convertDraftToTrip(generatedDraft);
     createTrip(trip);
     setIsSavedToTrips(true);
-    triggerToast(`Saved "${trip.title}" to My Journeys!`, 'success');
+    triggerToast(`Đã lưu "${trip.title}" vào Hành Trình Của Tôi!`, 'success');
   };
 
   // Activity Edit & Reorder Functions
@@ -209,7 +242,7 @@ export const CopilotPage: React.FC = () => {
       days: updatedDays,
       isEdited: true,
     });
-    triggerToast('Reordered stop up', 'info');
+    triggerToast('Đã chuyển điểm dừng lên trước', 'info');
   };
 
   const handleMoveActivityDown = (dayIndex: number, actIndex: number) => {
@@ -225,7 +258,7 @@ export const CopilotPage: React.FC = () => {
       days: updatedDays,
       isEdited: true,
     });
-    triggerToast('Reordered stop down', 'info');
+    triggerToast('Đã chuyển điểm dừng xuống sau', 'info');
   };
 
   const handleRemoveActivity = (dayIndex: number, actId: string) => {
@@ -237,7 +270,7 @@ export const CopilotPage: React.FC = () => {
       days: updatedDays,
       isEdited: true,
     });
-    triggerToast('Removed stop from itinerary', 'info');
+    triggerToast('Đã xóa điểm dừng khỏi lịch trình', 'info');
   };
 
   const handleAddActivity = (dayIndex: number) => {
@@ -248,10 +281,10 @@ export const CopilotPage: React.FC = () => {
       id: stopId,
       timeOfDay: 'Afternoon',
       title: newStopTitle.trim(),
-      description: newStopDesc.trim() || 'Custom planned excursion stop.',
-      culturalPillar: 'Personal Exploration',
-      estimatedDuration: '2 Hours',
-      unverifiedEstimateNotice: 'Custom traveler stop. Verify hours and access locally.',
+      description: newStopDesc.trim() || 'Điểm tham quan được thêm thủ công.',
+      culturalPillar: 'Khám phá cá nhân',
+      estimatedDuration: '2 Giờ',
+      unverifiedEstimateNotice: 'Điểm dừng do du khách tự thêm. Vui lòng kiểm tra giờ mở cửa thực tế.',
     });
     setGeneratedDraft({
       ...generatedDraft,
@@ -261,7 +294,7 @@ export const CopilotPage: React.FC = () => {
     setNewStopTitle('');
     setNewStopDesc('');
     setEditingDayIndex(null);
-    triggerToast('Added custom stop', 'success');
+    triggerToast('Đã thêm điểm dừng tùy chọn', 'success');
   };
 
 
@@ -273,7 +306,7 @@ export const CopilotPage: React.FC = () => {
     const userMsg: CopilotMessage = {
       id: createMsgId('user'),
       sender: 'user',
-      timestamp: 'Just now',
+      timestamp: 'Vừa xong',
       content: query,
     };
 
@@ -306,7 +339,7 @@ export const CopilotPage: React.FC = () => {
       const aiMsg: CopilotMessage = {
         id: createMsgId('ai'),
         sender: 'copilot',
-        timestamp: 'Just now',
+        timestamp: 'Vừa xong',
         content: response.content,
         suggestions: response.suggestions,
         itineraryTeaser: response.itineraryTeaser,
@@ -314,10 +347,9 @@ export const CopilotPage: React.FC = () => {
         provenance: response.provenance,
       };
 
-
       setMessages((prev) => [...prev, aiMsg]);
     } catch {
-      triggerToast('Assistant response error. Please try again.', 'error');
+      triggerToast('Đã xảy ra lỗi phản hồi từ trợ lý. Vui lòng thử lại.', 'error');
     } finally {
       setIsAiResponding(false);
     }
@@ -333,14 +365,14 @@ export const CopilotPage: React.FC = () => {
               <div className="flex items-center gap-2 mb-2">
                 <span className="flex h-2 w-2 rounded-full bg-[#3DDC97] animate-pulse" />
                 <span className="text-xs font-mono uppercase tracking-widest text-[#3DDC97]">
-                  Vietnam Travel Intelligence
+                  Trí Tuệ Du Lịch Việt Nam
                 </span>
               </div>
               <h1 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-white">
-                Smart Trip Planner & AI Assistant
+                Lập Kế Hoạch Chuyến Đi & Trợ Lý AI
               </h1>
               <p className="text-xs sm:text-sm text-[#9BA9C3] mt-1 max-w-2xl font-light leading-relaxed">
-                Build day-by-day Vietnam itineraries with realistic pacing and budget breakdowns, or consult our specialized Vietnam travel assistant.
+                Thiết lập lịch trình du lịch chi tiết từng ngày với nhịp độ thực tế và dự toán chi phí, hoặc tham vấn trợ lý AI chuyên sâu về du lịch Việt Nam.
               </p>
             </div>
 
@@ -358,7 +390,7 @@ export const CopilotPage: React.FC = () => {
                   }`}
                 >
                   <Workflow className="h-4 w-4 text-[#3DDC97]" />
-                  <span>Smart Trip Planner</span>
+                  <span>Lập Kế Hoạch Thông Minh</span>
                 </button>
 
                 <button
@@ -371,7 +403,7 @@ export const CopilotPage: React.FC = () => {
                   }`}
                 >
                   <Bot className="h-4 w-4 text-[#48E3EF]" />
-                  <span>AI Travel Assistant</span>
+                  <span>Trợ Lý Du Lịch AI</span>
                 </button>
               </div>
             </div>
@@ -481,7 +513,7 @@ export const CopilotPage: React.FC = () => {
                   {/* Destination Selector */}
                   <div>
                     <label className="text-xs font-semibold text-white block mb-1.5">
-                      Destination
+                      Điểm đến
                     </label>
                     <select
                       value={destination}
@@ -514,7 +546,7 @@ export const CopilotPage: React.FC = () => {
                   {/* Travel Companions */}
                   <div>
                     <label className="text-xs font-semibold text-white block mb-1.5">
-                      Bạn đồng hành (Companions)
+                      Bạn đồng hành
                     </label>
                     <div className="grid grid-cols-4 gap-1.5">
                       {(['Solo', 'Couple', 'Family', 'Friends'] as TravelCompanions[]).map((comp) => (
@@ -528,7 +560,7 @@ export const CopilotPage: React.FC = () => {
                               : 'bg-[#080D18] text-[#9BA9C3] border border-[#243049]'
                           }`}
                         >
-                          {comp}
+                          {companionLabels[comp]}
                         </button>
                       ))}
                     </div>
@@ -538,7 +570,7 @@ export const CopilotPage: React.FC = () => {
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
                       <label className="text-xs font-semibold text-white">
-                        Phong cách du khách (Persona)
+                        Phong cách du khách
                       </label>
                       <span className="text-[10px] font-mono text-[#3DDC97] bg-[#3DDC97]/10 px-2 py-0.5 rounded-full border border-[#3DDC97]/20">
                         {selectedPersona}
@@ -573,26 +605,26 @@ export const CopilotPage: React.FC = () => {
                   {/* Starting Location */}
                   <div>
                     <label className="text-xs font-semibold text-white block mb-1.5">
-                      Starting Origin
+                      Điểm xuất phát
                     </label>
                     <select
                       value={startingLocation}
                       onChange={(e) => setStartingLocation(e.target.value)}
                       className="w-full rounded-xl border border-[#243049] bg-[#080D18] px-3.5 py-2.5 text-xs text-white focus:border-[#3DDC97] focus:outline-none"
                     >
-                      <option value="Hà Nội, Vietnam">Hà Nội (Noi Bai Airport / Station)</option>
-                      <option value="TP. Hồ Chí Minh, Vietnam">TP. Hồ Chí Minh (Tan Son Nhat)</option>
-                      <option value="Đà Nẵng, Vietnam">Đà Nẵng (Central Coast)</option>
-                      <option value="Cần Thơ, Vietnam">Cần Thơ (Mekong Delta)</option>
-                      <option value="Overseas / International Arrival">Overseas / Direct Flight Arrival</option>
+                      <option value="Hà Nội, Vietnam">Hà Nội (Sân bay Nội Bài / Ga Hà Nội)</option>
+                      <option value="TP. Hồ Chí Minh, Vietnam">TP. Hồ Chí Minh (Sân bay Tân Sơn Nhất / Ga Sài Gòn)</option>
+                      <option value="Đà Nẵng, Vietnam">Đà Nẵng (Sân bay Đà Nẵng / Duyên hải miền Trung)</option>
+                      <option value="Cần Thơ, Vietnam">Cần Thơ (Đồng bằng sông Cửu Long)</option>
+                      <option value="Overseas / International Arrival">Chuyến bay quốc tế / Đến từ nước ngoài</option>
                     </select>
                   </div>
 
                   {/* Duration Slider */}
                   <div>
                     <div className="flex justify-between text-xs font-semibold text-white mb-1.5">
-                      <span>Trip Duration:</span>
-                      <span className="font-mono text-[#3DDC97]">{durationDays} Days</span>
+                      <span>Thời gian chuyến đi:</span>
+                      <span className="font-mono text-[#3DDC97]">{durationDays} ngày</span>
                     </div>
                     <input
                       type="range"
@@ -603,16 +635,16 @@ export const CopilotPage: React.FC = () => {
                       className="w-full accent-[#3DDC97] bg-[#18253E] h-2 rounded-lg cursor-pointer"
                     />
                     <div className="flex justify-between text-[10px] text-[#9BA9C3] mt-1">
-                      <span>1 Day</span>
-                      <span>7 Days</span>
-                      <span>14 Days</span>
+                      <span>1 ngày</span>
+                      <span>7 ngày</span>
+                      <span>14 ngày</span>
                     </div>
                   </div>
 
                   {/* Budget Tier */}
                   <div>
                     <label className="text-xs font-semibold text-white block mb-1.5">
-                      Budget Tier
+                      Mức ngân sách
                     </label>
                     <div className="grid grid-cols-3 gap-2">
                       {(['Budget Backpacker', 'Comfort Explorer', 'Luxury Heritage'] as BudgetRange[]).map((tier) => (
@@ -626,7 +658,7 @@ export const CopilotPage: React.FC = () => {
                               : 'bg-[#080D18] text-[#9BA9C3] border border-[#243049] hover:text-white'
                           }`}
                         >
-                          {tier.split(' ')[0]}
+                          {budgetLabels[tier]}
                         </button>
                       ))}
                     </div>
@@ -635,7 +667,7 @@ export const CopilotPage: React.FC = () => {
                   {/* Travel Pace */}
                   <div>
                     <label className="text-xs font-semibold text-white block mb-1.5">
-                      Travel Pacing
+                      Nhịp độ di chuyển
                     </label>
                     <div className="grid grid-cols-3 gap-2">
                       {(['Unhurried', 'Deliberate', 'Expedition'] as TravelPace[]).map((p) => (
@@ -649,7 +681,7 @@ export const CopilotPage: React.FC = () => {
                               : 'bg-[#080D18] text-[#9BA9C3] border border-[#243049] hover:text-white'
                           }`}
                         >
-                          {p}
+                          {paceLabels[p]}
                         </button>
                       ))}
                     </div>
@@ -658,18 +690,18 @@ export const CopilotPage: React.FC = () => {
                   {/* Transportation Preference */}
                   <div>
                     <label className="text-xs font-semibold text-white block mb-1.5">
-                      Preferred Transportation
+                      Phương tiện ưu tiên
                     </label>
                     <select
                       value={transportPreference}
                       onChange={(e) => setTransportPreference(e.target.value as any)}
                       className="w-full rounded-xl border border-[#243049] bg-[#080D18] px-3.5 py-2.5 text-xs text-white focus:border-[#3DDC97] focus:outline-none"
                     >
-                      <option value="Reunification Express Train">Reunification Express Train (Scenic & Slow)</option>
-                      <option value="Scenic Limousine Sleeper Bus">VIP Limousine Cabin Sleeper Bus</option>
-                      <option value="Private Car & Driver">Private Car & Driver</option>
-                      <option value="Motorbike Loop">Motorbike / Easy Rider Road Loop</option>
-                      <option value="Domestic Flights">Domestic Flights (Point-to-Point)</option>
+                      <option value="Reunification Express Train">Tàu hỏa Thống Nhất (Ngắm cảnh & Trải nghiệm)</option>
+                      <option value="Scenic Limousine Sleeper Bus">Xe Limousine giường nằm VIP</option>
+                      <option value="Private Car & Driver">Xe riêng & Tài xế</option>
+                      <option value="Motorbike Loop">Xe máy / Cung đường phượt</option>
+                      <option value="Domestic Flights">Chuyến bay nội địa (Nhanh chóng)</option>
                     </select>
                   </div>
 
@@ -683,12 +715,12 @@ export const CopilotPage: React.FC = () => {
                     {isGenerating ? (
                       <>
                         <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
-                        <span>Synthesizing Vietnam Itinerary...</span>
+                        <span>Đang tổng hợp lịch trình...</span>
                       </>
                     ) : (
                       <>
                         <Sparkles className="h-4 w-4 mr-2" />
-                        <span>Build Day-by-Day Itinerary</span>
+                        <span>Tạo Lịch Trình Chi Tiết</span>
                       </>
                     )}
                   </Button>
@@ -700,10 +732,10 @@ export const CopilotPage: React.FC = () => {
                 <div className="rounded-3xl border border-[#243049] bg-[#0E1626]/80 p-5 backdrop-blur-xl">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs font-semibold uppercase tracking-wider text-white">
-                      Agent Synthesis Stages
+                      Các Giai Đoạn Phân Tích Của AI
                     </span>
                     <Badge variant="outline" className="text-[10px] text-[#3DDC97] border-[#3DDC97]/30">
-                      {workflowState.isComplete ? 'Complete' : 'Processing...'}
+                      {workflowState.isComplete ? 'Hoàn thành' : 'Đang xử lý...'}
                     </Badge>
                   </div>
 
@@ -755,17 +787,17 @@ export const CopilotPage: React.FC = () => {
                       <div>
                         <div className="flex items-center gap-2 mb-1.5">
                           <Badge variant="outline" className="text-xs text-[#3DDC97] border-[#3DDC97]/40">
-                            {generatedDraft.destinationName} • {generatedDraft.durationDays} Days
+                            {generatedDraft.destinationName} • {generatedDraft.durationDays} ngày
                           </Badge>
                           <span className="text-xs text-[#9BA9C3]">
-                            Pace: {generatedDraft.travelPace} • Budget: {generatedDraft.budgetRange}
+                            Nhịp độ: {paceLabels[generatedDraft.travelPace] || generatedDraft.travelPace} • Ngân sách: {budgetLabels[generatedDraft.budgetRange] || generatedDraft.budgetRange}
                           </span>
                         </div>
                         <h2 className="font-serif text-2xl sm:text-3xl font-medium text-white">
                           {generatedDraft.title}
                         </h2>
                         <p className="text-xs text-[#9BA9C3] mt-1">
-                          Starting from: <strong className="text-white">{generatedDraft.startingLocation}</strong> via{' '}
+                          Khởi hành từ: <strong className="text-white">{generatedDraft.startingLocation}</strong> bằng{' '}
                           <strong className="text-white">{generatedDraft.transportPreference}</strong>
                         </p>
                         <div className="flex flex-wrap items-center gap-2 mt-2">
@@ -792,12 +824,12 @@ export const CopilotPage: React.FC = () => {
                         {isSavedToTrips ? (
                           <>
                             <Check className="h-4 w-4 mr-1.5" />
-                            <span>Saved in My Journeys</span>
+                            <span>Đã lưu vào Hành trình</span>
                           </>
                         ) : (
                           <>
                             <BookmarkPlus className="h-4 w-4 mr-1.5" />
-                            <span>Save to My Journeys</span>
+                            <span>Lưu vào Hành trình</span>
                           </>
                         )}
                       </Button>
@@ -807,7 +839,7 @@ export const CopilotPage: React.FC = () => {
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-5 border-t border-[#243049]/60">
                       <div className="rounded-xl border border-white/5 bg-[#080D18] p-3">
                         <span className="text-[10px] uppercase font-mono text-[#9BA9C3] block mb-1">
-                          Grand Total (VND)
+                          Tổng dự toán (VND)
                         </span>
                         <span className="text-base font-mono font-bold text-[#3DDC97]">
                           {generatedDraft.budgetBreakdown.totalEstimateVND.toLocaleString()} ₫
@@ -816,7 +848,7 @@ export const CopilotPage: React.FC = () => {
 
                       <div className="rounded-xl border border-white/5 bg-[#080D18] p-3">
                         <span className="text-[10px] uppercase font-mono text-[#9BA9C3] block mb-1">
-                          USD Approx.
+                          Quy đổi USD (ước tính)
                         </span>
                         <span className="text-base font-mono font-bold text-white">
                           ${generatedDraft.budgetBreakdown.totalEstimateUSD} USD
@@ -825,7 +857,7 @@ export const CopilotPage: React.FC = () => {
 
                       <div className="rounded-xl border border-white/5 bg-[#080D18] p-3">
                         <span className="text-[10px] uppercase font-mono text-[#9BA9C3] block mb-1">
-                          Accommodation Total
+                          Chi phí lưu trú
                         </span>
                         <span className="text-xs font-mono text-[#C4D0E5]">
                           {generatedDraft.budgetBreakdown.accommodationTotalVND.toLocaleString()} ₫
@@ -834,7 +866,7 @@ export const CopilotPage: React.FC = () => {
 
                       <div className="rounded-xl border border-white/5 bg-[#080D18] p-3">
                         <span className="text-[10px] uppercase font-mono text-[#9BA9C3] block mb-1">
-                          Dining & Street Food
+                          Ẩm thực & Ăn uống
                         </span>
                         <span className="text-xs font-mono text-[#C4D0E5]">
                           {generatedDraft.budgetBreakdown.diningTotalVND.toLocaleString()} ₫
@@ -853,7 +885,7 @@ export const CopilotPage: React.FC = () => {
                         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-[#243049]/60 pb-3 mb-4">
                           <div>
                             <span className="text-xs font-mono uppercase tracking-wider text-[#3DDC97]">
-                              Day {day.dayNumber}
+                              Ngày {day.dayNumber}
                             </span>
                             <h3 className="text-lg font-bold text-white mt-0.5">{day.theme}</h3>
                             <p className="text-xs text-[#9BA9C3] mt-0.5">{day.interestExplanation}</p>
@@ -865,7 +897,7 @@ export const CopilotPage: React.FC = () => {
                             className="inline-flex items-center gap-1 text-xs text-[#48E3EF] hover:underline"
                           >
                             <Plus className="h-3.5 w-3.5" />
-                            <span>Add Stop</span>
+                            <span>Thêm điểm dừng</span>
                           </button>
                         </div>
 
@@ -886,7 +918,7 @@ export const CopilotPage: React.FC = () => {
                                           : 'text-[#9875FF] border-[#9875FF]/30'
                                       }`}
                                     >
-                                      {act.timeOfDay}
+                                      {timeOfDayLabels[act.timeOfDay] || act.timeOfDay}
                                     </Badge>
                                     <span className="text-[11px] text-[#9BA9C3]">• {act.estimatedDuration}</span>
                                     {act.costEstimateVND !== undefined && (
@@ -908,8 +940,8 @@ export const CopilotPage: React.FC = () => {
                                     type="button"
                                     disabled={actIdx === 0}
                                     onClick={() => handleMoveActivityUp(dayIdx, actIdx)}
-                                    aria-label="Move stop earlier"
-                                    title="Move stop earlier"
+                                    aria-label="Chuyển điểm dừng lên trước"
+                                    title="Chuyển điểm dừng lên trước"
                                     className="disabled:opacity-20 opacity-60 hover:opacity-100 hover:text-[#3DDC97] p-1 text-[#9BA9C3] transition-all rounded hover:bg-white/5"
                                   >
                                     <ChevronUp className="h-4 w-4" />
@@ -918,8 +950,8 @@ export const CopilotPage: React.FC = () => {
                                     type="button"
                                     disabled={actIdx === day.activities.length - 1}
                                     onClick={() => handleMoveActivityDown(dayIdx, actIdx)}
-                                    aria-label="Move stop later"
-                                    title="Move stop later"
+                                    aria-label="Chuyển điểm dừng xuống sau"
+                                    title="Chuyển điểm dừng xuống sau"
                                     className="disabled:opacity-20 opacity-60 hover:opacity-100 hover:text-[#3DDC97] p-1 text-[#9BA9C3] transition-all rounded hover:bg-white/5"
                                   >
                                     <ChevronDown className="h-4 w-4" />
@@ -927,8 +959,8 @@ export const CopilotPage: React.FC = () => {
                                   <button
                                     type="button"
                                     onClick={() => handleRemoveActivity(dayIdx, act.id)}
-                                    aria-label="Remove stop"
-                                    title="Remove stop"
+                                    aria-label="Xóa điểm dừng"
+                                    title="Xóa điểm dừng"
                                     className="opacity-60 hover:opacity-100 hover:text-red-400 p-1 text-[#9BA9C3] transition-all rounded hover:bg-white/5"
                                   >
                                     <Trash2 className="h-4 w-4" />
@@ -940,7 +972,7 @@ export const CopilotPage: React.FC = () => {
                               {actIdx < day.activities.length - 1 && (
                                 <div className="flex items-center gap-2 pl-4 py-1 text-[11px] text-[#9BA9C3]/75 font-mono">
                                   <span className="h-3 border-l-2 border-dashed border-[#243049]" />
-                                  <span>Transit Leg: ~20-40m • ⚠️ Missing live road GPS telemetry (Estimated direct connection)</span>
+                                  <span>Thời gian di chuyển: ~20-40 phút • ⚠️ Ước tính kết nối tuyến đường (chưa có dữ liệu GPS thời gian thực)</span>
                                 </div>
                               )}
                             </React.Fragment>
@@ -951,18 +983,18 @@ export const CopilotPage: React.FC = () => {
                         {/* Add Stop Inline Input Form */}
                         {editingDayIndex === dayIdx && (
                           <div className="mt-4 rounded-xl border border-[#3DDC97]/40 bg-[#0A101D] p-4 animate-modal-in">
-                            <h4 className="text-xs font-semibold text-white mb-2">Add Custom Stop to Day {day.dayNumber}</h4>
+                            <h4 className="text-xs font-semibold text-white mb-2">Thêm điểm dừng tùy chọn vào Ngày {day.dayNumber}</h4>
                             <input
                               type="text"
                               value={newStopTitle}
                               onChange={(e) => setNewStopTitle(e.target.value)}
-                              placeholder="Stop title (e.g. 02:00 PM — Chùa Trấn Quốc & West Lake Sunset)"
+                              placeholder="Tên điểm dừng (Ví dụ: 14:00 — Chùa Trấn Quốc & Ngắm hoàng hôn Hồ Tây)"
                               className="w-full rounded-lg border border-[#243049] bg-[#080D18] px-3 py-2 text-xs text-white placeholder-[#4A5D7E] mb-2 focus:border-[#3DDC97] focus:outline-none"
                             />
                             <textarea
                               value={newStopDesc}
                               onChange={(e) => setNewStopDesc(e.target.value)}
-                              placeholder="Description or notes about this stop..."
+                              placeholder="Mô tả chi tiết hoặc lưu ý cho điểm dừng này..."
                               rows={2}
                               className="w-full rounded-lg border border-[#243049] bg-[#080D18] px-3 py-2 text-xs text-white placeholder-[#4A5D7E] mb-3 focus:border-[#3DDC97] focus:outline-none"
                             />
@@ -973,14 +1005,14 @@ export const CopilotPage: React.FC = () => {
                                 onClick={() => setEditingDayIndex(null)}
                                 className="text-xs text-[#9BA9C3]"
                               >
-                                Cancel
+                                Hủy
                               </Button>
                               <Button
                                 size="sm"
                                 onClick={() => handleAddActivity(dayIdx)}
                                 className="bg-[#3DDC97] text-[#080D18] text-xs font-semibold"
                               >
-                                Save Stop
+                                Lưu điểm dừng
                               </Button>
                             </div>
                           </div>
@@ -994,7 +1026,7 @@ export const CopilotPage: React.FC = () => {
                     <div className="rounded-2xl border border-[#F59E0B]/50 bg-[#F59E0B]/10 p-4 text-xs text-[#F59E0B] flex items-start gap-3">
                       <AlertCircle className="h-5 w-5 shrink-0 mt-0.5 text-[#F59E0B]" />
                       <div>
-                        <strong className="block font-semibold">Route Feasibility Warning: Manual Review Advised</strong>
+                        <strong className="block font-semibold">Cảnh báo tính khả thi lộ trình: Khuyến nghị kiểm tra thực địa</strong>
                         <p className="mt-0.5 text-[#FCD34D] leading-relaxed">{generatedDraft.feasibilityWarning}</p>
                       </div>
                     </div>
@@ -1015,17 +1047,17 @@ export const CopilotPage: React.FC = () => {
                     <Compass className="h-8 w-8" />
                   </div>
                   <h3 className="font-serif text-2xl font-medium text-white mb-2">
-                    Build Your Custom Vietnam Itinerary
+                    Thiết Kế Lịch Trình Khám Phá Việt Nam Của Riêng Bạn
                   </h3>
                   <p className="text-xs sm:text-sm text-[#9BA9C3] max-w-md mb-6 leading-relaxed font-light">
-                    Select your destination, starting origin, duration, and pace on the left. Click "Build Day-by-Day Itinerary" to synthesize a complete schedule.
+                    Chọn điểm đến, nơi xuất phát, số ngày và nhịp độ mong muốn ở khung bên trái. Nhấn "Tạo Lịch Trình Chi Tiết" để hệ thống AI tổng hợp lịch trình đầy đủ.
                   </p>
                   <Button
                     size="md"
                     onClick={handleGenerateWorkflow}
                     className="bg-[#3DDC97] text-[#080D18] hover:bg-[#32B87D] font-semibold text-xs px-6"
                   >
-                    Generate Sample Itinerary
+                    Tạo Lịch Trình Mẫu Ngay
                   </Button>
                 </div>
               )}
@@ -1045,7 +1077,7 @@ export const CopilotPage: React.FC = () => {
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
                     <h3 className="text-sm font-bold text-white">
-                      Travi Vietnam Travel Assistant
+                      Trợ Lý Du Lịch Thông Minh Travi
                     </h3>
                     <AiStatusIndicator />
                   </div>
@@ -1063,12 +1095,12 @@ export const CopilotPage: React.FC = () => {
                     {
                       id: createMsgId('ai-reset'),
                       sender: 'copilot',
-                      timestamp: 'Just now',
-                      content: 'Conversation reset. How can I help you explore Vietnam?',
+                      timestamp: 'Vừa xong',
+                      content: 'Đã làm mới cuộc hội thoại. Bạn cần Travi hỗ trợ thông tin gì cho chuyến đi tiếp theo?',
                       suggestions: [
-                        'What are the key cultural etiquette rules for temples?',
-                        'What are the best street food stalls in Hanoi?',
-                        'How does the train system work in Vietnam?',
+                        'Quy tắc văn hóa và trang phục cần biết khi viếng thăm đền chùa?',
+                        'Những quán ăn đường phố truyền thống ngon nhất tại Hà Nội?',
+                        'Kinh nghiệm đặt vé tàu hỏa ngắm cảnh qua đèo Hải Vân?',
                       ],
                     },
                   ])
@@ -1076,7 +1108,7 @@ export const CopilotPage: React.FC = () => {
                 className="text-xs text-[#9BA9C3] hover:text-white flex items-center gap-1"
               >
                 <RotateCcw className="h-3 w-3" />
-                <span>Reset Chat</span>
+                <span>Làm mới hội thoại</span>
               </button>
             </div>
 
@@ -1108,7 +1140,7 @@ export const CopilotPage: React.FC = () => {
                       {msg.itineraryTeaser && (
                         <div className="mt-3 rounded-xl border border-[#3DDC97]/40 bg-[#0E1B27] p-3 flex items-center justify-between gap-3">
                           <div>
-                            <span className="text-[10px] font-mono uppercase text-[#3DDC97]">Suggested Journey</span>
+                            <span className="text-[10px] font-mono uppercase text-[#3DDC97]">Lộ trình gợi ý</span>
                             <h4 className="text-xs font-bold text-white">{msg.itineraryTeaser.destination}</h4>
                             <p className="text-[11px] text-[#9BA9C3]">{msg.itineraryTeaser.highlights.join(' • ')}</p>
                           </div>
@@ -1120,7 +1152,7 @@ export const CopilotPage: React.FC = () => {
                             }}
                             className="bg-[#3DDC97] text-[#080D18] text-xs font-semibold shrink-0"
                           >
-                            Open in Planner
+                            Mở trong Lập kế hoạch
                           </Button>
                         </div>
                       )}
@@ -1186,7 +1218,7 @@ export const CopilotPage: React.FC = () => {
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#48E3EF]/15 border border-[#48E3EF]/30 text-[#48E3EF]">
                     <RefreshCw className="h-4 w-4 animate-spin" />
                   </div>
-                  <span>Consulting Vietnam Travel Knowledge Base...</span>
+                  <span>Đang tra cứu cơ sở tri thức du lịch Việt Nam...</span>
                 </div>
               )}
             </div>
@@ -1204,7 +1236,7 @@ export const CopilotPage: React.FC = () => {
                   type="text"
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
-                  placeholder="Ask anything about Vietnam (e.g. food etiquette, train tickets, Sapa weather)..."
+                  placeholder="Hỏi bất kỳ điều gì về du lịch Việt Nam (ẩm thực, vé tàu xe, thời tiết Sa Pa, văn hóa bản địa)..."
                   className="flex-1 rounded-xl border border-[#243049] bg-[#080D18] px-4 py-3 text-xs sm:text-sm text-white placeholder-[#4A5D7E] focus:border-[#3DDC97] focus:outline-none"
                 />
                 <Button

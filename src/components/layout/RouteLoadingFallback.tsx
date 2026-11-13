@@ -21,14 +21,14 @@ export const RouteLoadingFallback: React.FC = () => {
 
       <div className="flex items-center gap-2 mb-2 text-[#48E3EF] text-xs font-mono tracking-widest uppercase">
         <Sparkles className="h-3.5 w-3.5" />
-        <span>Travi Cultural Intelligence</span>
+        <span>Trí Tuệ Du Lịch Văn Hóa TRAVI</span>
       </div>
 
       <h3 className="font-serif text-xl sm:text-2xl font-medium tracking-tight text-white">
-        Calibrating Cultural Horizons
+        Đang Định Dạng Không Gian Văn Hóa
       </h3>
       <p className="mt-2 text-xs text-[#9BA9C3] max-w-sm leading-relaxed">
-        Harmonizing verified destination signals, artisan terroir, and your personal taste profile.
+        Kết nối dữ liệu điểm đến xác thực, phong vị bản địa và gu văn hóa riêng của bạn.
       </p>
 
       {/* Shimmering indicator line */}

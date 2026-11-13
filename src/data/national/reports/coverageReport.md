@@ -1,6 +1,6 @@
 # BÁO CÁO ĐỐI SOÁT ĐỘ BAO PHỦ DU LỊCH 34 TỈNH THÀNH (VIETNAM TOURISM COVERAGE REPORT)
 
-**Thời gian đối soát:** 2026-11-13T14:19:15.945Z  
+**Thời gian đối soát:** 2026-11-13T14:44:48.331Z  
 **Mã đợt chuẩn hóa:** `test-audit-batch`  
 **Tổng bản ghi gốc tiếp nhận:** 360  
 **Tổng POI chuẩn hóa (sau khử trùng lặp):** 359  

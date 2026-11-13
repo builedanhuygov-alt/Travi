@@ -67,7 +67,7 @@ export const CinematicDestinationCard: React.FC<CinematicDestinationCardProps> =
       variant="interactive"
       tabIndex={0}
       role="button"
-      aria-label={`View cultural dossier for ${destination.name}, ${destination.country}`}
+      aria-label={`Xem hồ sơ văn hóa của ${destination.name}, ${destination.country}`}
       onKeyDown={handleKeyDown}
       onClick={() => onSelect?.(destination)}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-[#243049] bg-gradient-to-b from-[#10192A] to-[#0A101D] hover:border-[#48E3EF]/60 hover:shadow-[0_12px_36px_rgba(72,227,239,0.15)] transition-all duration-300 focus-visible:outline-[#3DDC97] focus-visible:outline-2"
@@ -185,7 +185,7 @@ export const CinematicDestinationCard: React.FC<CinematicDestinationCardProps> =
             ))}
             {matchedPillars.length > 3 && (
               <span className="text-[10px] text-[#9BA9C3]">
-                +{matchedPillars.length - 3} more
+                +{matchedPillars.length - 3} khác
               </span>
             )}
           </div>

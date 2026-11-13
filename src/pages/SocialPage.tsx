@@ -29,25 +29,25 @@ export const SocialPage: React.FC = () => {
 
   const circles = [
     {
-      name: 'Kyoto Tea & Architecture Circle',
-      tag: 'Zen Architecture',
+      name: 'Nhóm Kiến Trúc & Trà Đạo Cổ Truyền',
+      tag: 'Kiến trúc Cổ truyền',
       members: 142,
-      curator: 'Master Kenzo',
-      description: 'Private discussions on machiya restorations, sukiya architecture, and ceremonial Uji harvests.',
+      curator: 'Nghệ nhân Kenzo',
+      description: 'Thảo luận chuyên sâu về trùng tu nhà cổ, kiến trúc truyền thống và các vụ thu hoạch trà nguyên bản.',
     },
     {
-      name: 'Alpine & High-Pass Trailfinders',
-      tag: 'Frontier Ridge',
+      name: 'Cộng Đồng Khám Phá Đèo Mây & Vùng Cao',
+      tag: 'Đỉnh trời Biên ải',
       members: 98,
       curator: 'Elena Z.',
-      description: 'Hut-to-hut routes across the Swiss Valais and Icelandic volcanic plateaus.',
+      description: 'Cung đường trekking qua các bản làng xa xôi và cao nguyên đá hùng vĩ.',
     },
     {
-      name: 'Ancestral Gastronomy Guild',
-      tag: 'Slow Gastronomy',
+      name: 'Hội Quán Ẩm Thực Cổ Truyền',
+      tag: 'Ẩm thực Chậm',
       members: 215,
-      curator: 'Marco & Chloe',
-      description: 'Unpublished trattorias, wild foraging, and natural wine producers.',
+      curator: 'Minh Duy & Mai',
+      description: 'Những quán ăn gia truyền ẩn mình, nguồn nguyên liệu tự nhiên và nghệ thuật ẩm thực dân gian.',
     },
   ];
 
@@ -63,15 +63,15 @@ export const SocialPage: React.FC = () => {
     createDispatch({
       author: 'Minh Duy',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
-      role: 'Architect & Explorer',
-      location: newLocation.trim() || 'Global Sanctuary',
+      role: 'Kiến trúc sư & Nhà nghiên cứu văn hóa',
+      location: newLocation.trim() || 'Điểm dừng văn hóa',
       title: newTitle.trim(),
       text: newText.trim(),
-      tags: [newTag, 'First-Hand Dispatch'],
+      tags: [newTag, 'Ghi chép thực địa'],
       image: 'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=800&auto=format&fit=crop',
     });
 
-    triggerToast('Dispatch Published', `"${newTitle}" shared with your travel circle.`, 'success');
+    triggerToast('Đã đăng bài viết', `"${newTitle}" đã được chia sẻ với cộng đồng du lịch.`, 'success');
     setNewTitle('');
     setNewLocation('');
     setNewText('');
@@ -81,10 +81,10 @@ export const SocialPage: React.FC = () => {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
       <PageHeader
-        badge="Explorer Collectives"
+        badge="Cộng Đồng Khám Phá"
         badgeVariant="violet"
-        title="Travel Circles & Field Dispatches"
-        description="Direct observations, unvarnished recommendations, and curated notes shared between deliberate travelers."
+        title="Cộng Đồng Du Lịch & Ghi Chép Thực Địa"
+        description="Góc nhìn thực tế, những gợi ý chân thực và ghi chép sâu sắc được chia sẻ giữa những du khách thấu cảm."
         action={
           <Button
             variant="primary"
@@ -92,7 +92,7 @@ export const SocialPage: React.FC = () => {
             onClick={() => setIsShareModalOpen(true)}
             leftIcon={<Plus className="h-4 w-4" />}
           >
-            Post Field Dispatch
+            Đăng Ghi Chép Mới
           </Button>
         }
       />
@@ -102,10 +102,10 @@ export const SocialPage: React.FC = () => {
         <Info className="h-5 w-5 text-[#9875FF] shrink-0 mt-0.5" />
         <div>
           <span className="font-semibold text-white block mb-0.5">
-            Architecture Boundary: Local Community Sandbox
+            Phạm Vi Kiến Trúc: Cộng Đồng Thử Nghiệm Cục Bộ
           </span>
           <p className="font-light leading-relaxed">
-            In Foundation v0.2, dispatches and likes are maintained in your local demo sandbox. Multi-user live broadcast feeds and circle memberships will activate with Cloud Firestore under `/dispatches/*` rules in future backend milestones.
+            Trong phiên bản Nền tảng v0.2, các bài ghi chép và lượt thích được lưu trữ trong không gian thử nghiệm cục bộ của bạn. Bảng tin phát sóng trực tiếp đa người dùng và nhóm thành viên sẽ kích hoạt cùng Cloud Firestore theo quy tắc `/dispatches/*` ở các giai đoạn backend tiếp theo.
           </p>
         </div>
       </div>
@@ -115,10 +115,10 @@ export const SocialPage: React.FC = () => {
         <div className="lg:col-span-2 space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="font-serif text-xl font-medium text-white">
-              Recent Field Dispatches
+              Ghi Chép Thực Địa Gần Đây
             </h2>
             <span className="text-xs text-[#9BA9C3]">
-              {filteredDispatches.length} Dispatch{filteredDispatches.length > 1 ? 'es' : ''} in View
+              {filteredDispatches.length} Bài viết đang hiển thị
             </span>
           </div>
 
@@ -195,10 +195,10 @@ export const SocialPage: React.FC = () => {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="font-serif text-xl font-medium text-white">
-              Curated Circles
+              Nhóm Tuyển Chọn
             </h2>
             <Badge variant="cyan" size="sm">
-              3 Circles
+              3 Nhóm cộng đồng
             </Badge>
           </div>
 
@@ -213,7 +213,7 @@ export const SocialPage: React.FC = () => {
                   : 'bg-[#121C30] text-[#9BA9C3] border border-[#243049]'
               }`}
             >
-              All Circles
+              Tất cả nhóm
             </button>
             <button
               type="button"
@@ -224,7 +224,7 @@ export const SocialPage: React.FC = () => {
                   : 'bg-[#121C30] text-[#9BA9C3] border border-[#243049]'
               }`}
             >
-              Gastronomy
+              Ẩm thực
             </button>
             <button
               type="button"
@@ -235,7 +235,7 @@ export const SocialPage: React.FC = () => {
                   : 'bg-[#121C30] text-[#9BA9C3] border border-[#243049]'
               }`}
             >
-              Architecture
+              Kiến trúc
             </button>
           </div>
 
@@ -247,7 +247,7 @@ export const SocialPage: React.FC = () => {
                     <Users className="h-4 w-4 text-[#48E3EF]" />
                     <h3 className="font-serif text-sm font-semibold text-white">{c.name}</h3>
                   </div>
-                  <span className="text-[10px] text-[#3DDC97] font-mono">{c.members} Explorers</span>
+                  <span className="text-[10px] text-[#3DDC97] font-mono">{c.members} Thành viên</span>
                 </div>
 
                 <p className="text-xs text-[#9BA9C3] font-light leading-relaxed">
@@ -255,8 +255,8 @@ export const SocialPage: React.FC = () => {
                 </p>
 
                 <div className="pt-2 flex items-center justify-between text-[11px] text-[#9BA9C3] border-t border-[#243049]/40">
-                  <span>Curator: <strong className="text-white font-medium">{c.curator}</strong></span>
-                  <span className="text-[#3DDC97]">Invited Collective</span>
+                  <span>Người điều phối: <strong className="text-white font-medium">{c.curator}</strong></span>
+                  <span className="text-[#3DDC97]">Nhóm tuyển chọn</span>
                 </div>
               </Card>
             ))}
@@ -275,7 +275,7 @@ export const SocialPage: React.FC = () => {
           <Card variant="default" className="relative w-full max-w-lg border-[#243049] p-6 shadow-2xl animate-modal-in">
             <div className="flex items-center justify-between border-b border-[#243049] pb-4 mb-5">
               <h3 id="modal-post-title" className="font-serif text-xl font-medium text-white">
-                Share Field Dispatch
+                Chia Sẻ Ghi Chép Thực Địa
               </h3>
               <button
                 type="button"
@@ -288,22 +288,22 @@ export const SocialPage: React.FC = () => {
 
             <form onSubmit={handlePostDispatch} className="space-y-4 text-xs">
               <div>
-                <label className="block text-xs font-medium text-white mb-1.5">Dispatch Headline *</label>
+                <label className="block text-xs font-medium text-white mb-1.5">Tiêu đề ghi chép *</label>
                 <Input
                   type="text"
                   required
-                  placeholder="e.g. Dawn Access Secret at Daitoku-ji"
+                  placeholder="Ví dụ: Bí quyết ngắm bình minh trên đèo Mã Pí Lèng"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-white mb-1.5">Sanctuary Location *</label>
+                <label className="block text-xs font-medium text-white mb-1.5">Địa điểm thực tế *</label>
                 <Input
                   type="text"
                   required
-                  placeholder="e.g. Higashiyama, Kyoto"
+                  placeholder="Ví dụ: Mèo Vạc, Hà Giang"
                   value={newLocation}
                   onChange={(e) => setNewLocation(e.target.value)}
                   leftIcon={<MapPin className="h-4 w-4" />}
@@ -311,37 +311,37 @@ export const SocialPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-white mb-1.5">Circle Classification</label>
+                <label className="block text-xs font-medium text-white mb-1.5">Phân loại nhóm</label>
                 <select
                   value={newTag}
                   onChange={(e) => setNewTag(e.target.value)}
                   className="w-full rounded-xl border border-[#243049] bg-[#121C30] px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#3DDC97]"
                 >
-                  <option value="Slow Gastronomy">Slow Gastronomy</option>
-                  <option value="Zen Architecture">Zen Architecture</option>
-                  <option value="Frontier Ridge">Frontier Ridge</option>
-                  <option value="Local Farmsteads">Local Farmsteads</option>
+                  <option value="Slow Gastronomy">Ẩm thực Chậm</option>
+                  <option value="Zen Architecture">Kiến trúc Cổ truyền</option>
+                  <option value="Frontier Ridge">Đỉnh trời Biên ải</option>
+                  <option value="Local Farmsteads">Nông trại & Làng quê Bản địa</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-white mb-1.5">Field Observation Notes *</label>
+                <label className="block text-xs font-medium text-white mb-1.5">Ghi chép quan sát thực địa *</label>
                 <textarea
                   rows={4}
                   required
                   value={newText}
                   onChange={(e) => setNewText(e.target.value)}
                   className="w-full rounded-xl border border-[#243049] bg-[#121C30] p-3 text-xs text-white focus:outline-none focus:border-[#3DDC97]"
-                  placeholder="Share non-commercial advice, timing recommendations, or artisan contacts..."
+                  placeholder="Chia sẻ những lưu ý phi thương mại, thời điểm lý tưởng hoặc liên hệ nghệ nhân bản địa..."
                 />
               </div>
 
               <div className="pt-4 border-t border-[#243049] flex items-center justify-end gap-3">
                 <Button type="button" variant="ghost" size="md" onClick={() => setIsShareModalOpen(false)}>
-                  Cancel
+                  Hủy
                 </Button>
                 <Button type="submit" variant="primary" size="md">
-                  Broadcast Dispatch
+                  Đăng Ghi Chép
                 </Button>
               </div>
             </form>

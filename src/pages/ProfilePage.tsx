@@ -185,11 +185,11 @@ export const ProfilePage: React.FC = () => {
 
       setProfileData(updated);
       setIsEditModalOpen(false);
-      triggerToast('Profile Updated', 'Your explorer profile was successfully updated.', 'success');
+      triggerToast('Đã cập nhật hồ sơ', 'Hồ sơ người khám phá của bạn đã được cập nhật thành công.', 'success');
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Failed to save profile changes.';
+      const msg = err instanceof Error ? err.message : 'Không thể lưu thay đổi hồ sơ.';
       setEditErrors({ general: msg });
-      triggerToast('Update Failed', msg, 'warning');
+      triggerToast('Cập nhật thất bại', msg, 'warning');
     } finally {
       setIsSavingProfile(false);
     }
@@ -210,10 +210,10 @@ export const ProfilePage: React.FC = () => {
 
       const result = await migrateDemoDataToCloud(authUser.uid, localData);
       setMigrationCompleted(true);
-      triggerToast('Data Migrated', result.message, 'success');
+      triggerToast('Đã đồng bộ dữ liệu', result.message, 'success');
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Migration failed.';
-      triggerToast('Migration Error', msg, 'warning');
+      const msg = err instanceof Error ? err.message : 'Đồng bộ dữ liệu thất bại.';
+      triggerToast('Lỗi đồng bộ', msg, 'warning');
     } finally {
       setIsMigrating(false);
     }
@@ -232,7 +232,7 @@ export const ProfilePage: React.FC = () => {
       // safe fallback for restricted storage environments
     }
     setSavedSuccess(true);
-    triggerToast('Preferences Saved', 'Your preferences have been updated.', 'success');
+    triggerToast('Đã lưu tùy chọn', 'Các tùy chọn cài đặt của bạn đã được cập nhật.', 'success');
     setTimeout(() => setSavedSuccess(false), 2500);
   };
 
@@ -250,23 +250,23 @@ export const ProfilePage: React.FC = () => {
 
   const handleResetDemoData = () => {
     resetToDemoDefaults();
-    triggerToast('Demo Sandbox Reset', 'Local demo journeys and sanctuaries restored.', 'neutral');
+    triggerToast('Đã đặt lại dữ liệu mẫu', 'Hành trình và điểm đến thử nghiệm đã được khôi phục về mặc định.', 'neutral');
   };
 
   // Dynamically compute explorer badges from real user data
   const explorerBadges = useMemo(() => {
     if (!authUser) {
-      return ['Guest Sandbox', 'Local Explorer'];
+      return ['Khách trải nghiệm', 'Người khám phá'];
     }
 
-    const badges: string[] = ['Verified Explorer'];
-    if (trips.length > 0) badges.push('Journey Architect');
-    if (savedDestIds.length >= 3) badges.push('Sanctuary Curator');
-    if (memories.length > 0) badges.push('Memory Archivist');
-    if (tasteProfile.isCustomized) badges.push('Cultural Connoisseur');
+    const badges: string[] = ['Người khám phá đã xác thực'];
+    if (trips.length > 0) badges.push('Kiến trúc sư hành trình');
+    if (savedDestIds.length >= 3) badges.push('Tuyển tập điểm đến');
+    if (memories.length > 0) badges.push('Lưu trữ ký ức');
+    if (tasteProfile.isCustomized) badges.push('Chuyên gia văn hóa');
 
     if (badges.length === 1) {
-      badges.push('Novice Explorer');
+      badges.push('Người khám phá mới');
     }
 
     return badges;
@@ -274,28 +274,28 @@ export const ProfilePage: React.FC = () => {
 
   // Derive active display values
   const currentDisplayName = isProfileLoading
-    ? 'Loading profile...'
+    ? 'Đang tải hồ sơ...'
     : authUser
-    ? profileData?.displayName || authUser.displayName || 'Explorer'
-    : 'Guest Explorer';
+    ? profileData?.displayName || authUser.displayName || 'Người khám phá'
+    : 'Khách trải nghiệm';
 
   const currentHandle = authUser
     ? profileData?.handle || `@${(authUser.email?.split('@')[0] || 'traveler').toLowerCase()}`
     : '@guest.explorer';
 
   const currentHomeBase = authUser
-    ? profileData?.homeBase || 'Location not set'
-    : 'Local Sandbox Session';
+    ? profileData?.homeBase || 'Chưa cập nhật nơi ở'
+    : 'Phiên trải nghiệm cục bộ';
 
   const currentBio = authUser
-    ? profileData?.bio || 'Deliberate traveler exploring culturally immersive sanctuaries.'
-    : 'You are currently exploring Travi in guest sandbox mode. Sign in with Google or Email to synchronize your journeys and cultural preferences across all your devices.';
+    ? profileData?.bio || 'Du khách say mê khám phá những không gian văn hóa bản địa sâu sắc.'
+    : 'Bạn đang trải nghiệm Travi ở chế độ khách cục bộ. Đăng nhập với Google hoặc Email để đồng bộ hóa lịch trình và gu du lịch trên mọi thiết bị.';
 
   const currentAvatarUrl = authUser
     ? profileData?.avatarUrl || authUser.photoURL || undefined
     : undefined;
 
-  const userInitial = (currentDisplayName.charAt(0) || 'E').toUpperCase();
+  const userInitial = (currentDisplayName.charAt(0) || 'N').toUpperCase();
 
   // Check if local demo data exists for optional migration card
   const localTripsCount = demoStore.getTrips().length;
@@ -305,10 +305,10 @@ export const ProfilePage: React.FC = () => {
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <PageHeader
-        badge={authUser ? 'Traveler Identity' : 'Guest Explorer'}
+        badge={authUser ? 'Định Danh Du Khách' : 'Khách Trải Nghiệm'}
         badgeVariant={authUser ? 'green' : 'cyan'}
-        title="Travel DNA & Preferences"
-        description="Your explorer profile, cultural affinity fingerprint, and cloud synchronization settings."
+        title="Hồ Sơ & Tùy Chọn Du Khách"
+        description="Hồ sơ cá nhân, dấu ấn văn hóa du lịch và cài đặt đồng bộ hóa đám mây của bạn."
       />
 
       {/* Cloud Error Notice */}
@@ -316,7 +316,7 @@ export const ProfilePage: React.FC = () => {
         <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-4 flex items-start gap-3 text-xs text-rose-300">
           <AlertCircle className="h-4 w-4 shrink-0 mt-0.5 text-rose-400" />
           <div className="flex-1">
-            <strong className="font-medium text-white block mb-0.5">Cloud Storage Notice:</strong>
+            <strong className="font-medium text-white block mb-0.5">Thông báo lưu trữ đám mây:</strong>
             <span className="font-light leading-relaxed">{cloudError}</span>
           </div>
         </div>
@@ -333,8 +333,8 @@ export const ProfilePage: React.FC = () => {
                 type="button"
                 onClick={handleOpenEditModal}
                 className="absolute top-4 right-4 p-2 rounded-lg text-[#9BA9C3] hover:text-white hover:bg-[#18253E] transition-colors"
-                title="Edit Profile"
-                aria-label="Edit Profile"
+                title="Chỉnh sửa hồ sơ"
+                aria-label="Chỉnh sửa hồ sơ"
               >
                 <Edit3 className="h-4 w-4" />
               </button>
@@ -383,19 +383,19 @@ export const ProfilePage: React.FC = () => {
                 <span className="block font-serif text-lg font-bold text-white">
                   {isCloudLoading ? '...' : trips.length}
                 </span>
-                <span className="text-[10px] text-[#9BA9C3] uppercase">Journeys</span>
+                <span className="text-[10px] text-[#9BA9C3] uppercase">Hành trình</span>
               </div>
               <div>
                 <span className="block font-serif text-lg font-bold text-[#3DDC97]">
                   {isCloudLoading ? '...' : savedDestIds.length}
                 </span>
-                <span className="text-[10px] text-[#9BA9C3] uppercase">Sanctuaries</span>
+                <span className="text-[10px] text-[#9BA9C3] uppercase">Điểm đến</span>
               </div>
               <div>
                 <span className="block font-serif text-lg font-bold text-[#48E3EF]">
                   {isCloudLoading ? '...' : memories.length}
                 </span>
-                <span className="text-[10px] text-[#9BA9C3] uppercase">Moments</span>
+                <span className="text-[10px] text-[#9BA9C3] uppercase">Khoảnh khắc</span>
               </div>
             </div>
 
@@ -409,13 +409,13 @@ export const ProfilePage: React.FC = () => {
                   leftIcon={<Edit3 className="h-3.5 w-3.5" />}
                   className="w-full text-xs"
                 >
-                  Edit Profile
+                  Chỉnh Sửa Hồ Sơ
                 </Button>
               </div>
             ) : (
               <div className="mt-5 pt-4 border-t border-[#243049]/60">
                 <span className="text-[11px] text-[#9BA9C3]/70 block font-light">
-                  Sign in below to persist your journeys to the cloud.
+                  Đăng nhập bên dưới để lưu trữ hành trình lên đám mây.
                 </span>
               </div>
             )}
@@ -425,13 +425,13 @@ export const ProfilePage: React.FC = () => {
           <Card variant="flat" className="p-5 border border-[#243049]">
             <h3 className="flex items-center gap-2 font-serif text-sm font-semibold text-white mb-3">
               <Award className="h-4 w-4 text-[#3DDC97]" />
-              <span>Sanctuary Badges</span>
+              <span>Huy Hiệu Du Khách</span>
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {explorerBadges.map((badge) => (
                 <Badge
                   key={badge}
-                  variant={badge === 'Verified Explorer' ? 'green' : 'neutral'}
+                  variant={badge === 'Người khám phá đã xác thực' ? 'green' : 'neutral'}
                   size="sm"
                 >
                   {badge}
@@ -444,10 +444,10 @@ export const ProfilePage: React.FC = () => {
           {!authUser && (
             <Card variant="flat" className="p-5 border border-[#243049] text-center">
               <span className="text-xs font-medium text-white block mb-1">
-                Demo Ledger Maintenance
+                Quản Trị Dữ Liệu Trải Nghiệm
               </span>
               <p className="text-[11px] text-[#9BA9C3] mb-4 font-light">
-                Reset local demo journeys, bookmarks, and memories back to original demonstration defaults.
+                Khôi phục các chuyến đi mẫu, điểm đến đã lưu và kỷ niệm về trạng thái thử nghiệm ban đầu.
               </p>
               <Button
                 variant="secondary"
@@ -456,7 +456,7 @@ export const ProfilePage: React.FC = () => {
                 leftIcon={<RotateCcw className="h-3.5 w-3.5" />}
                 className="w-full"
               >
-                Reset Demo Ledger
+                Đặt Lại Dữ Liệu Mẫu
               </Button>
             </Card>
           )}
@@ -465,18 +465,18 @@ export const ProfilePage: React.FC = () => {
           {authUser && (
             <Card variant="flat" className="p-5 border border-[#243049] space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-white">Account Session</span>
+                <span className="text-xs font-medium text-white">Phiên Đăng Nhập Tài Khoản</span>
                 <Badge variant="green" size="sm">
-                  Active Cloud
+                  Đám mây hoạt động
                 </Badge>
               </div>
               <div className="text-xs text-[#9BA9C3] font-mono break-all space-y-1">
                 <div className="flex items-center gap-1.5 text-white/90">
                   <Mail className="h-3 w-3 text-[#3DDC97]" />
-                  <span>{authSession?.email || 'Authenticated Explorer'}</span>
+                  <span>{authSession?.email || 'Du khách đã xác thực'}</span>
                 </div>
                 <div className="text-[10px] text-[#9BA9C3]/70 pt-1">
-                  Cloud ID: <span className="text-[#3DDC97]">{authUser.uid.slice(0, 12)}...</span>
+                  Mã đám mây: <span className="text-[#3DDC97]">{authUser.uid.slice(0, 12)}...</span>
                 </div>
               </div>
 
@@ -489,7 +489,7 @@ export const ProfilePage: React.FC = () => {
                   disabled={isAuthLoading}
                   className="w-full text-xs text-rose-300 hover:text-white hover:border-rose-500/40"
                 >
-                  Sign Out
+                  Đăng Xuất
                 </Button>
               </div>
             </Card>
@@ -505,16 +505,16 @@ export const ProfilePage: React.FC = () => {
                 <div className="flex items-center gap-2">
                   <Shield className="h-5 w-5 text-[#3DDC97]" />
                   <h3 className="font-serif text-xl font-medium text-white">
-                    Account & Cloud Synchronization
+                    Tài Khoản & Đồng Bộ Hóa Đám Mây
                   </h3>
                 </div>
                 <Badge variant="cyan" size="sm">
-                  Guest Explorer
+                  Khách Trải Nghiệm
                 </Badge>
               </div>
 
               <p className="text-xs text-[#9BA9C3] font-light leading-relaxed">
-                Connect your account to securely persist and sync your itineraries, saved sanctuaries, and cultural taste profile to Cloud Firestore.
+                Kết nối tài khoản của bạn để lưu trữ an toàn và đồng bộ hóa lịch trình, điểm đến đã lưu cùng gu du lịch lên Cloud Firestore.
               </p>
 
               {/* Error Message Alert */}
@@ -523,7 +523,7 @@ export const ProfilePage: React.FC = () => {
                   <div className="flex items-start gap-2 text-rose-300">
                     <AlertCircle className="h-4 w-4 shrink-0 mt-0.5 text-rose-400" />
                     <div>
-                      <strong className="font-medium text-white block mb-0.5">Authentication Error:</strong>
+                      <strong className="font-medium text-white block mb-0.5">Lỗi xác thực:</strong>
                       <span className="font-light leading-relaxed">{authError}</span>
                     </div>
                   </div>
@@ -532,7 +532,7 @@ export const ProfilePage: React.FC = () => {
                     onClick={clearAuthError}
                     className="text-xs text-rose-300 hover:text-white cursor-pointer"
                   >
-                    Dismiss
+                    Bỏ qua
                   </button>
                 </div>
               )}
@@ -547,7 +547,7 @@ export const ProfilePage: React.FC = () => {
                   leftIcon={<LogIn className="h-4 w-4" />}
                   className="w-full sm:w-auto"
                 >
-                  {isAuthLoading ? 'Connecting...' : 'Sign In with Google'}
+                  {isAuthLoading ? 'Đang kết nối...' : 'Đăng nhập bằng Google'}
                 </Button>
               </div>
 
@@ -575,7 +575,7 @@ export const ProfilePage: React.FC = () => {
                             : 'text-[#9BA9C3] hover:text-white'
                         }`}
                       >
-                        Sign In
+                        Đăng Nhập
                       </button>
                       <button
                         type="button"
@@ -586,17 +586,17 @@ export const ProfilePage: React.FC = () => {
                             : 'text-[#9BA9C3] hover:text-white'
                         }`}
                       >
-                        Create Account
+                        Tạo Tài Khoản
                       </button>
                     </div>
                     <span className="text-[10px] text-[#9BA9C3] font-mono">
-                      {authFormMode === 'signup' ? 'New Account Registration' : 'Email Authentication'}
+                      {authFormMode === 'signup' ? 'Đăng ký tài khoản mới' : 'Xác thực bằng Email'}
                     </span>
                   </div>
 
                   <div>
                     <label className="block text-[#9BA9C3] mb-1 font-mono text-[10px] uppercase">
-                      Email Address
+                      Địa chỉ Email
                     </label>
                     <input
                       type="email"
@@ -604,13 +604,13 @@ export const ProfilePage: React.FC = () => {
                       value={authEmail}
                       onChange={(e) => setAuthEmail(e.target.value)}
                       className="w-full rounded-lg border border-[#243049] bg-[#121C30] px-3 py-2 text-white text-xs focus:outline-none focus:border-[#3DDC97]"
-                      placeholder="traveler@example.com"
+                      placeholder="dukhach@example.com"
                     />
                   </div>
 
                   <div>
                     <label className="block text-[#9BA9C3] mb-1 font-mono text-[10px] uppercase">
-                      Password (Minimum 6 Characters)
+                      Mật khẩu (Tối thiểu 6 ký tự)
                     </label>
                     <input
                       type="password"
@@ -625,10 +625,10 @@ export const ProfilePage: React.FC = () => {
 
                   <Button type="submit" variant="secondary" size="sm" disabled={isAuthLoading}>
                     {isAuthLoading
-                      ? 'Processing...'
+                      ? 'Đang xử lý...'
                       : authFormMode === 'signup'
-                      ? 'Create Explorer Account'
-                      : 'Sign In with Email'}
+                      ? 'Tạo Tài Khoản Du Khách'
+                      : 'Đăng Nhập Bằng Email'}
                   </Button>
                 </form>
               </div>
@@ -642,16 +642,16 @@ export const ProfilePage: React.FC = () => {
                 <div className="flex items-center gap-2">
                   <UploadCloud className="h-4 w-4 text-[#3DDC97]" />
                   <span className="font-serif text-sm font-medium text-white">
-                    Transfer Local Demo Records to Cloud Account
+                    Chuyển Dữ Liệu Thử Nghiệm Sang Tài Khoản Đám Mây
                   </span>
                 </div>
                 <Badge variant="cyan" size="sm">
-                  Optional
+                  Tùy chọn
                 </Badge>
               </div>
 
               <p className="text-xs text-[#9BA9C3] font-light leading-relaxed">
-                You have {localTripsCount} local demo journeys and {localSavedCount} saved sanctuaries on this device. Would you like to copy them into your private cloud account?
+                Bạn có {localTripsCount} chuyến đi thử nghiệm và {localSavedCount} điểm đến đã lưu trên thiết bị này. Bạn có muốn sao chép sang tài khoản đám mây riêng tư không?
               </p>
 
               <label className="flex items-start gap-2.5 text-xs text-white/90 cursor-pointer select-none pt-1">
@@ -662,7 +662,7 @@ export const ProfilePage: React.FC = () => {
                   className="mt-0.5 rounded border-[#243049] bg-[#121C30] text-[#3DDC97] focus:ring-[#3DDC97]"
                 />
                 <span className="text-[11px] font-light leading-relaxed">
-                  I understand and authorize copying my local demo journeys and bookmarks into my cloud account.
+                  Tôi đồng ý và cho phép sao chép các chuyến đi và điểm đến cục bộ vào tài khoản đám mây của mình.
                 </span>
               </label>
 
@@ -674,7 +674,7 @@ export const ProfilePage: React.FC = () => {
                   disabled={!migrationConsent || isMigrating}
                   className="text-xs"
                 >
-                  {isMigrating ? 'Transferring...' : 'Copy Records to Cloud'}
+                  {isMigrating ? 'Đang chuyển dữ liệu...' : 'Sao Chép Dữ Liệu Lên Đám Mây'}
                 </Button>
               </div>
             </Card>
@@ -685,59 +685,59 @@ export const ProfilePage: React.FC = () => {
             <div className="flex items-center gap-2 mb-4">
               <Compass className="h-5 w-5 text-[#3DDC97]" />
               <h3 className="font-serif text-xl font-medium text-white">
-                Your Cultural Travel DNA
+                Dấu Ấn Phong Cách Du Lịch Của Bạn
               </h3>
             </div>
             <p className="text-xs text-[#9BA9C3] mb-6">
-              Our cultural recommendation system models your journeys around immersion, architectural sensitivity, and artisanal pace.
+              Hệ thống gợi ý văn hóa định hình hành trình của bạn xoay quanh sự hòa mình bản địa, cảm thụ kiến trúc và nhịp sống tinh tế.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="rounded-xl border border-[#243049] bg-[#0E1626] p-4">
                 <span className="text-[10px] uppercase font-semibold text-[#9BA9C3] block mb-1">
-                  Primary Dimension
+                  Trọng Tâm Chính
                 </span>
                 <span className="font-serif text-base font-semibold text-[#3DDC97]">
-                  Cultural Seeker
+                  Khám Phá Văn Hóa
                 </span>
                 <p className="text-[11px] text-[#9BA9C3] mt-1 font-light">
-                  Prioritizes non-commercial shrines, ancestral crafts, and living heritage.
+                  Ưu tiên đền đài cổ kính phi thương mại, làng nghề truyền thống và di sản sống.
                 </p>
               </div>
 
               <div className="rounded-xl border border-[#243049] bg-[#0E1626] p-4">
                 <span className="text-[10px] uppercase font-semibold text-[#9BA9C3] block mb-1">
-                  Secondary Dimension
+                  Trọng Tâm Phụ
                 </span>
                 <span className="font-serif text-base font-semibold text-[#48E3EF]">
-                  Slow Gourmet
+                  Ẩm Thực Chậm & Bản Địa
                 </span>
                 <p className="text-[11px] text-[#9BA9C3] mt-1 font-light">
-                  Direct engagement with family winegrowers, wild foragers, and traditional cookery.
+                  Trải nghiệm trực tiếp cùng nông gia bản xứ, hương vị mộc mạc và phong vị truyền thống.
                 </p>
               </div>
 
               <div className="rounded-xl border border-[#243049] bg-[#0E1626] p-4">
                 <span className="text-[10px] uppercase font-semibold text-[#9BA9C3] block mb-1">
-                  Aesthetic Style
+                  Phong Cách Thẩm Mỹ
                 </span>
                 <span className="font-serif text-base font-semibold text-white">
-                  Understated Luxury
+                  Tinh Tế & Bình Dị
                 </span>
                 <p className="text-[11px] text-[#9BA9C3] mt-1 font-light">
-                  Restored machiya, cliffside villas, and quiet boutique stays.
+                  Không gian kiến trúc phục dựng, chốn nghỉ biệt lập và lưu trú phong cách.
                 </p>
               </div>
 
               <div className="rounded-xl border border-[#243049] bg-[#0E1626] p-4">
                 <span className="text-[10px] uppercase font-semibold text-[#9BA9C3] block mb-1">
-                  Itinerary Pacing
+                  Nhịp Độ Lịch Trình
                 </span>
                 <span className="font-serif text-base font-semibold text-[#9875FF]">
-                  Deliberate & Immersive
+                  Thong Thả & Sâu Sắc
                 </span>
                 <p className="text-[11px] text-[#9BA9C3] mt-1 font-light">
-                  Maximum 2 deep experiences per day to leave space for serendipity.
+                  Tối đa 2 trải nghiệm sâu sắc mỗi ngày để sẵn sàng đón nhận những bất ngờ thú vị.
                 </p>
               </div>
             </div>
@@ -750,10 +750,10 @@ export const ProfilePage: React.FC = () => {
                 <Sparkles className="h-5 w-5 text-[#3DDC97]" />
                 <div>
                   <h3 className="font-serif text-xl font-medium text-white">
-                    8-Pillar Cultural Taste Profile
+                    Hồ Sơ Gu Văn Hóa 8 Trụ Cột
                   </h3>
                   <span className="text-[11px] text-[#9BA9C3] font-light">
-                    Calibrates local sanctuary recommendations across cinema, music, cuisine, and space
+                    Định hướng gợi ý điểm đến qua điện ảnh, âm nhạc, ẩm thực và không gian kiến trúc
                   </span>
                 </div>
               </div>
@@ -765,7 +765,7 @@ export const ProfilePage: React.FC = () => {
                 leftIcon={<SlidersHorizontal className="h-3.5 w-3.5 text-[#3DDC97]" />}
                 className="text-xs shrink-0"
               >
-                Tune Taste Profile
+                Hiệu Chỉnh Gu Văn Hóa
               </Button>
             </div>
 
@@ -773,10 +773,10 @@ export const ProfilePage: React.FC = () => {
             <div className="mb-4 flex items-center justify-between text-xs text-[#9BA9C3] bg-[#0E1626] p-3 rounded-xl border border-[#243049]">
               <span className="flex items-center gap-1.5 font-light">
                 <Layers className="h-3.5 w-3.5 text-[#3DDC97]" />
-                <span>Persistence State:</span>
+                <span>Trạng thái lưu trữ:</span>
               </span>
               <span className="font-mono text-[11px] text-[#3DDC97]">
-                {authUser ? 'Synchronized to Cloud Firestore' : 'Stored in Local Sandbox'}
+                {authUser ? 'Đã đồng bộ hóa với Cloud Firestore' : 'Lưu trữ trong bộ nhớ cục bộ'}
               </span>
             </div>
 
@@ -792,7 +792,7 @@ export const ProfilePage: React.FC = () => {
                         {pillar.label}
                       </span>
                       <span className="text-[10px] text-[#9BA9C3] font-mono">
-                        {selections.length} selected
+                        {selections.length} đã chọn
                       </span>
                     </div>
 
@@ -809,7 +809,7 @@ export const ProfilePage: React.FC = () => {
                       </div>
                     ) : (
                       <span className="text-[11px] text-[#9BA9C3]/60 italic font-light">
-                        Not configured (neutral weighting)
+                        Chưa thiết lập (trọng số trung tính)
                       </span>
                     )}
                   </div>
@@ -823,7 +823,7 @@ export const ProfilePage: React.FC = () => {
             <div className="flex items-center gap-2 mb-4">
               <Sliders className="h-5 w-5 text-[#48E3EF]" />
               <h3 className="font-serif text-xl font-medium text-white">
-                Application Preferences
+                Cài Đặt Ứng Dụng
               </h3>
             </div>
 
@@ -831,8 +831,8 @@ export const ProfilePage: React.FC = () => {
               {/* Currency */}
               <div className="flex items-center justify-between border-b border-[#243049]/60 pb-3">
                 <div>
-                  <span className="font-medium text-white block">Default Currency</span>
-                  <span className="text-[#9BA9C3] text-[11px]">Display pricing across experiences</span>
+                  <span className="font-medium text-white block">Tiền tệ mặc định</span>
+                  <span className="text-[#9BA9C3] text-[11px]">Hiển thị giá dịch vụ và trải nghiệm</span>
                 </div>
                 <select
                   value={currency}
@@ -850,25 +850,25 @@ export const ProfilePage: React.FC = () => {
               {/* Motion Sensitivity */}
               <div className="flex items-center justify-between border-b border-[#243049]/60 pb-3">
                 <div>
-                  <span className="font-medium text-white block">Motion Behavior</span>
-                  <span className="text-[#9BA9C3] text-[11px]">Honors system reduced-motion preferences</span>
+                  <span className="font-medium text-white block">Hiệu ứng chuyển động</span>
+                  <span className="text-[#9BA9C3] text-[11px]">Tôn trọng tùy chọn giảm chuyển động của hệ điều hành</span>
                 </div>
                 <select
                   value={motionPref}
                   onChange={(e) => setMotionPref(e.target.value)}
                   className="rounded-lg border border-[#243049] bg-[#121C30] px-3 py-1.5 text-xs text-white focus:outline-none focus:border-[#3DDC97]"
                 >
-                  <option value="system">Auto (System Default)</option>
-                  <option value="full">Rich Cinematic Motion</option>
-                  <option value="reduced">Reduced Motion Mode</option>
+                  <option value="system">Tự động (Mặc định hệ thống)</option>
+                  <option value="full">Chuyển động điện ảnh mượt mà</option>
+                  <option value="reduced">Chế độ giảm chuyển động</option>
                 </select>
               </div>
 
               {/* Cultural Notifications */}
               <div className="flex items-center justify-between pt-1">
                 <div>
-                  <span className="font-medium text-white block">Cultural Timing Notifications</span>
-                  <span className="text-[#9BA9C3] text-[11px]">Alerts for optimal temple dawn hours and harvests</span>
+                  <span className="font-medium text-white block">Thông báo thời điểm văn hóa</span>
+                  <span className="text-[#9BA9C3] text-[11px]">Nhắc nhở khung giờ sớm thanh tịnh và mùa lễ hội, thu hoạch</span>
                 </div>
                 <button
                   type="button"
@@ -892,16 +892,16 @@ export const ProfilePage: React.FC = () => {
               {savedSuccess ? (
                 <span className="flex items-center gap-1.5 text-xs text-[#3DDC97]">
                   <Check className="h-4 w-4" />
-                  Preferences updated.
+                  Đã lưu cài đặt tùy chọn.
                 </span>
               ) : (
                 <span className="text-[11px] text-[#9BA9C3]">
-                  {authUser ? 'Persisted to user preferences' : 'Persisted in local sandbox'}
+                  {authUser ? 'Đã lưu vào tài khoản' : 'Lưu trong bộ nhớ cục bộ'}
                 </span>
               )}
 
               <Button variant="primary" size="sm" onClick={handleSavePreferences}>
-                Save Preferences
+                Lưu Tùy Chọn
               </Button>
             </div>
           </Card>
@@ -912,7 +912,7 @@ export const ProfilePage: React.FC = () => {
               to="/dev/diagnostics"
               className="text-[11px] text-[#9BA9C3]/50 hover:text-[#3DDC97] inline-flex items-center gap-1 transition-colors"
             >
-              <span>Developer Diagnostics</span>
+              <span>Chẩn Đoán Nhà Phát Triển</span>
               <ChevronRight className="h-3 w-3" />
             </Link>
           </div>
@@ -926,7 +926,7 @@ export const ProfilePage: React.FC = () => {
             <div className="flex items-center justify-between border-b border-[#243049] pb-3">
               <h3 className="font-serif text-lg font-medium text-white flex items-center gap-2">
                 <Edit3 className="h-4 w-4 text-[#3DDC97]" />
-                <span>Edit Traveler Profile</span>
+                <span>Chỉnh Sửa Hồ Sơ Du Khách</span>
               </h3>
               <button
                 type="button"
@@ -946,7 +946,7 @@ export const ProfilePage: React.FC = () => {
 
               <div>
                 <label className="block text-[#9BA9C3] font-mono text-[10px] uppercase mb-1">
-                  Display Name
+                  Tên hiển thị
                 </label>
                 <input
                   type="text"
@@ -954,7 +954,7 @@ export const ProfilePage: React.FC = () => {
                   value={editDisplayName}
                   onChange={(e) => setEditDisplayName(e.target.value)}
                   className="w-full rounded-xl bg-[#121C30] border border-[#243049] px-3.5 py-2 text-white focus:outline-none focus:border-[#3DDC97]"
-                  placeholder="e.g. Maya Chen"
+                  placeholder="Ví dụ: Lê Minh Hoàng"
                 />
                 {editErrors.displayName && (
                   <span className="text-rose-400 text-[11px] mt-1 block">
@@ -965,7 +965,7 @@ export const ProfilePage: React.FC = () => {
 
               <div>
                 <label className="block text-[#9BA9C3] font-mono text-[10px] uppercase mb-1">
-                  Username Handle
+                  Tên định danh (Handle)
                 </label>
                 <div className="relative flex items-center">
                   <span className="absolute left-3 text-[#9BA9C3] font-mono">@</span>
@@ -975,7 +975,7 @@ export const ProfilePage: React.FC = () => {
                     value={editHandle}
                     onChange={(e) => setEditHandle(e.target.value)}
                     className="w-full rounded-xl bg-[#121C30] border border-[#243049] pl-7 pr-3.5 py-2 text-white focus:outline-none focus:border-[#3DDC97]"
-                    placeholder="maya_travels"
+                    placeholder="hoang_duky"
                   />
                 </div>
                 {editErrors.handle && (
@@ -987,14 +987,14 @@ export const ProfilePage: React.FC = () => {
 
               <div>
                 <label className="block text-[#9BA9C3] font-mono text-[10px] uppercase mb-1">
-                  Home Base / Location
+                  Nơi sinh sống / Tỉnh thành
                 </label>
                 <input
                   type="text"
                   value={editHomeBase}
                   onChange={(e) => setEditHomeBase(e.target.value)}
                   className="w-full rounded-xl bg-[#121C30] border border-[#243049] px-3.5 py-2 text-white focus:outline-none focus:border-[#3DDC97]"
-                  placeholder="e.g. Kyoto, Japan"
+                  placeholder="Ví dụ: Hà Nội, Việt Nam"
                 />
                 {editErrors.homeBase && (
                   <span className="text-rose-400 text-[11px] mt-1 block">
@@ -1005,14 +1005,14 @@ export const ProfilePage: React.FC = () => {
 
               <div>
                 <label className="block text-[#9BA9C3] font-mono text-[10px] uppercase mb-1">
-                  Traveler Bio
+                  Giới thiệu bản thân
                 </label>
                 <textarea
                   rows={3}
                   value={editBio}
                   onChange={(e) => setEditBio(e.target.value)}
                   className="w-full rounded-xl bg-[#121C30] border border-[#243049] px-3.5 py-2 text-white focus:outline-none focus:border-[#3DDC97] resize-none"
-                  placeholder="Tell other explorers about your travel philosophy..."
+                  placeholder="Chia sẻ với cộng đồng về phong cách và triết lý du lịch của bạn..."
                 />
                 {editErrors.bio && (
                   <span className="text-rose-400 text-[11px] mt-1 block">
@@ -1028,7 +1028,7 @@ export const ProfilePage: React.FC = () => {
                   size="sm"
                   onClick={() => setIsEditModalOpen(false)}
                 >
-                  Cancel
+                  Hủy
                 </Button>
                 <Button
                   type="submit"
@@ -1036,7 +1036,7 @@ export const ProfilePage: React.FC = () => {
                   size="sm"
                   disabled={isSavingProfile}
                 >
-                  {isSavingProfile ? 'Saving Changes...' : 'Save Profile'}
+                  {isSavingProfile ? 'Đang lưu...' : 'Lưu Hồ Sơ'}
                 </Button>
               </div>
             </form>

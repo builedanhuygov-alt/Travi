@@ -82,7 +82,7 @@ export const DestinationComparison: React.FC<DestinationComparisonProps> = ({
               type="button"
               onClick={onClose}
               className="p-2 rounded-xl bg-[#121C30] border border-white/5 text-[#9BA9C3] hover:text-white transition-colors cursor-pointer"
-              aria-label="Close comparison dialog"
+              aria-label="Đóng hộp thoại so sánh"
             >
               <X className="h-5 w-5" />
             </button>
@@ -114,7 +114,8 @@ export const DestinationComparison: React.FC<DestinationComparisonProps> = ({
                       type="button"
                       onClick={() => onRemoveFromShortlist(dest.id)}
                       className="absolute top-2 right-2 p-1.5 rounded-full bg-black/70 text-white/80 hover:bg-rose-500 hover:text-white transition-all cursor-pointer"
-                      title="Remove from comparison"
+                      title="Xóa khỏi so sánh"
+                      aria-label={`Xóa ${dest.name} khỏi so sánh`}
                     >
                       <X className="h-4 w-4" />
                     </button>

@@ -77,9 +77,9 @@ export const DevDiagnosticsPage: React.FC = () => {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <PageHeader
-          badge="Developer Tools"
+          badge="Công Cụ Phát Triển"
           badgeVariant="cyan"
-          title="Internal Editorial & System Diagnostics"
+          title="Chẩn Đoán Hệ Thống & Quản Trị Dữ Liệu"
           description="Công cụ quản trị dữ liệu thực địa miền Bắc, kiểm chứng nguồn tham chiếu và chẩn đoán hạ tầng."
         />
 
@@ -125,60 +125,60 @@ export const DevDiagnosticsPage: React.FC = () => {
                 <h3 className="font-serif text-lg font-medium text-white">Firebase SDK Diagnostic Panel</h3>
               </div>
               <Badge variant={diagnostics.isConfigured ? 'green' : 'neutral'} size="sm">
-                {diagnostics.isConfigured ? 'Live SDK Initialized' : 'Offline Sandbox'}
+                {diagnostics.isConfigured ? 'Đã khởi tạo SDK Trực tiếp' : 'Bộ nhớ mô phỏng Cục bộ'}
               </Badge>
             </div>
 
         <div className="grid grid-cols-2 gap-3 text-xs font-mono bg-[#080D18] p-4 rounded-xl border border-[#243049]">
           <div className="flex justify-between border-b border-[#243049]/60 pb-1.5">
-            <span className="text-[#9BA9C3]">Project ID:</span>
+            <span className="text-[#9BA9C3]">Mã dự án (Project ID):</span>
             <span className="text-white">{diagnostics.projectId}</span>
           </div>
           <div className="flex justify-between border-b border-[#243049]/60 pb-1.5">
-            <span className="text-[#9BA9C3]">Auth Domain:</span>
+            <span className="text-[#9BA9C3]">Tên miền xác thực:</span>
             <span className="text-white truncate max-w-[160px]">{diagnostics.authDomain}</span>
           </div>
           <div className="flex justify-between border-b border-[#243049]/60 pb-1.5">
             <span className="text-[#9BA9C3]">Web API Key:</span>
             <span className={diagnostics.hasApiKey ? 'text-[#3DDC97]' : 'text-amber-400'}>
-              {diagnostics.hasApiKey ? 'Configured' : 'Missing in .env'}
+              {diagnostics.hasApiKey ? 'Đã cấu hình' : 'Thiếu trong .env'}
             </span>
           </div>
           <div className="flex justify-between border-b border-[#243049]/60 pb-1.5">
-            <span className="text-[#9BA9C3]">App ID:</span>
+            <span className="text-[#9BA9C3]">Mã ứng dụng (App ID):</span>
             <span className={diagnostics.hasAppId ? 'text-[#3DDC97]' : 'text-amber-400'}>
-              {diagnostics.hasAppId ? 'Configured' : 'Missing in .env'}
+              {diagnostics.hasAppId ? 'Đã cấu hình' : 'Thiếu trong .env'}
             </span>
           </div>
           <div className="flex justify-between border-b border-[#243049]/60 pb-1.5">
-            <span className="text-[#9BA9C3]">Auth SDK Client:</span>
+            <span className="text-[#9BA9C3]">Client Auth SDK:</span>
             <span className={diagnostics.authReady ? 'text-[#3DDC97]' : 'text-[#9BA9C3]'}>
-              {diagnostics.authReady ? 'Loaded' : 'Offline'}
+              {diagnostics.authReady ? 'Đã nạp' : 'Ngoại tuyến'}
             </span>
           </div>
           <div className="flex justify-between border-b border-[#243049]/60 pb-1.5">
-            <span className="text-[#9BA9C3]">Firestore SDK Client:</span>
+            <span className="text-[#9BA9C3]">Client Firestore SDK:</span>
             <span className={diagnostics.firestoreReady ? 'text-[#3DDC97]' : 'text-[#9BA9C3]'}>
-              {diagnostics.firestoreReady ? 'Loaded' : 'Offline'}
+              {diagnostics.firestoreReady ? 'Đã nạp' : 'Ngoại tuyến'}
             </span>
           </div>
           <div className="flex justify-between border-b border-[#243049]/60 pb-1.5">
-            <span className="text-[#9BA9C3]">Auth Session:</span>
+            <span className="text-[#9BA9C3]">Phiên người dùng:</span>
             <span className={authSession ? 'text-[#3DDC97] truncate max-w-[160px]' : 'text-[#9BA9C3]'}>
-              {authSession ? authSession.email || 'Authenticated' : 'Unauthenticated Guest'}
+              {authSession ? authSession.email || 'Đã đăng nhập' : 'Khách vãng lai'}
             </span>
           </div>
           <div className="flex justify-between border-b border-[#243049]/60 pb-1.5">
-            <span className="text-[#9BA9C3]">Firestore Reachable:</span>
+            <span className="text-[#9BA9C3]">Kết nối Firestore:</span>
             <span className={reachabilityReport?.isReachable ? 'text-[#3DDC97]' : reachabilityReport ? 'text-amber-400' : 'text-[#9BA9C3]'}>
-              {reachabilityReport?.isReachable ? `Reachable (${reachabilityReport.latencyMs}ms)` : reachabilityReport ? 'Unreachable' : 'Untested'}
+              {reachabilityReport?.isReachable ? `Kết nối tốt (${reachabilityReport.latencyMs}ms)` : reachabilityReport ? 'Không thể kết nối' : 'Chưa kiểm tra'}
             </span>
           </div>
         </div>
 
         <div className="flex items-center justify-between pt-2">
           <span className="text-xs text-[#9BA9C3]">
-            {reachabilityReport ? reachabilityReport.message : 'Actively verify internet round-trip connectivity to Cloud Firestore:'}
+            {reachabilityReport ? reachabilityReport.message : 'Chủ động kiểm tra kết nối hai chiều đến Cloud Firestore:'}
           </span>
           <Button
             variant="outline"
@@ -187,7 +187,7 @@ export const DevDiagnosticsPage: React.FC = () => {
             disabled={!diagnostics.firestoreReady || isCheckingReachability}
             className="text-xs"
           >
-            {isCheckingReachability ? 'Pinging...' : 'Ping Cloud Firestore'}
+            {isCheckingReachability ? 'Đang kiểm tra...' : 'Ping Cloud Firestore'}
           </Button>
         </div>
       </Card>
@@ -200,25 +200,25 @@ export const DevDiagnosticsPage: React.FC = () => {
             <h3 className="font-serif text-lg font-medium text-white">Persistence Architecture & Boundary</h3>
           </div>
           <Badge variant={persistenceStatus.isCloudSyncEnabled ? 'green' : 'neutral'} size="sm">
-            {persistenceStatus.isCloudSyncEnabled ? 'Authenticated Cloud' : 'Local Demo Sandbox'}
+            {persistenceStatus.isCloudSyncEnabled ? 'Đám mây đã xác thực' : 'Bộ nhớ cục bộ trên thiết bị'}
           </Badge>
         </div>
 
         <div className="space-y-2 text-xs bg-[#080D18] p-4 rounded-xl border border-[#243049]">
           <div className="flex justify-between py-1 border-b border-[#243049]/60">
-            <span className="text-[#9BA9C3]">Active Mode:</span>
+            <span className="text-[#9BA9C3]">Chế độ hoạt động:</span>
             <span className="font-mono text-white">{persistenceStatus.currentMode}</span>
           </div>
           <div className="flex justify-between py-1 border-b border-[#243049]/60">
-            <span className="text-[#9BA9C3]">User Isolation Path:</span>
-            <span className="font-mono text-[#3DDC97]">{persistenceStatus.userIsolationPath || 'None (Guest Mode)'}</span>
+            <span className="text-[#9BA9C3]">Đường dẫn cô lập người dùng:</span>
+            <span className="font-mono text-[#3DDC97]">{persistenceStatus.userIsolationPath || 'Không (Chế độ Khách)'}</span>
           </div>
           <div className="flex justify-between py-1 border-b border-[#243049]/60">
-            <span className="text-[#9BA9C3]">Security Rules Contract:</span>
+            <span className="text-[#9BA9C3]">Quy tắc bảo mật Firestore:</span>
             <span className="font-mono text-[#3DDC97] text-[11px]">{persistenceStatus.isolationContract}</span>
           </div>
           <div className="flex justify-between py-1">
-            <span className="text-[#9BA9C3]">Silent Migration Policy:</span>
+            <span className="text-[#9BA9C3]">Chính sách di chuyển dữ liệu:</span>
             <span className="text-white text-[11px]">{persistenceStatus.migrationPolicyNotice}</span>
           </div>
         </div>
@@ -226,7 +226,7 @@ export const DevDiagnosticsPage: React.FC = () => {
         {authUser && (
           <div className="flex items-center justify-between pt-2">
             <span className="text-xs text-[#9BA9C3]">
-              Inspect live documents stored under /users/{authUser.uid.slice(0, 8)}/*:
+              Kiểm tra các tài liệu thực tế lưu trữ tại /users/{authUser.uid.slice(0, 8)}/*:
             </span>
             <Button
               variant="outline"
@@ -235,7 +235,7 @@ export const DevDiagnosticsPage: React.FC = () => {
               disabled={isFetchingCloud}
               className="text-xs"
             >
-              {isFetchingCloud ? 'Querying...' : 'Verify Cloud Read (/users/{uid}/*)'}
+              {isFetchingCloud ? 'Đang truy vấn...' : 'Xác Minh Đọc Dữ Liệu Đám Mây (/users/{uid}/*)'}
             </Button>
           </div>
         )}
@@ -245,18 +245,18 @@ export const DevDiagnosticsPage: React.FC = () => {
             <div className="flex items-center justify-between text-white font-semibold">
               <span className="flex items-center gap-1.5">
                 <Check className="h-4 w-4 text-[#3DDC97]" />
-                <span>Live Cloud Document Inspection</span>
+                <span>Kiểm Tra Dữ Liệu Đám Mây Trực Tiếp</span>
               </span>
               <span className="text-[10px] text-[#9BA9C3]">{new Date(cloudSummary.fetchedAt).toLocaleTimeString()}</span>
             </div>
             <div className="grid grid-cols-2 gap-2 text-[11px]">
-              <div>Journeys (/trips): <span className="text-white font-bold">{cloudSummary.tripsCount}</span></div>
-              <div>Sanctuaries (/savedDestinations): <span className="text-white font-bold">{cloudSummary.savedDestinationsCount}</span></div>
-              <div>Memories (/memories): <span className="text-white font-bold">{cloudSummary.memoriesCount}</span></div>
-              <div>Taste Profile (/preferences): <span className="text-white font-bold">{cloudSummary.hasTasteProfile ? 'Synced' : 'None'}</span></div>
+              <div>Chuyến đi (/trips): <span className="text-white font-bold">{cloudSummary.tripsCount}</span></div>
+              <div>Điểm đến (/savedDestinations): <span className="text-white font-bold">{cloudSummary.savedDestinationsCount}</span></div>
+              <div>Kỷ niệm (/memories): <span className="text-white font-bold">{cloudSummary.memoriesCount}</span></div>
+              <div>Gu văn hóa (/preferences): <span className="text-white font-bold">{cloudSummary.hasTasteProfile ? 'Đã đồng bộ' : 'Chưa có'}</span></div>
             </div>
             <div className="text-[10px] text-[#3DDC97] pt-1">
-              Path: {cloudSummary.queriedPath}
+              Đường dẫn: {cloudSummary.queriedPath}
             </div>
           </div>
         )}
@@ -267,34 +267,34 @@ export const DevDiagnosticsPage: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Activity className="h-5 w-5 text-[#9875FF]" />
-            <h3 className="font-serif text-lg font-medium text-white">Vietnam Knowledge Engine Diagnostics</h3>
+            <h3 className="font-serif text-lg font-medium text-white">Chẩn Đoán Động Cơ Tri Thức Du Lịch Việt Nam</h3>
           </div>
           <Badge variant="cyan" size="sm">
-            34 Provincial Units Loaded
+            Đã nạp 34 Đơn vị Hành chính
           </Badge>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono bg-[#080D18] p-4 rounded-xl border border-[#243049]">
           <div className="flex flex-col border-b sm:border-b-0 sm:border-r border-[#243049]/60 pb-2 sm:pb-0 sm:pr-2">
-            <span className="text-[#9BA9C3]">Total Units:</span>
-            <span className="text-white font-bold text-sm">34 Provinces</span>
+            <span className="text-[#9BA9C3]">Tổng số đơn vị:</span>
+            <span className="text-white font-bold text-sm">34 Tỉnh/Thành phố</span>
           </div>
           <div className="flex flex-col border-b sm:border-b-0 sm:border-r border-[#243049]/60 pb-2 sm:pb-0 sm:pr-2">
-            <span className="text-[#9BA9C3]">Regions:</span>
-            <span className="text-[#3DDC97] font-bold text-sm">North • Central • South</span>
+            <span className="text-[#9BA9C3]">Phân vùng:</span>
+            <span className="text-[#3DDC97] font-bold text-sm">Bắc • Trung • Nam</span>
           </div>
           <div className="flex flex-col border-b sm:border-b-0 sm:border-r border-[#243049]/60 pb-2 sm:pb-0 sm:pr-2">
-            <span className="text-[#9BA9C3]">Coordinates:</span>
-            <span className="text-[#48E3EF] font-bold text-sm">100% Real Geocodes</span>
+            <span className="text-[#9BA9C3]">Tọa độ địa lý:</span>
+            <span className="text-[#48E3EF] font-bold text-sm">100% Tọa độ thực</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-[#9BA9C3]">AI Assistant:</span>
-            <span className="text-white font-bold text-sm">Modular Fallback</span>
+            <span className="text-[#9BA9C3]">Trợ lý AI:</span>
+            <span className="text-white font-bold text-sm">Dự phòng Tất định</span>
           </div>
         </div>
 
         <p className="text-xs text-[#9BA9C3] font-light">
-          Normalized data layer containing verified UNESCO sites, historical administrative designations (Thăng Long, Cố Đô Huế, Gia Định, Faifo), authentic regional dishes, and artisanal guilds.
+          Lớp dữ liệu chuẩn hóa bao gồm các di sản UNESCO đã xác minh, địa danh lịch sử (Thăng Long, Cố đô Huế, Gia Định, Faifo), ẩm thực truyền thống và làng nghề nghệ nhân.
         </p>
       </Card>
         </div>

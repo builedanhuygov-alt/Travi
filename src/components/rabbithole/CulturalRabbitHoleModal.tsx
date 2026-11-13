@@ -319,7 +319,7 @@ export const CulturalRabbitHoleModal: React.FC<CulturalRabbitHoleModalProps> = (
                         </span>
                         {activeNode.metadata?.rating && (
                           <span className="rounded-full bg-black/60 backdrop-blur-md px-2.5 py-1 text-[10px] font-mono text-[#3DDC97] border border-[#3DDC97]/30">
-                            ★ {activeNode.metadata.rating} Rating
+                            ★ {activeNode.metadata.rating} Đánh giá
                           </span>
                         )}
                       </div>
